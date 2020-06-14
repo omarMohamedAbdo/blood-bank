@@ -1,6 +1,8 @@
 @extends('layouts.donor')
 
 @section('content')
+<!--================Contact Area =================-->
+<section class="contact_area p_120">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -77,4 +79,7 @@
         </div>
     </div>
 </div>
+</section>
+    <!--================Contact Area =================-->
+
 @endsection
