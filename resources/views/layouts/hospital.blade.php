@@ -1,82 +1,124 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="img/favicon.png" type="image/png">
+	<title>Kare Charity</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{{asset('css/css/bootstrap.css')}}">
+	<link rel="stylesheet" href="{{asset('css/vendors/linericon/style.css')}}">
+	<link rel="stylesheet" href="{{asset('css/css/font-awesome.min.css')}}">
+	<link rel="stylesheet" href="{{asset('css/vendors/owl-carousel/owl.carousel.min.css')}}">
+	<link rel="stylesheet" href="{{asset('css/vendors/lightbox/simpleLightbox.css')}}">
+	<link rel="stylesheet" href="{{asset('css/vendors/nice-select/css/nice-select.css')}}">
+	<link rel="stylesheet" href="{{asset('css/vendors/animate-css/animate.css')}}">
+    <link rel="stylesheet" href="{{asset('css/vendors/jquery-ui/jquery-ui.css')}}">
+    <link rel="stylesheet" href="{{asset('css/css/magnific-popup.css')}}">
+	<!-- main css -->
+	<link rel="stylesheet" href="{{asset('css/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/css/responsive.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+     <!--================Header Menu Area =================-->
+	<header class="header_area">
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<a class="navbar-brand logo_h" href="/">
+						<img src="{{asset('css/img/logo.png')}}" alt="">
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					 aria-expanded="false" aria-label="Toggle navigation">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+						<div class="row ml-0 w-100">
+							<div class="col-lg-12 pr-0">
+								<ul class="nav navbar-nav center_nav pull-right">
+									<li class="nav-item active">
+										<a class="nav-link" href="/">home</a>
+									</li>
+                                    @auth('hospital')
+                                    <li class="nav-item submenu dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::guard('hospital')->user()->name }}</a>
+                                        <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                                                    document.getElementById('logout-form').submit();">
+                                                        {{ __('Logout') }}
+                                                    </a>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                        @csrf
+                                                    </form>
+                                                </li>
+                                        </ul>
+                                    </li>
+                                        
+                                    @else
+                                        <li class="nav-item submenu dropdown">
+                                            <a class="nav-link" href="{{ route('hospitalLogin') }}">{{ __('Hospital Login') }} </a>
+                                        </li>
 
-                    </ul>
+                                        @if (Route::has('register'))
+                                            <li class="nav-item submenu dropdown">
+                                                <a class="nav-link" href="{{ route('hospitalRegister') }}">{{ __('Hospital Register') }}</a>
+                                            </li>
+                                        @endif
+                                    @endauth
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<!--================Header Menu Area =================-->
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @auth('hospital')
-                        <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            
-                        @else
-                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('hospitalLogin') }}">{{ __('Hospital Login') }} </a>
-                                
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('hospitalRegister') }}">{{ __('Hospital Register') }}</a>
-                                </li>
-                            @endif
-                        @endauth
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
+   
+        <main>
             @yield('content')
         </main>
-    </div>
+<!--================ Start Experience Area =================-->
+<section class="experience_donation section_gap">
+		<div class="container">
+			<div class="row align-items-center justify-content-center">
+				<div class="col-lg-12">
+					<h1>Experience How your Donation Can Reach</h1>
+					<p>he French Revolution constituted for the conscience of the dominant aristocratic class a fall from innocence, and upturning
+						of the natural chain of events that resounded.</p>
+					<a href="#" class="main_btn2 mr-10">make donation now</a>
+					<a href="#" class="main_btn2">Create Fundraising today</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ End Experience Area =================-->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="{{asset('js/js/jquery-3.2.1.min.js')}}"></script>
+<script src="{{asset('js/js/popper.js')}}"></script>
+<script src="{{asset('js/js/bootstrap.min.js')}}"></script>
+<!-- <script src="vendors/lightbox/simpleLightbox.min.js"></script> -->
+<script src="{{asset('css/vendors/nice-select/js/jquery.nice-select.min.js')}}"></script>
+<!-- <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script> -->
+<script src="{{asset('css/vendors/isotope/isotope-min.js')}}"></script>
+<script src="{{asset('css/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
+<script src="{{asset('js/js/jquery.ajaxchimp.min.js')}}"></script>
+<!-- <script src="vendors/counter-up/jquery.waypoints.min.js"></script> -->
+<!-- <script src="vendors/flipclock/timer.js"></script> -->
+<!-- <script src="vendors/counter-up/jquery.counterup.js"></script> -->
+<script src="{{asset('js/js/mail-script.js')}}"></script>
+<script src="{{asset('js/js/custom.js')}}"></script>
 </body>
 </html>
