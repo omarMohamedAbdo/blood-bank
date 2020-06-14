@@ -26,5 +26,15 @@ Route::get('/register/hospital', 'Auth\RegisterController@showHospitalRegisterFo
 Route::post('/login/hospital', 'Auth\LoginController@hospitalLogin');
 Route::post('/register/hospital', 'Auth\RegisterController@createHospital');
 
-Route::view('/hospital', 'hospital')->middleware('auth:hospital');
+//Hospital routes   ->only viewed by hospital
+Route::group([
+    'prefix' => "hospital", //all admin routes will start with /admin
+    'middleware' => 'auth:hospital'
+    ],
+    function () {
+        Route::view('', 'hospital');
+        
+    });//end of hospital middleware
+
+// Route::view('/hospital', 'hospital')->middleware('auth:hospital');
 
