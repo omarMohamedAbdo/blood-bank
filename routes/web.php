@@ -28,7 +28,7 @@ Route::post('/register/hospital', 'Auth\RegisterController@createHospital');
 
 //Hospital routes   ->only viewed by hospital
 Route::group([
-    'prefix' => "hospital", //all admin routes will start with /admin
+    'prefix' => "hospital", //all hospital routes will start with /hospital
     'middleware' => 'auth:hospital'
     ],
     function () {

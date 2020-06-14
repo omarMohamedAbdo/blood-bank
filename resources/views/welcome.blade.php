@@ -73,12 +73,12 @@
                          <a href="{{ url('/hospital') }}">Hospital Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('register') }}">Register</a>
                         <a href="{{ route('hospitalLogin') }}">Hospital Login</a>
+                        <a href="{{ route('hospitalRegister') }}">Hospital Register</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                            <a href="{{ route('hospitalRegister') }}">Hospital Register</a>
-                        @endif
+                        <!-- @if (Route::has('register'))
+                        @endif -->
                     @endif
                 </div>
             @endif
