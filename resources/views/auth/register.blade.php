@@ -71,11 +71,23 @@
                         <div class="form-group row">
                             <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
                             <div class="col-md-6">
-                                <select class="form-control" id="city" name="city" required focus>
-                                    <option value="" disabled selected>Please select City</option>        
-                                    <option value="Cairo">Cairo</option>
-                                    <option value="Alexandria">Alexandria</option>
-                                    <option value="Suez">Suez</option>
+                                <select class="form-control @error('city') is-invalid @enderror" id="city" name="city" required focus>
+                                    <option value="" disabled selected>Please select City</option> 
+                                    @if (old('city') == 'Cairo')
+                                        <option value="Cairo" selected>Cairo</option>
+                                    @else
+                                        <option value="Cairo">Cairo</option>
+                                    @endif  
+                                    @if (old('city') == 'Alexandria')
+                                        <option value="Alexandria" selected>Alexandria</option>
+                                    @else
+                                        <option value="Alexandria">Alexandria</option>
+                                    @endif 
+                                    @if (old('city') == 'Suez')
+                                        <option value="Suez" selected>Suez</option>
+                                    @else
+                                        <option value="Suez">Suez</option>
+                                    @endif      
                                 </select>
                             </div>
                         </div>
@@ -92,10 +104,27 @@
                             <div class="col-md-6">
                                 <select class="form-control" id="blood_type" name="blood_type" required focus>
                                     <option value="" disabled selected>Please select Your blood type</option>        
-                                    <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="AB">AB</option>
-                                    <option value="O">O</option>
+                                    @if (old('blood_type') == 'A')
+                                        <option value="A" selected>A</option>
+                                    @else
+                                        <option value="A">A</option>
+                                    @endif 
+                                    @if (old('blood_type') == 'B')
+                                        <option value="B" selected>B</option>
+                                    @else
+                                        <option value="B">B</option>
+                                    @endif
+                                    @if (old('blood_type') == 'AB')
+                                        <option value="AB" selected>AB</option>
+                                    @else
+                                        <option value="AB">AB</option>
+                                    @endif
+                                    @if (old('blood_type') == 'O')
+                                        <option value="O" selected>O</option>
+                                    @else
+                                        <option value="O">O</option>
+                                    @endif
+                                    
                                 </select>
                             </div>
                         </div>

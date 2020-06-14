@@ -63,11 +63,23 @@
                         <div class="form-group row">
                             <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
                             <div class="col-md-6">
-                                <select class="form-control" id="city" name="city" required focus>
-                                    <option value="" disabled selected>Please select City</option>        
-                                    <option value="Cairo">Cairo</option>
-                                    <option value="Alexandria">Alexandria</option>
-                                    <option value="Suez">Suez</option>
+                                <select class="form-control @error('city') is-invalid @enderror" id="city" name="city" required focus>
+                                    <option value="" disabled selected>Please select City</option> 
+                                    @if (old('city') == 'Cairo')
+                                        <option value="Cairo" selected>Cairo</option>
+                                    @else
+                                        <option value="Cairo">Cairo</option>
+                                    @endif  
+                                    @if (old('city') == 'Alexandria')
+                                        <option value="Alexandria" selected>Alexandria</option>
+                                    @else
+                                        <option value="Alexandria">Alexandria</option>
+                                    @endif 
+                                    @if (old('city') == 'Suez')
+                                        <option value="Suez" selected>Suez</option>
+                                    @else
+                                        <option value="Suez">Suez</option>
+                                    @endif      
                                 </select>
                             </div>
                         </div>
