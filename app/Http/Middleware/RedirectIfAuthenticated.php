@@ -17,7 +17,10 @@ class RedirectIfAuthenticated
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
-    {
+    {   
+        if ($guard == "hospital" && Auth::guard($guard)->check()) {
+            return redirect('/hospital');
+        }
         if (Auth::guard($guard)->check()) {
             return redirect(RouteServiceProvider::HOME);
         }

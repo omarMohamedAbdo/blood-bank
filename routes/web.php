@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/login/hospital', 'Auth\LoginController@showHospitalLoginForm')->name('hospitalLogin');
+Route::get('/register/hospital', 'Auth\RegisterController@showHospitalRegisterForm')->name('hospitalRegister');
+
+Route::post('/login/hospital', 'Auth\LoginController@hospitalLogin');
+Route::post('/register/hospital', 'Auth\RegisterController@createHospital');
+
+Route::view('/hospital', 'hospital')->middleware('auth:hospital');
+
