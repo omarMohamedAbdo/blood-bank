@@ -31,4 +31,6 @@ class Request extends Model
     {
          return $this->belongsTo('App\Hospital', 'target_hospital_id');
     }
+
+    protected $fillable = ['hospital_id','is_emergency','blood_type','needed_amount','target_hospital_id','is_completed'];
 }

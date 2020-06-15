@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Request;
+use App\Request as hospitalRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RequestController extends Controller
 {
@@ -15,6 +16,7 @@ class RequestController extends Controller
     public function index()
     {
         //
+        return "list of requests...";
     }
 
     /**
@@ -25,6 +27,8 @@ class RequestController extends Controller
     public function create()
     {
         //
+
+        return view("createRequests");
     }
 
     /**
@@ -35,7 +39,27 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "amount"=> "required|numeric|min:1",
+            "blood"=>"required"
+        ]);
+
+        $emergency = false;
+        if (isset($request["emergency"])) {
+            $emergency = true;
+        }
+        $hospitalId = Auth::guard("hospital")->user()["id"];
+
+        hospitalRequest::create([
+            "hospital_id" => $hospitalId,
+            "is_emergency" => $emergency,
+            "blood_type" => $request["blood"],
+            "needed_amount" => $request["amount"],
+            "target_hospital_id" => null,
+            "is_completed" => false
+        ]);
+
+        return redirect("hospital/requests");
     }
 
     /**
@@ -67,7 +91,7 @@ class RequestController extends Controller
      * @param  \App\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Request $request)
+    public function update(Request $request)
     {
         //
     }

@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
-    <!-- Required meta tags -->
+	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="img/favicon.png" type="image/png">
@@ -14,15 +15,16 @@
 	<link rel="stylesheet" href="{{asset('css/vendors/lightbox/simpleLightbox.css')}}">
 	<link rel="stylesheet" href="{{asset('css/vendors/nice-select/css/nice-select.css')}}">
 	<link rel="stylesheet" href="{{asset('css/vendors/animate-css/animate.css')}}">
-    <link rel="stylesheet" href="{{asset('css/vendors/jquery-ui/jquery-ui.css')}}">
-    <link rel="stylesheet" href="{{asset('css/css/magnific-popup.css')}}">
+	<link rel="stylesheet" href="{{asset('css/vendors/jquery-ui/jquery-ui.css')}}">
+	<link rel="stylesheet" href="{{asset('css/css/magnific-popup.css')}}">
 	<!-- main css -->
 	<link rel="stylesheet" href="{{asset('css/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('css/css/responsive.css')}}">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+	<link rel="stylesheet" href="{{asset('css/css/responsive.css')}}">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 </head>
+
 <body>
-     <!--================Header Menu Area =================-->
+	<!--================Header Menu Area =================-->
 	<header class="header_area">
 		<div class="main_menu">
 			<nav class="navbar navbar-expand-lg navbar-light">
@@ -31,8 +33,7 @@
 					<a class="navbar-brand logo_h" href="/">
 						<img src="{{asset('css/img/logo.png')}}" alt="">
 					</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-					 aria-expanded="false" aria-label="Toggle navigation">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -49,35 +50,50 @@
 									<li class="nav-item">
 										<a class="nav-link" href="#">Donations</a>
 									</li>
-                                    <li class="nav-item submenu dropdown">
-                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::guard('hospital')->user()->name }}</a>
-                                        <ul class="dropdown-menu">
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="{{ route('logout') }}"
-                                                    onclick="event.preventDefault();
+
+									<!-- requests start  -->
+									<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Requests</a>
+										<ul class="dropdown-menu">
+											<li class="nav-item">
+												<a class="nav-link" href="{{ route('requests.create') }}">
+													New Request
+												</a>
+
+											</li>
+										</ul>
+									</li>
+									<!-- requests end  -->
+
+
+									<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::guard('hospital')->user()->name }}</a>
+										<ul class="dropdown-menu">
+											<li class="nav-item">
+												<a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                                     document.getElementById('logout-form').submit();">
-                                                        {{ __('Logout') }}
-                                                    </a>
+													{{ __('Logout') }}
+												</a>
 
-                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                        @csrf
-                                                    </form>
-                                                </li>
-                                        </ul>
-                                    </li>
-                                        
-                                    @else
-                                        <li class="nav-item submenu dropdown">
-                                            <a class="nav-link" href="{{ route('hospitalLogin') }}">{{ __('Hospital Login') }} </a>
-                                        </li>
+												<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+													@csrf
+												</form>
+											</li>
+										</ul>
+									</li>
 
-                                        @if (Route::has('register'))
-                                            <li class="nav-item submenu dropdown">
-                                                <a class="nav-link" href="{{ route('hospitalRegister') }}">{{ __('Hospital Register') }}</a>
-                                            </li>
-                                        @endif
-                                    @endauth
-									
+									@else
+									<li class="nav-item submenu dropdown">
+										<a class="nav-link" href="{{ route('hospitalLogin') }}">{{ __('Hospital Login') }} </a>
+									</li>
+
+									@if (Route::has('register'))
+									<li class="nav-item submenu dropdown">
+										<a class="nav-link" href="{{ route('hospitalRegister') }}">{{ __('Hospital Register') }}</a>
+									</li>
+									@endif
+									@endauth
+
 								</ul>
 							</div>
 						</div>
@@ -88,12 +104,12 @@
 	</header>
 	<!--================Header Menu Area =================-->
 
-   
-        <main>
-            @yield('content')
-        </main>
-<!--================ Start Experience Area =================-->
-<section class="experience_donation section_gap">
+
+	<main>
+		@yield('content')
+	</main>
+	<!--================ Start Experience Area =================-->
+	<section class="experience_donation section_gap">
 		<div class="container">
 			<div class="row align-items-center justify-content-center">
 				<div class="col-lg-12">
@@ -107,21 +123,22 @@
 		</div>
 	</section>
 	<!--================ End Experience Area =================-->
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="{{asset('js/js/jquery-3.2.1.min.js')}}"></script>
-<script src="{{asset('js/js/popper.js')}}"></script>
-<script src="{{asset('js/js/bootstrap.min.js')}}"></script>
-<!-- <script src="vendors/lightbox/simpleLightbox.min.js"></script> -->
-<script src="{{asset('css/vendors/nice-select/js/jquery.nice-select.min.js')}}"></script>
-<!-- <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script> -->
-<script src="{{asset('css/vendors/isotope/isotope-min.js')}}"></script>
-<script src="{{asset('css/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
-<script src="{{asset('js/js/jquery.ajaxchimp.min.js')}}"></script>
-<!-- <script src="vendors/counter-up/jquery.waypoints.min.js"></script> -->
-<!-- <script src="vendors/flipclock/timer.js"></script> -->
-<!-- <script src="vendors/counter-up/jquery.counterup.js"></script> -->
-<script src="{{asset('js/js/mail-script.js')}}"></script>
-<script src="{{asset('js/js/custom.js')}}"></script>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="{{asset('js/js/jquery-3.2.1.min.js')}}"></script>
+	<script src="{{asset('js/js/popper.js')}}"></script>
+	<script src="{{asset('js/js/bootstrap.min.js')}}"></script>
+	<!-- <script src="vendors/lightbox/simpleLightbox.min.js"></script> -->
+	<script src="{{asset('css/vendors/nice-select/js/jquery.nice-select.min.js')}}"></script>
+	<!-- <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script> -->
+	<script src="{{asset('css/vendors/isotope/isotope-min.js')}}"></script>
+	<script src="{{asset('css/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
+	<script src="{{asset('js/js/jquery.ajaxchimp.min.js')}}"></script>
+	<!-- <script src="vendors/counter-up/jquery.waypoints.min.js"></script> -->
+	<!-- <script src="vendors/flipclock/timer.js"></script> -->
+	<!-- <script src="vendors/counter-up/jquery.counterup.js"></script> -->
+	<script src="{{asset('js/js/mail-script.js')}}"></script>
+	<script src="{{asset('js/js/custom.js')}}"></script>
 </body>
+
 </html>
