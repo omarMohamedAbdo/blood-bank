@@ -36,4 +36,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function donate()
+    {
+        return $this->belongsToMany('App\Request', 'requests', 'user_id', 'request_id')->withPivot('blood_type', 'donations_amount', 'status')->withTimestamps();
+    }
 }

@@ -45,7 +45,10 @@
 									<li class="nav-item active">
 										<a class="nav-link" href="/">home</a>
 									</li>
-                                    @auth('hospital')
+									@auth('hospital')
+									<li class="nav-item">
+										<a class="nav-link" href="#">Donations</a>
+									</li>
                                     <li class="nav-item submenu dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::guard('hospital')->user()->name }}</a>
                                         <ul class="dropdown-menu">
