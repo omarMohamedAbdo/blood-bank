@@ -21,6 +21,22 @@
                             <input type="number" name="amount" placeholder="Amount" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Amount'" required class="single-input" min="1">
                         </div>
                     </div>
+                    @isset($hospitals)
+                    <div class="default-select" id="default-select">
+                        <h3 class="mb-30 title_color">Select Hospital</h3>
+                        <select required name="hospital">
+                            <option value="None" selected="true" disabled>Select Hospital</option>
+                            @foreach ($hospitals as $hospital)
+                            @if ($hospital->name != Auth::guard('hospital')->user()->name)
+                            <option value="{{$hospital->id}}">{{$hospital->name}}</option>
+                            @endif
+                            @endforeach
+                        </select>
+                    </div>
+                    @foreach ($hospitals as $hospital)
+                    @endforeach
+
+                    @endisset
                     <div class="col-lg-3 col-md-4 mt-sm-30 element-wrap">
                         <div class="single-element-widget">
                             <div class="switch-wrap d-flex justify-content-between">
@@ -49,6 +65,7 @@
                         Create
                     </button>
                 </div>
+                <input type="hidden" name="private" value="true">
             </form>
 
         </div>

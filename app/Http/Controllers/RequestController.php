@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Request as hospitalRequest;
+use App\Hospital;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,11 +25,14 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
-
-        return view("createRequests");
+        if (isset($request['private'])) {
+            // return Hospital::all();
+            return view("createPrivateRequests", ["hospitals" => Hospital::all()]);
+        } else
+            return view("createRequests");
     }
 
     /**
@@ -39,15 +43,33 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "amount"=> "required|numeric|min:1",
-            "blood"=>"required"
-        ]);
 
+        $targetHospitalId = null;
+
+
+        // check if its a private request
+
+        if (isset($request["private"])) {
+            $request->validate([
+                "amount" => "required|numeric|min:1",
+                "blood" => "required",
+                "hospital" => "required"
+            ]);
+            $targetHospitalId = $request["hospital"];
+        } else {
+            $request->validate([
+                "amount" => "required|numeric|min:1",
+                "blood" => "required"
+            ]);
+        }
+
+        // emergency request flag
         $emergency = false;
         if (isset($request["emergency"])) {
             $emergency = true;
         }
+
+        
         $hospitalId = Auth::guard("hospital")->user()["id"];
 
         hospitalRequest::create([
@@ -55,7 +77,7 @@ class RequestController extends Controller
             "is_emergency" => $emergency,
             "blood_type" => $request["blood"],
             "needed_amount" => $request["amount"],
-            "target_hospital_id" => null,
+            "target_hospital_id" => $targetHospitalId,
             "is_completed" => false
         ]);
 

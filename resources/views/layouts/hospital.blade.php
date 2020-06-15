@@ -61,6 +61,20 @@
 												</a>
 
 											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="{{ route('requests.index') }}">
+													View Requests
+												</a>
+
+											</li>
+
+
+											<li class="nav-item">
+												<a class="nav-link" href="{{ route('requests.create',['private' => 1]) }}">
+													New private Request 
+												</a>
+
+											</li>
 										</ul>
 									</li>
 									<!-- requests end  -->
