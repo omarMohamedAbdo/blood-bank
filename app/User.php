@@ -37,6 +37,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function donations()
+    {
+        return $this->hasMany('App\Donation', 'user_id');
+    }
+
     public function donate()
     {
         return $this->belongsToMany('App\Request', 'donations', 'user_id', 'request_id')->withPivot('blood_type', 'donations_amount', 'status')->withTimestamps();
