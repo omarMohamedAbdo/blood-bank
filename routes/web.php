@@ -35,6 +35,7 @@ Route::group([
     function () {
         Route::view('', 'hospital');
         Route::resource('donations', 'DonationController');
+        Route::get("donationsList", "DonationController@index");
         
     });//end of hospital middleware
 

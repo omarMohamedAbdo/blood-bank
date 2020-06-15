@@ -14,7 +14,8 @@ class DonationController extends Controller
      */
     public function index()
     {
-        //
+        $allDonations =  Donation::with('user')->get();
+        return view('donationsList', ['allDonations' => $allDonations ]);
     }
 
     /**

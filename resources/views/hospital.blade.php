@@ -9,6 +9,7 @@
                     <div class="card-header">Dashboard</div>
 
                     <div class="card-body">
+                        sh8al
                         Hi {{ Auth::guard('hospital')->user()->name }} !
                     </div>
                 </div>

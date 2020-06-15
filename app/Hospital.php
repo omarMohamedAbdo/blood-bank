@@ -41,6 +41,6 @@ class Hospital extends Authenticatable
 
     public function donate()
     {
-        return $this->belongsToMany('App\Request', 'requests', 'hospital_id', 'request_id')->withPivot('blood_type', 'donations_amount', 'status')->withTimestamps();
+        return $this->belongsToMany('App\Request', 'donations', 'hospital_id', 'request_id')->withPivot('blood_type', 'donations_amount', 'status')->withTimestamps();
     }
 }
