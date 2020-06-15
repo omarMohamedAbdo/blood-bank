@@ -70,7 +70,10 @@ class DonationController extends Controller
      */
     public function update(Request $request, Donation $donation)
     {
-        //
+        $donation->status = "accept";
+        $donation->save();
+        
+        return redirect('hospital/donations');
     }
 
     /**

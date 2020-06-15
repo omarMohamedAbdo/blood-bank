@@ -48,7 +48,7 @@
 									</li>
 									@auth('hospital')
 									<li class="nav-item">
-										<a class="nav-link" href="#">Donations</a>
+										<a class="nav-link" href="{{ route('donations.index') }}">Donations</a>
 									</li>
 
 									<!-- requests start  -->
