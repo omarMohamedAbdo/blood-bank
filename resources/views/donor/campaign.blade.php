@@ -31,7 +31,7 @@
 								<img class="card-img-top img-fluid" src="https://picsum.photos/200/150" alt="Card image cap">
 							</figure>
 							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
+								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: {{ ($campaign->received_amount / $campaign->needed_amount)*100 }}%;">
 									<span>Funded {{ ($campaign->received_amount / $campaign->needed_amount)*100 }}%</span>
 								</div>
 							</div>
@@ -44,6 +44,7 @@
                                 @else
                                 <h4 class="card-title">{{ $campaign->hospital->name }}</h4>
                                 @endif
+                                <p><strong> Hospital: </strong> {{ $campaign->hospital->name }}, <strong> Blood Type : </strong> {{ $campaign->blood_type }} </p>
 								<p class="card-text">{{ $campaign->details }}</p>
 								<a href="#" class="main_btn2">donate here</a>
 							</div>
