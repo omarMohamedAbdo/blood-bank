@@ -48,4 +48,5 @@ Route::group([
     ],
     function () {
         Route::get('/campaigns', 'donor\CampaignController@index')->name('campaigns');
+        Route::get('/donate/{campaign}','donor\DonationController@showDonationForm')->name('createDonation');;
     });//end of Donor middleware

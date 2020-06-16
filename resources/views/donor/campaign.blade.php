@@ -8,10 +8,10 @@
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="banner_content text-center">
-					<h2>Causes</h2>
+					<h2>Campaigns</h2>
 					<div class="page_link">
-						<a href="index.html">Home</a>
-						<a href="causes.html">Causes</a>
+						<a href="{{ route('home') }}">Home</a>
+						<a href="/campaigns">Campaigns</a>
 					</div>
 				</div>
 			</div>
@@ -45,8 +45,17 @@
                                 <h4 class="card-title">{{ $campaign->hospital->name }}</h4>
                                 @endif
                                 <p><strong> Hospital: </strong> {{ $campaign->hospital->name }}, <strong> Blood Type : </strong> {{ $campaign->blood_type }} </p>
-								<p class="card-text">{{ $campaign->details }}</p>
-								<a href="#" class="main_btn2">donate here</a>
+                                <p class="card-text">{{ $campaign->details }}</p>
+                                <!-- <a class="main_btn2" href="{{ route('createDonation',$campaign->id) }}"
+                                                    onclick="event.preventDefault();
+                                                                    document.getElementById('donation-form').submit();">
+                                                        {{ __('donate here') }}
+                                </a> -->
+                                <form id="donation-form" action="{{route('createDonation',$campaign)}}" method="GET" enctype="multipart/form-data">
+                                        @csrf
+                                        <button type="submit" class="main_btn2">donate here</button>
+                                </form>
+								<!-- <a href="#" class="main_btn2">donate here</a> -->
 							</div>
 						</div>
 					</div>
