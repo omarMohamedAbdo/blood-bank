@@ -6,6 +6,8 @@ use App\Donation;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Request as Campaign;
+use Illuminate\Support\Facades\Auth;
+use Session;
 
 class DonationController extends Controller
 {
@@ -40,11 +42,40 @@ class DonationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Campaign $campaign )
+    {
+        // $request->validate([
+        //     "donations_amount" => "required|numeric|min:1",
+        // ]);
+
+        // Donation::create([
+        //     "request_id" => $campaign->id,
+        //     "user_id" => Auth::user()->id,
+        //     "blood_type" => Auth::user()->blood_type,
+        //     "donations_amount" => $request["donations_amount"],
+        // ]);
+
+        // // Session::flash('succes', "Credentials Dont Match our Data");
+        // // return back()->withInput($request->only('blood_type'));
+        // return redirect("home");
+    }
+
+    public function save(Request $request,Campaign $campaign )
     {
         $request->validate([
             "donations_amount" => "required|numeric|min:1",
         ]);
+
+        Donation::create([
+            "request_id" => $campaign->id,
+            "user_id" => Auth::user()->id,
+            "blood_type" => Auth::user()->blood_type,
+            "donations_amount" => $request["donations_amount"],
+        ]);
+
+        Session::flash('succes', "Your Donation is Submitted Successfully");
+        return back()->withInput($request->only('blood_type'));
+        // return redirect("home");
     }
 
     /**
