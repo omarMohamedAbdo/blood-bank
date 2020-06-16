@@ -15,7 +15,8 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        return view('donor.campaign');
+        $campaigns = Campaign::where('is_completed', 0)->where('target_hospital_id',null)->get();;
+        return view('donor.campaign',['campaigns' => $campaigns ]);
     }
 
     /**

@@ -27,7 +27,6 @@ Route::get('/register/hospital', 'Auth\RegisterController@showHospitalRegisterFo
 Route::post('/login/hospital', 'Auth\LoginController@hospitalLogin');
 Route::post('/register/hospital', 'Auth\RegisterController@createHospital');
 
-Route::get('/campaigns', 'donor\CampaignController@index')->name('Campaigns');
 
 
 //Hospital routes   ->only viewed by hospital
@@ -44,4 +43,9 @@ Route::group([
     });//end of hospital middleware
 
 // Route::view('/hospital', 'hospital')->middleware('auth:hospital');
-
+Route::group([
+    'middleware' => 'auth'
+    ],
+    function () {
+        Route::get('/campaigns', 'donor\CampaignController@index')->name('campaigns');
+    });//end of Donor middleware

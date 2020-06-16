@@ -43,7 +43,7 @@
 							<div class="col-lg-12 pr-0">
 								<ul class="nav navbar-nav center_nav pull-right">
 									<li class="nav-item active">
-										<a class="nav-link" href="/">home</a>
+										<a class="nav-link" href="{{ route('home') }}">home</a>
 									</li>
                                     @guest
                                     <li class="nav-item submenu dropdown">
@@ -55,7 +55,10 @@
                                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                         </li>
                                     @endif
-                                    @else
+									@else
+									<li class="nav-item">
+										<a class="nav-link" href="{{ route('campaigns') }}">Campaigns</a>
+									</li>
                                     <li class="nav-item submenu dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
                                         <ul class="dropdown-menu">
