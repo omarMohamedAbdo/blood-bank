@@ -21,6 +21,7 @@
 <!--================ Start Our Major Cause section =================-->
 <section class="our_major_cause section_gap_custom">
 		<div class="container">
+        <div id="omar"  class="alert alert-danger" style="display: none;">Hi</div>
 			<div class="row">
 
                 @foreach( $campaigns as $campaign)
@@ -53,8 +54,9 @@
                                 </a> -->
                                 <form id="donation-form" action="{{route('createDonation',$campaign)}}" method="GET" enctype="multipart/form-data">
                                         @csrf
-                                        <button type="submit" class="main_btn2">donate here</button>
+                                        <button type="submit" onclick="if({{ $campaign->blood_type != Auth::user()->blood_type }})myFunction();" class="main_btn2">donate here</button>
                                 </form>
+                                
 								<!-- <a href="#" class="main_btn2">donate here</a> -->
 							</div>
 						</div>
@@ -66,5 +68,12 @@
 		</div>
 	</section>
 	<!--================ Ens Our Major Cause section =================-->
-  
+<script>
+function myFunction() {
+  event.preventDefault();
+  document.getElementById("omar").style.display = "block";
+  document.getElementById("omar").innerHTML = "Your blood is not compatible with This Campaign";
+  setTimeout(function(){ document.getElementById("omar").style.display = "none"; }, 2000);
+}
+</script>  
 @endsection
