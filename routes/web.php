@@ -27,6 +27,9 @@ Route::get('/register/hospital', 'Auth\RegisterController@showHospitalRegisterFo
 Route::post('/login/hospital', 'Auth\LoginController@hospitalLogin');
 Route::post('/register/hospital', 'Auth\RegisterController@createHospital');
 
+Route::get('/campaigns', 'donor\CampaignController@index')->name('Campaigns');
+
+
 //Hospital routes   ->only viewed by hospital
 Route::group([
     'prefix' => "hospital", //all hospital routes will start with /hospital
