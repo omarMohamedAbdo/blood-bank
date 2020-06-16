@@ -42,7 +42,9 @@ class DonationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "donations_amount" => "required|numeric|min:1",
+        ]);
     }
 
     /**
