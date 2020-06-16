@@ -21,7 +21,11 @@
                                 <div class="table-row">
                                     <div class="serial">{{ $donation->request_id }}</div>
                                     <div class="visit">
-                                        <a href="#" >{{ $donation->user->name }}</a>
+                                        @if(@isset($donation->user_id))
+                                            <a href="#" >{{ $donation->user->name }}</a>
+                                        @else
+                                            <a href="#" >{{ $donation->donorHospital->name }}</a>
+                                        @endif
                                     </div>
                                     <div class="visit">{{ $donation->blood_type}}</div>
                                     <div class="visit">{{ $donation->donations_amount}}</div>
