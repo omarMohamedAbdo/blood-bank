@@ -30,19 +30,32 @@
                 <br>
 
                 <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-1 col-form-label">Name : </label>
+                    <label for="inputEmail3" class="col-sm-1 col-form-label">Name</label>
                     <div class="col-sm-11">
-                    <input type="name" class="form-control" id="name" placeholder="name">
+                        <input type="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="name" value="{{ old('name')  ?  old('name') : Auth::user()->name }}" required autocomplete="name" >
+                        @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-1 col-form-label">Email</label>
                     <div class="col-sm-11">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email')  ?  old('email') : Auth::user()->email }}" placeholder="Email" required autocomplete="email">
+                        @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
                     </div>
                 </div>
-                <div class="form-group row">
+                <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                                    Must be valid unique email
+                </small>
+                <!-- <div class="form-group row">
                             <label for="password" class="col-sm-1 col-form-label">{{ __('Password') }}</label>
 
                             <div class="col-sm-11">
@@ -64,79 +77,185 @@
                             <div class="col-sm-11">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
-                        </div>
+                        </div> -->
                       
 
-                        <div class="form-group row">
-                            <label for="city" class="col-sm-1 col-form-label">{{ __('City') }}</label>
-                            <div class="col-sm-11">
-                                <select class="form-control @error('city') is-invalid @enderror" id="city" name="city" required focus>
-                                    <option value="" disabled selected>Please select City</option> 
-                                    @if (old('city') == 'Cairo')
-                                        <option value="Cairo" selected>Cairo</option>
-                                    @else
-                                        <option value="Cairo">Cairo</option>
-                                    @endif  
-                                    @if (old('city') == 'Alexandria')
-                                        <option value="Alexandria" selected>Alexandria</option>
-                                    @else
-                                        <option value="Alexandria">Alexandria</option>
-                                    @endif 
-                                    @if (old('city') == 'Suez')
-                                        <option value="Suez" selected>Suez</option>
-                                    @else
-                                        <option value="Suez">Suez</option>
-                                    @endif      
-                                </select>
+                    <div class="form-group row">
+                        <label for="city" class="col-sm-1 col-form-label">{{ __('City') }}</label>
+                        <div class="col-sm-4">
+                            <div style=" margin-top: -2px;" class="input-group-icon mt-10">
+                                <div class="icon">
+                                    <i class="fa fa-plane" aria-hidden="true"></i>
+                                </div>
+                                <div class="form-select" id="default-select">
+                                    <select class="@error('city') is-invalid @enderror" id="city" name="city" required focus>
+                                        <option value="" disabled selected>Please select City</option> 
+                                        @if (old('city') == 'Cairo')
+                                            <option value="Cairo" selected>Cairo</option>
+                                        @elseif(Auth::user()->city == 'Cairo')
+                                            <option value="Cairo" selected>Cairo</option>
+                                        @else 
+                                            <option value="Cairo" selected>Cairo</option>   
+                                        @endif  
+                                        @if (old('city') == 'Alexandria')
+                                            <option value="Alexandria" selected>Alexandria</option>
+                                        @elseif(Auth::user()->city == 'Alexandria')
+                                            <option value="Alexandria" selected>Alexandria</option>
+                                        @else
+                                            <option value="Alexandria">Alexandria</option>
+                                        @endif 
+                                        @if (old('city') == 'Suez')
+                                            <option value="Suez" selected>Suez</option>
+                                        @elseif(Auth::user()->city == 'Suez')
+                                            <option value="Suez" selected>Suez</option>
+                                        @else
+                                            <option value="Suez">Suez</option>
+                                        @endif 
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        
-                        <div class="form-group row">
-                            <label for="blood_type" class="col-sm-1 col-form-label">{{ __('Blood type') }}</label>
-                            <div class="col-sm-11">
-                                <select class="form-control" id="blood_type" name="blood_type" required focus>
+                        <label for="blood_type" class="col-sm-2 col-form-label">{{ __('Blood type') }}</label>
+                        <div class="col-sm-4">
+                        <div style=" margin-top: -2px;" class="input-group-icon mt-10">
+                                <div class="icon">
+                                    <i class="fa fa-tint" aria-hidden="true"></i>
+                                </div>
+                                <div class="form-select" id="default-select">
+                                    <select class="@error('blood_type') is-invalid @enderror" id="blood_type" name="blood_type" required focus>
                                     <option value="" disabled selected>Please select Your blood type</option>        
                                     @if (old('blood_type') == 'A')
+                                        <option value="A" selected>A</option>
+                                    @elseif(Auth::user()->blood_type == 'A')
                                         <option value="A" selected>A</option>
                                     @else
                                         <option value="A">A</option>
                                     @endif 
                                     @if (old('blood_type') == 'B')
                                         <option value="B" selected>B</option>
+                                    @elseif(Auth::user()->blood_type == 'B')
+                                        <option value="B" selected>B</option>
                                     @else
                                         <option value="B">B</option>
                                     @endif
                                     @if (old('blood_type') == 'AB')
+                                        <option value="AB" selected>AB</option>
+                                    @elseif(Auth::user()->blood_type == 'AB')
                                         <option value="AB" selected>AB</option>
                                     @else
                                         <option value="AB">AB</option>
                                     @endif
                                     @if (old('blood_type') == 'O')
                                         <option value="O" selected>O</option>
+                                    @elseif(Auth::user()->blood_type == 'O')
+                                        <option value="O" selected>O</option>
                                     @else
                                         <option value="O">O</option>
                                     @endif
-                                    
-                                </select>
+                                    </select>
+                                </div>
                             </div>
+                            
+                        </div>
+                    </div>
+                        
+
+                    <!-- Sign up button -->
+                    <button class="btn btn-info my-4 btn-block" type="submit">Update Profile</button>
+
+                    <p>By clicking
+                        <!-- <em>Sign up</em>  -->
+                        you agree to our
+                        <a href="" target="_blank">terms of service</a>
+                        
+                
+                    <hr>
+                    <p class="h4 mb-4">Medical Info</p>
+                    <hr>
+
+                    <div class="form-group row">
+                   
+                        <label  class="col-sm-2 col-form-label">Hepatitis B virus (HBV)</label>
+                        <div style=" margin-top: 6px;" class="icon">
+                        @if(Auth::user()->HBV == 1)
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                        @else
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                        @endif
                         </div>
 
+                        <div class="col-sm-2">
+                        </div>
 
-                <!-- Sign up button -->
-                <button class="btn btn-info my-4 btn-block" type="submit">Update Profile</button>
+                        <label  class="col-sm-2 col-form-label">Hepatitis C virus (HCV)</label>
+                        <div style=" margin-top: 6px;" class="icon">
+                        @if(Auth::user()->HCV == 1)
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                        @else
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                        @endif
+                        </div>
 
-                <p>By clicking
-                    <!-- <em>Sign up</em>  -->
-                    you agree to our
-                    <a href="" target="_blank">terms of service</a>
+                        <div class="col-sm-2">
+                        </div>
+
+                        <label  class="col-sm-3 col-form-label">Human Immunodeficiency virus (HIV)</label>
+                        <div style=" margin-top: 6px;" class="icon">
+                        @if(Auth::user()->HIV == 1)
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                        @else
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                        @endif
+                        </div>
+
+                        <!-- <label  class="col-sm-3 col-form-label">Human T-Lymphotropic Virus (HTLV)</label>
+                        <div style=" margin-top: 6px;" class="icon">
+                        @if(Auth::user()->HTLV == 1)
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                        @else
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                        @endif
+                        </div> -->
+
+                        <!-- <label  class="col-sm-2 col-form-label">Treponema pallidum (syphilis)</label>
+                        <div style=" margin-top: 6px;" class="icon">
+                        @if(Auth::user()->syphilis == 1)
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                        @else
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                        @endif
+                        </div> -->
+                </div>
+
+                <div class="form-group row">
+
+                    <div class="col-sm-2">
+                    </div>
                     
-             
-                <hr>
-                <p class="h4 mb-4">Medical Info</p>
-                <hr>
+                    <label  class="col-sm-3 col-form-label">Human T-Lymphotropic Virus (HTLV)</label>
+                    <div style=" margin-top: 6px;" class="icon">
+                    @if(Auth::user()->HTLV == 1)
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                    @else
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                    @endif
+                    </div>
+                    
+                    <div class="col-sm-1">
+                    </div>
+
+                    <label  class="col-sm-2 col-form-label">Treponema pallidum (syphilis)</label>
+                    <div style=" margin-top: 6px;" class="icon">
+                    @if(Auth::user()->syphilis == 1)
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                    @else
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                    @endif
+                    </div>
+                </div>
                
                 </form>
-                <!-- Default form register -->
+                <!-- Default form update -->
             </div>
         </div>
 </section>
