@@ -47,45 +47,51 @@
                         <div class="col-lg-3 col-md-4 mt-sm-30 element-wrap">
                             <div class="single-element-widget">
                                 <h3 class="mb-30 title_color">Medical Info.</h3>
-                                <div class="switch-wrap d-flex justify-content-between">
-                                    <p>Hepatitis B virus (HBV)</p>
-                                    <div class="primary-checkbox">
-                                        <input type="checkbox" id="HBV" @if ($donor->HBV == 1) checked @endif >
-                                        <label for="HBV"></label>
+                                <form action="{{route('donors.update',$donor)}}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+                                    <div class="switch-wrap d-flex justify-content-between">
+                                        <p>Hepatitis B virus (HBV)</p>
+                                        <div class="primary-checkbox">
+                                            <input type="checkbox" name = "HBV" id="HBV" @if ($donor->HBV == 1) checked @endif >
+                                            <label for="HBV"></label>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="switch-wrap d-flex justify-content-between">
-                                    <p>Hepatitis C virus (HCV)</p>
-                                    <div class="primary-checkbox">
-                                        <input type="checkbox" id="HCV" @if ($donor->HCV == 1) checked @endif >
-                                        <label for="HCV"></label>
+                                    <div class="switch-wrap d-flex justify-content-between">
+                                        <p>Hepatitis C virus (HCV)</p>
+                                        <div class="primary-checkbox">
+                                            <input type="checkbox" name="HCV" id="HCV" @if ($donor->HCV == 1) checked @endif >
+                                            <label for="HCV"></label>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="switch-wrap d-flex justify-content-between">
-                                    <p>Human Immunodeficiency virus (HIV)</p>
-                                    <div class="primary-checkbox">
-                                        <input type="checkbox" id="HIV" @if ($donor->HIV == 1) checked @endif >
-                                        <label for="HIV"></label>
+                                    <div class="switch-wrap d-flex justify-content-between">
+                                        <p>Human Immunodeficiency virus (HIV)</p>
+                                        <div class="primary-checkbox">
+                                            <input type="checkbox" name="HIV" id="HIV" @if ($donor->HIV == 1) checked @endif >
+                                            <label for="HIV"></label>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="switch-wrap d-flex justify-content-between">
-                                    <p>Human T-Lymphotropic Virus (HTLV)</p>
-                                    <div class="primary-checkbox">
-                                        <input type="checkbox" id="HTLV" @if ($donor->HTLV == 1) checked @endif >
-                                        <label for="HTLV"></label>
+                                    <div class="switch-wrap d-flex justify-content-between">
+                                        <p>Human T-Lymphotropic Virus (HTLV)</p>
+                                        <div class="primary-checkbox">
+                                            <input type="checkbox" name="HTLV" id="HTLV" @if ($donor->HTLV == 1) checked @endif >
+                                            <label for="HTLV"></label>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="switch-wrap d-flex justify-content-between">
-                                    <p>Treponema pallidum (syphilis)</p>
-                                    <div class="primary-checkbox">
-                                        <input type="checkbox" id="syphilis" @if ($donor->syphilis == 1) checked @endif >
-                                        <label for="syphilis"></label>
+                                    <div class="switch-wrap d-flex justify-content-between">
+                                        <p>Treponema pallidum (syphilis)</p>
+                                        <div class="primary-checkbox">
+                                            <input type="checkbox" name="syphilis" id="syphilis" @if ($donor->syphilis == 1) checked @endif >
+                                            <label for="syphilis"></label>
+                                        </div>
                                     </div>
-                                </div>
+                                    {!! Form::button ('<a class="genric-btn success circle">Update Medical Data</a>' ,['type' => 'submit' , 'class' => 'genric-btn ']) !!}
+                                </form>
                             </div>
                         </div>
                     </div>

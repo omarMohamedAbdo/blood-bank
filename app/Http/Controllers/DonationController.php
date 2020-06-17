@@ -18,9 +18,14 @@ class DonationController extends Controller
     {
         $id = Auth::id();
         $requests = hospitalRequest::where('hospital_id', $id)->get();
+        // return $requests;
+        $allDonations = array();
         foreach ($requests as $request) {
-            $allDonations =  Donation::where('request_id', $request->id)->with('user', 'donorHospital')->get();
+            $donations = new Donation;
+            $donations =  Donation::where('request_id', $request->id)->with('user', 'donorHospital')->get();
+            $allDonations[] = $donations;
         }
+        // return $allDonations;
         return view('donationsList', ['allDonations' => $allDonations ]);
     }
 
@@ -76,6 +81,7 @@ class DonationController extends Controller
      */
     public function update(Request $request, Donation $donation)
     {
+        // return $donation;
         $donation->status = "accept";
         $hospitalRequest = Donation::find($donation->id)->request()->first();
         $hospitalRequest->received_amount = $donation->donations_amount;

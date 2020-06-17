@@ -68,11 +68,41 @@ class DonorController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        $donor = User::find($id);
+
+        if (isset($request->HBV))
+            $donor->HBV = 1;
+        else
+            $donor->HBV = 0;
+
+        if (isset($request->HCV))
+            $donor->HCV = 1;
+        else
+            $donor->HCV = 0;
+
+        if (isset($request->HIV))
+            $donor->HIV = 1;
+        else
+            $donor->HIV = 0;
+
+        if (isset($request->HTLV))
+            $donor->HTLV = 1;
+        else
+            $donor->HTLV = 0;
+
+        if (isset($request->syphilis))
+            $donor->syphilis = 1;
+        else
+            $donor->syphilis = 0;
+            
+        $donor->save();
+        // return $donor;
+        return redirect()->back();
     }
 
     /**
