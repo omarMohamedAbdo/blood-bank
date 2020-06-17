@@ -22,17 +22,21 @@
         <div class="container">
             <div class="section-top-border" style=" border: solid #ff8080; border-radius: 80px;padding :30px">
                                         <!-- Default form register -->
-                <form class="text-center border border-light p-5" action="#!">
-              
+                <form class="text-center border border-light p-5" action="{{route('updateProfile')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                
                 <hr>
                 <p class="h4 mb-4">Profile</p>
                 <hr>
                 <br>
-
+                @if (Session::has('succes'))
+                                 <div class="alert alert-success">{{ Session::get('succes') }}</div>
+                @endif
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-1 col-form-label">Name</label>
                     <div class="col-sm-11">
-                        <input type="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="name" value="{{ old('name')  ?  old('name') : Auth::user()->name }}" required autocomplete="name" >
+                        <input type="name" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="name" value="{{ old('name')  ?  old('name') : Auth::user()->name }}" required autocomplete="name" >
                         @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -44,7 +48,7 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-1 col-form-label">Email</label>
                     <div class="col-sm-11">
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email')  ?  old('email') : Auth::user()->email }}" placeholder="Email" required autocomplete="email">
+                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email')  ?  old('email') : Auth::user()->email }}" placeholder="Email" required autocomplete="email">
                         @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -208,23 +212,6 @@
                         @endif
                         </div>
 
-                        <!-- <label  class="col-sm-3 col-form-label">Human T-Lymphotropic Virus (HTLV)</label>
-                        <div style=" margin-top: 6px;" class="icon">
-                        @if(Auth::user()->HTLV == 1)
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                        @else
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                        @endif
-                        </div> -->
-
-                        <!-- <label  class="col-sm-2 col-form-label">Treponema pallidum (syphilis)</label>
-                        <div style=" margin-top: 6px;" class="icon">
-                        @if(Auth::user()->syphilis == 1)
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                        @else
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                        @endif
-                        </div> -->
                 </div>
 
                 <div class="form-group row">

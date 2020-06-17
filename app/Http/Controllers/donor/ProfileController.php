@@ -5,6 +5,10 @@ namespace App\Http\Controllers\donor;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Session;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
@@ -68,9 +72,29 @@ class ProfileController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
-        //
+        $user = Auth::user();
+        
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            // 'password' => ['nullable','confirmed', 'string', 'min:8'] ,
+            'city' => ['required'],
+            'blood_type' => ['required'],
+            'email' => array('required',
+            'max:191','string','email',
+            Rule::unique('users')->ignore($user->id),
+            ),
+        ]);
+
+        $requestData=array_filter($request->all());
+        // if($request->password !=""){
+        //     //hash the password
+        //     $requestData['password']=Hash::make($requestData['password']);
+        // }
+        $user->update($requestData);
+        Session::flash('succes', "Profile updated successfully");
+        return back();
     }
 
     /**
