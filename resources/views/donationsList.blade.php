@@ -22,9 +22,9 @@
                                     <div class="serial">{{ $donation->request_id }}</div>
                                     <div class="visit">
                                         @if(@isset($donation->user_id))
-                                            <a href="#" >{{ $donation->user->name }}</a>
+                                            <a href="{{ url('/hospital/donors/'.$donation->user_id) }}" >{{ $donation->user->name }}</a>
                                         @else
-                                            <a href="#" >{{ $donation->donorHospital->name }}</a>
+                                            <a>{{ $donation->donorHospital->name }}</a>
                                         @endif
                                     </div>
                                     <div class="visit">{{ $donation->blood_type}}</div>
