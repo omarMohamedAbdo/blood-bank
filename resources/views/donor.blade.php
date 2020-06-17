@@ -31,7 +31,17 @@
                         </div>
                         <input type="text" name="address" placeholder="Address" onfocus="this.placeholder = ''"
                             onblur="this.placeholder = 'Address'" required class="single-input" value = "{{ $donor->city}}" disabled>
-                    </div>             
+                    </div> 
+                    <div class="input-group-icon mt-10">
+                        <div class="icon">
+                            <i class="fa fa-tint" aria-hidden="true"></i>
+                        </div>
+                        <input type="text" name="blood" placeholder="Blood type" onfocus="this.placeholder = ''"
+                            onblur="this.placeholder = 'Blood Type'" required class="single-input" value = "{{ $donor->blood_type}}" disabled>
+                    </div>
+                    
+                    
+
                 </form>
             </div>
         </div>
