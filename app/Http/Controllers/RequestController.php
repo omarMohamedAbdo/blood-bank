@@ -17,7 +17,10 @@ class RequestController extends Controller
     public function index()
     {
         //
-        return "list of requests...";
+
+        $requests = hospitalRequest::all();
+
+        return view("requestsList", ["requests" => $requests]);
     }
 
     /**
@@ -69,7 +72,7 @@ class RequestController extends Controller
             $emergency = true;
         }
 
-        
+
         $hospitalId = Auth::guard("hospital")->user()["id"];
 
         hospitalRequest::create([
@@ -90,9 +93,11 @@ class RequestController extends Controller
      * @param  \App\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(Request $request,$id)
     {
         //
+
+        return "view request $id";
     }
 
     /**
