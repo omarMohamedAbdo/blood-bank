@@ -29,11 +29,19 @@
 					<div class="card">
 						<div class="card-body">
 							<figure>
-								<img class="card-img-top img-fluid" src="https://picsum.photos/200/150" alt="Card image cap">
+								@if($campaign->blood_type == 'A')
+								<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('A.webp')}}" alt="Card image cap">
+								@elseif($campaign->blood_type == 'B')
+								<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('B.webp')}}" alt="Card image cap">
+								@elseif($campaign->blood_type == 'AB')
+								<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('AB.webp')}}" alt="Card image cap">
+								@else
+								<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('O.webp')}}" alt="Card image cap">
+								@endif
 							</figure>
 							<div class="progress">
 								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: {{ ($campaign->received_amount / $campaign->needed_amount)*100 }}%;">
-									<span>Funded {{ ($campaign->received_amount / $campaign->needed_amount)*100 }}%</span>
+									<span>Collected {{ ($campaign->received_amount / $campaign->needed_amount)*100 }}%</span>
 								</div>
 							</div>
 							<div class="card_inner_body">
