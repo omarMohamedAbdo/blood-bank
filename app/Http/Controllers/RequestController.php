@@ -14,13 +14,22 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // return my requests...
+        if (isset($request["type"]) && $request["type"] === "my requests") {
+            $myRequests = hospitalRequest::all()->where('hospital_id', Auth::guard('hospital')->user()->id);
+            return view("requestsList", ["requests" => $myRequests]);
+        }
 
-        $requests = hospitalRequest::all();
+        // return recived requests...
+        if (isset($request["type"]) && $request["type"] === "recived requests") {
+            $myRequests = hospitalRequest::all()->where('target_hospital_id', Auth::guard('hospital')->user()->id);
+            return view("requestsList", ["requests" => $myRequests]);
+        }
 
-        return view("requestsList", ["requests" => $requests]);
+        //return all requests...
+        return view("requestsList", ["requests" => hospitalRequest::all()]);
     }
 
     /**
@@ -32,7 +41,6 @@ class RequestController extends Controller
     {
         //
         if (isset($request['private'])) {
-            // return Hospital::all();
             return view("createPrivateRequests", ["hospitals" => Hospital::all()]);
         } else
             return view("createRequests");
@@ -93,11 +101,14 @@ class RequestController extends Controller
      * @param  \App\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,$id)
+    public function show(Request $request, $id)
     {
         //
-
-        return "view request $id";
+        $donationRequest = hospitalRequest::find($id);
+        if (isset($donationRequest))
+            return view('requestPage', ["request" => $donationRequest]);
+        else
+            return abort(404);
     }
 
     /**
@@ -129,8 +140,12 @@ class RequestController extends Controller
      * @param  \App\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, $id)
     {
         //
+
+        hospitalRequest::find($id)->delete();
+
+        return redirect()->route('requests.index');
     }
 }

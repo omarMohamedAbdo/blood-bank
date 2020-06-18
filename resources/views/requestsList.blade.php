@@ -1,50 +1,44 @@
 @extends('layouts.hospital')
 
-@section('css')
-
-
-@endsection
-
 @section('content')
 <section class="contact_area p_120">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <h3 class="mb-30 title_color">Requests</h3>
-                <div class="progress-table-wrap">
-                    <div class="progress-table">
-                        <div class="table-head">
-                            <div class="serial">hospital</div>
-                            <div class="serial">type</div>
-                            <div class="serial">Amount</div>
-                            <div class="serial">view</div>
-                        </div>
-                        @foreach( $requests as $request)
-                        @if($request->is_emergency)
-                        <div class="table-row" style="background-color: #ff8080;">
-                            <div class="serial">{{ $request->hospital->name }}</div>
-                            <div class="serial">{{ $request->blood_type }}</div>
-                            <div class="serial">{{ $request->needed_amount }}</div>
-                            <div class="serial"><a href="{{ route('requests.show',$request->id) }}">view</a></div>
-                        </div>
-                        @else
-                        <div class="table-row">
-                            <div class="serial">{{ $request->hospital->name }}</div>
-                            <div class="serial">{{ $request->blood_type }}</div>
-                            <div class="serial">{{ $request->needed_amount }}</div>
-                            <div class="serial"><a href="{{ route('requests.show',$request->id) }}">view</a></div>
-                        </div>
-                        @endif
-                        @endforeach
-                    </div>
-                </div>
+    <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+        @foreach( $requests as $request)
+        @if($request->is_emergency)
+        <div class="card bg-secondary text-white" style="width: 14rem; margin: 20px;">
+            <img class="card-img-top" src="https://source.unsplash.com/random" alt="Card image cap">
+            <div class="card-body">
+                <h1><span class="badge badge-danger">Emergency</span></h1>
+                <p class="card-text">{{ $request->hospital->name }}</p>
+                <p class="card-text">Blood Type : {{ $request->blood_type }}</p>
+                <a href="{{ route('requests.show',$request->id) }}" class="btn btn-primary">View</a>
+                @if($request->hospital_id === Auth::guard('hospital')->user()->id)
+                <form action="{{ route('requests.destroy',$request->id) }}" method="POST" style="display: inline-block;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                @endif
             </div>
         </div>
+        @else
+        <div class="card bg-secondary text-white" style="width: 14rem; margin: 20px;">
+            <img class="card-img-top" src="https://source.unsplash.com/random" alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text">{{ $request->hospital->name }}</p>
+                <p class="card-text">Blood Type : {{ $request->blood_type }}</p>
+                <a href="{{ route('requests.show',$request->id) }}" class="btn btn-primary">View</a>
+                @if($request->hospital_id === Auth::guard('hospital')->user()->id)
+                <form action="{{ route('requests.destroy',$request->id) }}" method="POST" style="display: inline-block;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                @endif
+            </div>
+        </div>
+        @endif
+        @endforeach
     </div>
 </section>
-@endsection
-
-@section('js')
-
-
 @endsection
