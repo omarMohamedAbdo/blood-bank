@@ -48,16 +48,28 @@ class DonorController extends Controller
     public function show($id)
     {
         $donor = User::find($id);
+
+        $expirey_test_date = (new Carbon($donor->last_test))->addMonths(3);
+        if($expirey_test_date >= date("Y-m-d"))
+            $testFlag = 0;
+        else 
+            $testFlag = 1; 
+
+        // $testFlag = 1;
         $expirey_date = (new Carbon($donor->last_donation))->addDays(7);
         if($expirey_date >= date("Y-m-d"))
         {
             if($donor->weekly_donation_count >= 2)
             {
-                return view('donor', ['donor' => $donor , 'status' => 'The Donor already donated 2 times this week']);
+                if($testFlag)
+                    return view('donor', ['donor' => $donor,'testFlag' => $testFlag , 'status' => ['The Donor already donated 2 times this week', 'The Donor need to re-test']]);
             }
 
         }
-        return view('donor', ['donor' => $donor ]);
+        if($testFlag)
+            return view('donor', ['donor' => $donor,'testFlag' => $testFlag, 'status' => ['The Donor need to re-test']]);
+        else
+            return view('donor', ['donor' => $donor,'testFlag' => $testFlag]);  
         
     }
 
@@ -108,6 +120,9 @@ class DonorController extends Controller
             $donor->syphilis = 1;
         else
             $donor->syphilis = 0;
+        
+        if (isset($request->test))
+            $donor->last_test = date("Y-m-d");
             
         $donor->save();
         // return $donor;

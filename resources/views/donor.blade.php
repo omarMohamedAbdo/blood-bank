@@ -6,7 +6,11 @@
             <div class="container">
                 @if (isset($status))
                     <div class="alert alert-danger" role="alert">
-                        {{ $status }}
+                        <ul>
+                            @foreach ($status as $statu)
+                            <li>{{ $statu }}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 @endif
                 <div class="section-top-border">
@@ -95,6 +99,17 @@
                                             <label for="syphilis"></label>
                                         </div>
                                     </div>
+
+                                    <hr>
+
+                                    <div class="switch-wrap d-flex justify-content-between">
+                                        <h5>Re-Test</h5>
+                                        <div class="primary-checkbox">
+                                            <input type="checkbox" name="test" id="test" @if ($testFlag == 0) checked disabled @endif>
+                                            <label for="test"></label>
+                                        </div>
+                                    </div>
+
                                     {!! Form::button ('<a class="genric-btn success circle">Update Medical Data</a>' ,['type' => 'submit' , 'class' => 'genric-btn ']) !!}
                                 </form>
                             </div>
