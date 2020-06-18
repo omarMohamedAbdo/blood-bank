@@ -14,13 +14,16 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // return my requests
+        if (isset($request["type"]) && $request["type"] === "my requests") {
+            $myRequests = hospitalRequest::all()->where('hospital_id', Auth::guard('hospital')->user()->id);
+            return view("requestsList", ["requests" => $myRequests]);
+        }
 
-        $requests = hospitalRequest::all();
-
-        return view("requestsList", ["requests" => $requests]);
+        //return all requests...
+        return view("requestsList", ["requests" => hospitalRequest::all()]);
     }
 
     /**
