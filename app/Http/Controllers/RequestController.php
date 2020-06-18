@@ -106,7 +106,7 @@ class RequestController extends Controller
         //
         $donationRequest = hospitalRequest::find($id);
         if (isset($donationRequest))
-            return ($donationRequest);
+            return view('requestPage', ["request" => $donationRequest]);
         else
             return abort(404);
     }
@@ -143,5 +143,7 @@ class RequestController extends Controller
     public function destroy(Request $request)
     {
         //
+
+        return $request;
     }
 }
