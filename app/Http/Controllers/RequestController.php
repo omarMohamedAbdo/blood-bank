@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Request as hospitalRequest;
 use App\Hospital;
+use App\Donation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -143,7 +144,7 @@ class RequestController extends Controller
     public function destroy(Request $request, $id)
     {
         //
-
+        Donation::where('request_id', $id)->delete();
         hospitalRequest::find($id)->delete();
 
         return redirect()->route('requests.index');
