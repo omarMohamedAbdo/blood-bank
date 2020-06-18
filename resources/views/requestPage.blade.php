@@ -9,6 +9,8 @@
                 <h5 class="card-title">{{$request->hospital->name}}</h5>
                 <p class="card-text"> Discription : {{$request->details}}</p>
                 <p class="card-text"> Blood Type : {{$request->blood_type}}</p>
+                <p class="card-text"> Needed Amount : {{$request->needed_amount}}</p>
+                <p class="card-text"> Received Amount : {{$request->received_amount}}</p>
                 @if($request->hospital_id === Auth::guard('hospital')->user()->id)
                 <form action="{{ route('requests.destroy',$request->id) }}" method="POST" style="display: inline-block;">
                     @csrf
