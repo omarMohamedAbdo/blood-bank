@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Donation;
+use App\Request as hospitalRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\facades\Auth;
 
 class DonationController extends Controller
 {
@@ -14,7 +16,11 @@ class DonationController extends Controller
      */
     public function index()
     {
-        $allDonations =  Donation::with('user')->get();
+        $id = Auth::id();
+        $requests = hospitalRequest::where('hospital_id', $id)->get();
+        foreach ($requests as $request) {
+            $allDonations =  Donation::where('request_id', $request->id)->with('user')->get();
+        }
         return view('donationsList', ['allDonations' => $allDonations ]);
     }
 
