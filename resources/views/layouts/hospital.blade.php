@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="{{asset('css/css/style.css')}}">
 	<link rel="stylesheet" href="{{asset('css/css/responsive.css')}}">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+	@yield('css')
 </head>
 
 <body>
@@ -44,7 +45,7 @@
 							<div class="col-lg-12 pr-0">
 								<ul class="nav navbar-nav center_nav pull-right">
 									<li class="nav-item active">
-										<a class="nav-link" href="/">home</a>
+										<a class="nav-link" href="/hospital">home</a>
 									</li>
 									@auth('hospital')
 									<li class="nav-item">
@@ -62,18 +63,30 @@
 
 											</li>
 											<li class="nav-item">
+												<a class="nav-link" href="{{ route('requests.create',['private' => 1]) }}">
+													New private Request
+												</a>
+
+											</li>
+
+											<li class="nav-item">
 												<a class="nav-link" href="{{ route('requests.index') }}">
 													View Requests
 												</a>
 
 											</li>
 
-
 											<li class="nav-item">
-												<a class="nav-link" href="{{ route('requests.create',['private' => 1]) }}">
-													New private Request 
+												<a class="nav-link" href="{{ route('requests.index',['type'=>'my requests']) }}">
+													My Requests
 												</a>
 
+											</li>
+
+											<li class="nav-item">
+												<a class="nav-link" href="{{ route('requests.index',['type'=>'recived requests']) }}">
+													Recived Requests
+												</a>
 											</li>
 										</ul>
 									</li>
@@ -137,6 +150,7 @@
 		</div>
 	</section>
 	<!--================ End Experience Area =================-->
+	@yield('js')
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="{{asset('js/js/jquery-3.2.1.min.js')}}"></script>

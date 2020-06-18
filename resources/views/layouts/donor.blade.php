@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="img/favicon.png" type="image/png">
-	<title>Kare Charity</title>
+	<title>Blood Bank</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="{{asset('css/css/bootstrap.css')}}">
 	<link rel="stylesheet" href="{{asset('css/vendors/linericon/style.css')}}">
@@ -19,7 +19,8 @@
 	<!-- main css -->
 	<link rel="stylesheet" href="{{asset('css/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/css/responsive.css')}}">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+	@yield('css')
 </head>
 <body>
      <!--================Header Menu Area =================-->
@@ -58,6 +59,9 @@
 									@else
 									<li class="nav-item">
 										<a class="nav-link" href="{{ route('campaigns') }}">Campaigns</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="{{ route('profile') }}">My Profile</a>
 									</li>
                                     <li class="nav-item submenu dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
@@ -109,6 +113,7 @@
 		</div>
 	</section>
 	<!--================ End Experience Area =================-->
+	@yield('js')
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="{{asset('js/js/jquery-3.2.1.min.js')}}"></script>

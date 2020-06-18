@@ -51,4 +51,6 @@ Route::group([
         Route::get('/campaigns', 'donor\CampaignController@index')->name('campaigns');
         Route::get('/donate/{campaign}','donor\DonationController@showDonationForm')->name('createDonation');
         Route::post('/saveDonation/{campaign}','donor\DonationController@save')->name('saveDonation');
+        Route::get('/profile', 'donor\ProfileController@index')->name('profile');
+        Route::put('/updateProfile', 'donor\ProfileController@update')->name('updateProfile');
     });//end of Donor middleware

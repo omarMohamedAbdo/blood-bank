@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Request as hospitalRequest;
 use App\Hospital;
+use App\Donation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,10 +15,22 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return "list of requests...";
+        // return my requests...
+        if (isset($request["type"]) && $request["type"] === "my requests") {
+            $myRequests = hospitalRequest::all()->where('hospital_id', Auth::guard('hospital')->user()->id);
+            return view("requestsList", ["requests" => $myRequests]);
+        }
+
+        // return recived requests...
+        if (isset($request["type"]) && $request["type"] === "recived requests") {
+            $myRequests = hospitalRequest::all()->where('target_hospital_id', Auth::guard('hospital')->user()->id);
+            return view("requestsList", ["requests" => $myRequests]);
+        }
+
+        //return all requests...
+        return view("requestsList", ["requests" => hospitalRequest::all()]);
     }
 
     /**
@@ -29,7 +42,6 @@ class RequestController extends Controller
     {
         //
         if (isset($request['private'])) {
-            // return Hospital::all();
             return view("createPrivateRequests", ["hospitals" => Hospital::all()]);
         } else
             return view("createRequests");
@@ -69,7 +81,7 @@ class RequestController extends Controller
             $emergency = true;
         }
 
-        
+
         $hospitalId = Auth::guard("hospital")->user()["id"];
 
         hospitalRequest::create([
@@ -90,9 +102,14 @@ class RequestController extends Controller
      * @param  \App\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(Request $request, $id)
     {
         //
+        $donationRequest = hospitalRequest::find($id);
+        if (isset($donationRequest))
+            return view('requestPage', ["request" => $donationRequest]);
+        else
+            return abort(404);
     }
 
     /**
@@ -124,8 +141,12 @@ class RequestController extends Controller
      * @param  \App\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, $id)
     {
         //
+        Donation::where('request_id', $id)->delete();
+        hospitalRequest::find($id)->delete();
+
+        return redirect()->route('requests.index');
     }
 }

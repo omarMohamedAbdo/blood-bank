@@ -47,7 +47,7 @@
                         <div class="form-group form-inline">
                             <label style="margin-left:-1%;" class="col-md-2 col-form-label text-md-right"><strong>{{ __('Amount : ') }}</strong></label>
                             <div class="form-group col-lg-10 col-md-10 ">
-                                 <input  type="number" required class="form-control" id="donations_amount" name="donations_amount" value="{{ old('donations_amount') }}" autocomplete="donations_amount" placeholder="Donation Amount" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Donation Amount'">
+                                 <input style="border-style: solid;border-width: thin;" type="number" required class="form-control" id="donations_amount" name="donations_amount" value="{{ old('donations_amount') }}" autocomplete="donations_amount" placeholder="Donation Amount" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Donation Amount'">
                             </div>  
                         </div>
                         <div class="form-group form-inline">
