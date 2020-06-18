@@ -32,7 +32,6 @@ class RequestController extends Controller
     {
         //
         if (isset($request['private'])) {
-            // return Hospital::all();
             return view("createPrivateRequests", ["hospitals" => Hospital::all()]);
         } else
             return view("createRequests");
@@ -93,11 +92,14 @@ class RequestController extends Controller
      * @param  \App\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,$id)
+    public function show(Request $request, $id)
     {
         //
-
-        return "view request $id";
+        $donationRequest = hospitalRequest::find($id);
+        if (isset($donationRequest))
+            return ($donationRequest);
+        else
+            return abort(404);
     }
 
     /**
