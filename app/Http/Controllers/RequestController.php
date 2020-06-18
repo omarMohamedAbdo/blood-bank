@@ -16,9 +16,15 @@ class RequestController extends Controller
      */
     public function index(Request $request)
     {
-        // return my requests
+        // return my requests...
         if (isset($request["type"]) && $request["type"] === "my requests") {
             $myRequests = hospitalRequest::all()->where('hospital_id', Auth::guard('hospital')->user()->id);
+            return view("requestsList", ["requests" => $myRequests]);
+        }
+
+        // return recived requests...
+        if (isset($request["type"]) && $request["type"] === "recived requests") {
+            $myRequests = hospitalRequest::all()->where('target_hospital_id', Auth::guard('hospital')->user()->id);
             return view("requestsList", ["requests" => $myRequests]);
         }
 

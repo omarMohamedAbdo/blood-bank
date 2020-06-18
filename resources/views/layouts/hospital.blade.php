@@ -82,6 +82,12 @@
 												</a>
 
 											</li>
+
+											<li class="nav-item">
+												<a class="nav-link" href="{{ route('requests.index',['type'=>'recived requests']) }}">
+													Recived Requests
+												</a>
+											</li>
 										</ul>
 									</li>
 									<!-- requests end  -->
