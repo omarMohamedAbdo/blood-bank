@@ -1,4 +1,5 @@
 @extends('layouts.hospital')
+
 @section('content')
 <section class="contact_area p_120">
     <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-around;">

@@ -1,5 +1,10 @@
 @extends('layouts.hospital')
 
+@section('css')
+
+
+@endsection
+
 @section('content')
 <section class="contact_area p_120">
     <div class="container">
@@ -54,5 +59,9 @@
         </div>
     </div>
 </section>
+
+@endsection
+@section('js')
+
 
 @endsection
