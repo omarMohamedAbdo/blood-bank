@@ -1863,11 +1863,13 @@ h6 {
   border-radius: 20px; }
 
 .genric-btn {
+  background-color: transparent ;
+  border: transparent;
   display: inline-block;
   outline: none;
   line-height: 40px;
   padding: 0 30px;
-  font-size: .8em;
+  font-size: .95em;
   text-align: center;
   text-decoration: none;
   font-weight: 500;
