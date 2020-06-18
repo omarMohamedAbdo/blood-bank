@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Donation;
+use Carbon\Carbon;
 use App\Request as hospitalRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\Auth;
@@ -81,16 +83,31 @@ class DonationController extends Controller
      */
     public function update(Request $request, Donation $donation)
     {
-        // return $donation;
+
         $donation->status = "accept";
+        if(isset($donation->user_id))
+        {
+            $donor = User::find($donation->user_id)->first();
+
+            $expirey_date = (new Carbon($donor->last_donation))->addDays(7);
+
+            if($expirey_date >= date("Y-m-d"))
+                $donor->weekly_donation_count+=1;
+            else
+                $donor->weekly_donation_count = 1;
+            
+            $donor->last_donation = date("Y-m-d");
+
+            $donor->save();
+        }
         $hospitalRequest = Donation::find($donation->id)->request()->first();
         $hospitalRequest->received_amount = $donation->donations_amount;
-        // return $hospitalRequest;
+
         if($hospitalRequest->received_amount >= $hospitalRequest->needed_amount)
         {
             $hospitalRequest->is_completed = 1;
         }
-        // return $hospitalRequest;
+
         $hospitalRequest->save();
         $donation->save();
         

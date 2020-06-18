@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DonorController extends Controller
@@ -47,7 +48,15 @@ class DonorController extends Controller
     public function show($id)
     {
         $donor = User::find($id);
-        // return $donor;
+        $expirey_date = (new Carbon($donor->last_donation))->addDays(7);
+        if($expirey_date >= date("Y-m-d"))
+        {
+            if($donor->weekly_donation_count >= 2)
+            {
+                return view('donor', ['donor' => $donor , 'status' => 'The Donor already donated 2 times this week']);
+            }
+
+        }
         return view('donor', ['donor' => $donor ]);
         
     }

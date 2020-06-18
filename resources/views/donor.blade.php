@@ -4,6 +4,11 @@
     <section class="contact_area p_120">
         <div class="whole-wrap">
             <div class="container">
+                @if (isset($status))
+                    <div class="alert alert-danger" role="alert">
+                        {{ $status }}
+                    </div>
+                @endif
                 <div class="section-top-border">
                     <div class="row">
                         <div class="col-lg-6 col-md-8">
