@@ -9,7 +9,15 @@
                 <h5 class="card-title">{{$request->hospital->name}}</h5>
                 <p class="card-text"> Discription : {{$request->details}}</p>
                 <p class="card-text"> Blood Type : {{$request->blood_type}}</p>
+                @if($request->hospital_id === Auth::guard('hospital')->user()->id)
+                <form action="{{ route('requests.destroy',$request->id) }}" method="POST" style="display: inline-block;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                @else
                 <a href="#" class="btn btn-primary">Donate</a>
+                @endif
             </div>
         </div>
     </div>

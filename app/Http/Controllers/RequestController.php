@@ -140,10 +140,12 @@ class RequestController extends Controller
      * @param  \App\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, $id)
     {
         //
 
-        return $request;
+        hospitalRequest::find($id)->delete();
+
+        return redirect()->route('requests.index');
     }
 }

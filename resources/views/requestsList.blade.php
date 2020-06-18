@@ -12,6 +12,13 @@
                 <p class="card-text">{{ $request->hospital->name }}</p>
                 <p class="card-text">Blood Type : {{ $request->blood_type }}</p>
                 <a href="{{ route('requests.show',$request->id) }}" class="btn btn-primary">View</a>
+                @if($request->hospital_id === Auth::guard('hospital')->user()->id)
+                <form action="{{ route('requests.destroy',$request->id) }}" method="POST" style="display: inline-block;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                @endif
             </div>
         </div>
         @else
@@ -21,6 +28,13 @@
                 <p class="card-text">{{ $request->hospital->name }}</p>
                 <p class="card-text">Blood Type : {{ $request->blood_type }}</p>
                 <a href="{{ route('requests.show',$request->id) }}" class="btn btn-primary">View</a>
+                @if($request->hospital_id === Auth::guard('hospital')->user()->id)
+                <form action="{{ route('requests.destroy',$request->id) }}" method="POST" style="display: inline-block;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                @endif
             </div>
         </div>
         @endif
