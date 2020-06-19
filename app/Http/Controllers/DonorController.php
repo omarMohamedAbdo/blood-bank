@@ -126,7 +126,7 @@ class DonorController extends Controller
             
         $donor->save();
         // return $donor;
-        return redirect()->back();
+        return redirect()->back()->with('update', 'Updated Donor Medical Info Successfuly');
     }
 
     /**

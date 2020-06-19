@@ -3,6 +3,11 @@
     @section('content')
     <section class="contact_area p_120">
     <div class="container">
+        @if (session('update'))
+            <div class="alert alert-success" role="alert">
+                {{ session('update') }}
+            </div>
+        @endif
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <h3 class="mb-30 title_color">Donations</h3>

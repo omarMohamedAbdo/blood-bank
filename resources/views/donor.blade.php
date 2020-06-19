@@ -55,6 +55,11 @@
 
                         <div class="col-lg-3 col-md-4 mt-sm-30 element-wrap">
                             <div class="single-element-widget">
+                                @if (session('update'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('update') }}
+                                    </div>
+                                @endif
                                 <h3 class="mb-30 title_color">Medical Info.</h3>
                                 <form action="{{route('donors.update',$donor)}}" method="POST"
                                         enctype="multipart/form-data">

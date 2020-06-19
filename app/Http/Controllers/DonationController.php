@@ -83,9 +83,10 @@ class DonationController extends Controller
      */
     public function update(Request $request, Donation $donation)
     {
-
+        // Change Donation status to Accept
         $donation->status = "accept";
 
+        // Change donor Last donation date and weekly donation counter
         if(isset($donation->user_id))
         {
             $donor = User::find($donation->user_id)->first();
@@ -102,11 +103,12 @@ class DonationController extends Controller
             $donor->save();
         }
 
+        // Change recived amount of hospital request 
         $hospitalRequest = Donation::find($donation->id)->request()->first();
         $hospitalRequest->received_amount = $donation->donations_amount;
 
+        // Change hospital blood inventory 
         $hospital = $hospitalRequest->hospital()->first();
-
         if($donation->blood_type == 'A') {
             $hospital->type_A_inventory+=$donation->donations_amount;
         }
@@ -129,7 +131,7 @@ class DonationController extends Controller
         $hospital->save();
         $donation->save();
         
-        return redirect('hospital/donations');
+        return redirect('hospital/donations')->with('update', 'Accepted Donation Successfuly');
     }
 
     /**
@@ -141,6 +143,6 @@ class DonationController extends Controller
     public function destroy(Donation $donation)
     {
         $donation->delete();
-        return redirect('hospital/donations');
+        return redirect('hospital/donations')->with('update', 'Rejected Donation Successfuly');
     }
 }
