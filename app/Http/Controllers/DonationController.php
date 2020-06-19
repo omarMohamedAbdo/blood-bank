@@ -41,6 +41,14 @@ class DonationController extends Controller
         //
     }
 
+    public function showDonationForm(int $hospitalRequestId)
+    {
+        // return $hospitalRequestId;
+        $hospitalRequest = $requests = hospitalRequest::where('id',$hospitalRequestId)->with('hospital')->first();
+        // return $hospitalRequest;
+        return view('createHospitalDonation',['request' => $hospitalRequest ]);
+    }    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -49,7 +57,20 @@ class DonationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        $request->validate([
+            "donations_amount" => "required|numeric|min:1",
+        ]);
+
+        Donation::create([
+            "request_id" => $request->request_id,
+            "hospital_id" => Auth::id(),
+            "blood_type" => $request->blood_type,
+            "donations_amount" => $request->donations_amount,
+        ]);
+
+        
+        return redirect('hospital/requests/'.$request->request_id);
     }
 
     /**
@@ -105,7 +126,7 @@ class DonationController extends Controller
 
         // Change recived amount of hospital request 
         $hospitalRequest = Donation::find($donation->id)->request()->first();
-        $hospitalRequest->received_amount = $donation->donations_amount;
+        $hospitalRequest->received_amount += $donation->donations_amount;
 
         // Change hospital blood inventory 
         $hospital = $hospitalRequest->hospital()->first();

@@ -40,6 +40,7 @@ Route::group([
         Route::resource('requests', 'RequestController');
         Route::resource('donors', 'DonorController');
         Route::get("donationsList", "DonationController@index");
+        Route::get('/donate/{request}','DonationController@showDonationForm')->name('createHospitalDonation');
         
     });//end of hospital middleware
 
