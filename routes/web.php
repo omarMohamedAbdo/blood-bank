@@ -42,6 +42,7 @@ Route::group([
         Route::get("donationsList", "DonationController@index");
         Route::get('/donate/{request}','DonationController@showDonationForm')->name('createHospitalDonation');
         Route::get('/inventoryedit','HospitalController@edit')->name('inventoryedit');
+        Route::put('/inventoryupdate','HospitalController@update')->name('inventoryupdate');
         Route::get('/inventory','HospitalController@show')->name('inventoryshow');
     });//end of hospital middleware
 

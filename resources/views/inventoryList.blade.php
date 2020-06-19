@@ -39,6 +39,9 @@
                 </tr>
             </tbody>
         </table>
+        <div style="text-align: center;">
+            <a href="{{route('inventoryedit')}}" class="btn btn-dark btn-lg active" role="button" aria-pressed="true">Update Inventory</a>
+        </div>
     </div>
 </section>
 @endsection

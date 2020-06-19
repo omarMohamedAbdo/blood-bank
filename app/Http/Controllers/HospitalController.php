@@ -58,10 +58,11 @@ class HospitalCOntroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit()
     {
         //
-        return 'edit';
+        $hospital = Auth::guard('hospital')->user();
+        return view('editInventory', ['hospital' => $hospital]);
     }
 
     /**
@@ -71,9 +72,35 @@ class HospitalCOntroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            "typeAstock" => "required|numeric|min:0",
+            "typeBstock" => "required|numeric|min:0",
+            "typeABstock" => "required|numeric|min:0",
+            "typeOstock" => "required|numeric|min:0",
+            "typeAneeded" => "required|numeric|min:0",
+            "typeBneeded" => "required|numeric|min:0",
+            "typeABneeded" => "required|numeric|min:0",
+            "typeOneeded" => "required|numeric|min:0",
+        ]);
+
+        $id = Auth::guard('hospital')->user()->id;
+        $hospital = Hospital::find($id);
+
+        $hospital['type_A_inventory'] = $request['typeAstock'];
+        $hospital['type_B_inventory'] = $request['typeBstock'];
+        $hospital['type_AB_inventory'] = $request['typeABstock'];
+        $hospital['type_O_inventory'] = $request['typeOstock'];
+
+        $hospital['type_A_needed'] = $request['typeAneeded'];
+        $hospital['type_B_needed'] = $request['typeBneeded'];
+        $hospital['type_AB_needed'] = $request['typeABneeded'];
+        $hospital['type_O_needed'] = $request['typeOneeded'];
+
+        $hospital->save();
+        
+        return redirect()->route('inventoryshow');
     }
 
     /**
