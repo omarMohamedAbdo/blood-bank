@@ -41,7 +41,8 @@ Route::group([
         Route::resource('donors', 'DonorController');
         Route::get("donationsList", "DonationController@index");
         Route::get('/donate/{request}','DonationController@showDonationForm')->name('createHospitalDonation');
-        
+        Route::get('/inventoryedit','HospitalController@edit')->name('inventoryedit');
+        Route::get('/inventory','HospitalController@show')->name('inventoryshow');
     });//end of hospital middleware
 
 // Route::view('/hospital', 'hospital')->middleware('auth:hospital');

@@ -51,6 +51,9 @@
 									<li class="nav-item">
 										<a class="nav-link" href="{{ route('donations.index') }}">Donations</a>
 									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="{{ route('inventoryshow') }}">Inventory</a>
+									</li>
 
 									<!-- requests start  -->
 									<li class="nav-item submenu dropdown">
