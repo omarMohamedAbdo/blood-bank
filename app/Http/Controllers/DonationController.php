@@ -85,6 +85,7 @@ class DonationController extends Controller
     {
 
         $donation->status = "accept";
+
         if(isset($donation->user_id))
         {
             $donor = User::find($donation->user_id)->first();
@@ -100,8 +101,24 @@ class DonationController extends Controller
 
             $donor->save();
         }
+
         $hospitalRequest = Donation::find($donation->id)->request()->first();
         $hospitalRequest->received_amount = $donation->donations_amount;
+
+        $hospital = $hospitalRequest->hospital()->first();
+
+        if($donation->blood_type == 'A') {
+            $hospital->type_A_inventory+=$donation->donations_amount;
+        }
+        elseif($donation->blood_type == 'B') {
+            $hospital->type_B_inventory+=$donation->donations_amount;
+        }
+        elseif($donation->blood_type == 'AB') {
+            $hospital->type_aB_inventory+=$donation->donations_amount;
+        }
+        elseif($donation->blood_type == 'O') {
+            $hospital->type_O_inventory+=$donation->donations_amount;
+        }
 
         if($hospitalRequest->received_amount >= $hospitalRequest->needed_amount)
         {
@@ -109,6 +126,7 @@ class DonationController extends Controller
         }
 
         $hospitalRequest->save();
+        $hospital->save();
         $donation->save();
         
         return redirect('hospital/donations');
