@@ -91,31 +91,84 @@
                                     @if(Auth::check())
                                     <li class="nav-item ">
                                         <a class="nav-link" href="{{ url('/home') }}">Home</a>
+									</li>
+									<li class="nav-item ">
+                                        <a class="nav-link" href="#team">Our team</a>
+                                    </li>
+									<li class="nav-item submenu dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
+                                        <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                                                    document.getElementById('logout-form').submit();">
+                                                        {{ __('Logout') }}
+                                                    </a>
+
+                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                        @csrf
+                                                    </form>
+                                                </li>
+                                        </ul>
                                     </li>
                                     @elseif(Auth::guard('hospital')->check())
                                     <li class="nav-item ">
                                         <a class="nav-link" href="{{ url('/hospital') }}">Hospital Home</a>
-                                        </li>
+									</li>
+									<li class="nav-item ">
+                                        <a class="nav-link" href="#team">Our team</a>
+                                    </li>
+									<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::guard('hospital')->user()->name }}</a>
+										<ul class="dropdown-menu">
+											<li class="nav-item">
+												<a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                                    document.getElementById('logout-form').submit();">
+													{{ __('Logout') }}
+												</a>
+
+												<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+													@csrf
+												</form>
+											</li>
+										</ul>
+									</li>
                                     @else
                                     <li class="nav-item ">
                                         <a class="nav-link" href="{{ route('login') }}">Login</a>
                                         </li>
                                         <li class="nav-item ">
                                         <a class="nav-link" href="{{ route('register') }}">Register</a>
-                                        </li>
-                                        <li class="nav-item ">
+										</li>
+										
+										
+										<li class="nav-item submenu dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hospital</a>
+                                        <ul class="dropdown-menu">
+                                                <li class="nav-item">
+													<a class="nav-link" href="{{ route('hospitalLogin') }}">{{ __('Login') }} </a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" href="{{ route('hospitalRegister') }}">{{ __('Register') }} </a>
+                                                </li>
+                                        </ul>
+										</li>
+										
+										<li class="nav-item ">
+                                       	 <a class="nav-link" href="#team">Our team</a>
+										</li>
+										
+                                        <!-- <li class="nav-item ">
                                         <a class="nav-link" href="{{ route('hospitalLogin') }}">Hospital Login</a>
                                         </li>
                                         <li class="nav-item">
                                         <a class="nav-link" href="{{ route('hospitalRegister') }}">Hospital Register</a>
-                                        </li>
+                                        </li> -->
 
                                         <!-- @if (Route::has('register'))
                                         @endif -->
                                     @endif
-									<li class="nav-item ">
-                                        <a class="nav-link" href="#team">Our team</a>
-                                    </li>
+									
 								</ul>
 							</div>
 						</div>

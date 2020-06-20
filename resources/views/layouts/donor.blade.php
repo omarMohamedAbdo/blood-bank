@@ -43,9 +43,6 @@
 						<div class="row ml-0 w-100">
 							<div class="col-lg-12 pr-0">
 								<ul class="nav navbar-nav center_nav pull-right">
-									<li class="nav-item active">
-										<a class="nav-link" href="{{ route('home') }}">home</a>
-									</li>
                                     @guest
                                     <li class="nav-item submenu dropdown">
                                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }} </a>
@@ -55,8 +52,22 @@
                                         <li class="nav-item submenu dropdown">
                                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                         </li>
-                                    @endif
+									@endif
+									<li class="nav-item submenu dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hospital</a>
+                                        <ul class="dropdown-menu">
+                                                <li class="nav-item">
+													<a class="nav-link" href="{{ route('hospitalLogin') }}">{{ __('Login') }} </a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" href="{{ route('hospitalRegister') }}">{{ __('Register') }} </a>
+                                                </li>
+                                        </ul>
+                                    </li>
 									@else
+									<li class="nav-item active">
+										<a class="nav-link" href="{{ route('home') }}">home</a>
+									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="{{ route('campaigns') }}">Campaigns</a>
 									</li>
@@ -80,7 +91,7 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-										<a class="main_btn" href="donation.html">donate now</a>
+										<a class="main_btn" href="{{ route('campaigns') }}">donate now</a>
 									</li>
                                     @endguest
 									

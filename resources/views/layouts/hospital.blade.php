@@ -44,10 +44,11 @@
 						<div class="row ml-0 w-100">
 							<div class="col-lg-12 pr-0">
 								<ul class="nav navbar-nav center_nav pull-right">
+									
+									@auth('hospital')
 									<li class="nav-item active">
 										<a class="nav-link" href="/hospital">home</a>
 									</li>
-									@auth('hospital')
 									<li class="nav-item">
 										<a class="nav-link" href="{{ route('donations.index') }}">Donations</a>
 									</li>

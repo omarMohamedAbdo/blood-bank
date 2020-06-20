@@ -65,15 +65,16 @@ $(function(){
 						<img class="img-fluid" src="{{asset('css/img/banner/text-img.png')}}" alt="">
 						<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price You may see some
 							for as low as each.</p>
-						<a class="main_btn mr-10" href="#">donate now</a>
-						<a class="white_bg_btn" href="#">view activity</a>
+						<a class="main_btn mr-10" href="{{ route('campaigns') }}">donate now</a>
+						<a class="white_bg_btn" href="#pieChart">view activity</a>
 					</div>
 				</div>
 			</div>
 		</div>
 </section>
 	<!--================ End Home Banner Area =================-->
-<section class="contact_area p_120"> 
+<section class="contact_area p_120" id="pieChart"> 
+	<p class="text-center h4 mb-4">My Donations</p>
 	<div id="chartPie" style="height: 550px;"></div>
 </section>
 @endsection
