@@ -45,7 +45,7 @@
 		height: 100px;
 		border-radius: 50%;
 		z-index: 9;
-		background: #4aba70;
+		background: #ea2c58;
 		padding: 15px;
 		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
 	}
@@ -66,7 +66,7 @@
 		right: 15px;
 	}
 	.login-form .btn {
-		background: #4aba70;
+		background: #ea2c58;
 		border: none;
 		line-height: normal;
 	}
@@ -133,7 +133,7 @@
         </div>  -->
         <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">              
     </form>			
-    <div class="text-center small">Don't have an account? <a href="{{ isset($url) ? route('hospitalRegister') : route('register') }}">Sign up</a></div>
+    <div  class="text-center small">Don't have an account? <a style="color:#ea2c58;" href="{{ isset($url) ? route('hospitalRegister') : route('register') }}">Sign up</a></div>
 </div>
   
 </section>
