@@ -87,6 +87,7 @@
 						<div class="row ml-0 w-100">
 							<div class="col-lg-12 pr-0">
 								<ul class="nav navbar-nav center_nav pull-right">
+									
                                     @if(Auth::check())
                                     <li class="nav-item ">
                                         <a class="nav-link" href="{{ url('/home') }}">Home</a>
@@ -112,7 +113,9 @@
                                         <!-- @if (Route::has('register'))
                                         @endif -->
                                     @endif
-
+									<li class="nav-item ">
+                                        <a class="nav-link" href="#team">Our team</a>
+                                    </li>
 								</ul>
 							</div>
 						</div>
@@ -131,10 +134,11 @@
 				<div class="banner_content row">
 					<div class="offset-lg-2 col-lg-8">
 						<img class="img-fluid" src="{{asset('css/img/banner/text-img.png')}}" alt="">
-						<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price You may see some
-							for as low as each.</p>
+						<p>Please Help Us, Donate Now to our causes
+
+							</p>
 						<!-- <a class="main_btn mr-10" href="#">donate now</a> -->
-						<a class="white_bg_btn" href="#">view activity</a>
+						<a class="white_bg_btn" href="#team">View Our Team</a>
 					</div>
 				</div>
 			</div>
@@ -142,8 +146,8 @@
 </section>
 	<!--================ End Home Banner Area =================-->
 
-<section class="">
-	<div class="py-5 team4">
+<section class="" >
+	<div class="py-5 team4" id="team">
 	<div class="container">
 		<div class="row justify-content-center mb-4">
 		<div class="col-md-7 text-center">
@@ -163,10 +167,10 @@
 				<div class="pt-2">
 				<h5 class="mt-4 font-weight-medium mb-0">Omar Abdo</h5>
 				<h6 class="subtitle mb-3">Software Engineer</h6>
-				<p>You can relay on our amazing features list and also our customer services will be great experience.</p>
+				<p>Expeirienced Fullstack ITI Graduate</p>
 				<ul class="list-inline">
-				<li class="list-inline-item"><a href="#" class="text-decoration-none d-block px-1"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a></li>
-					<li class="list-inline-item"><a href="#" class="text-decoration-none d-block px-1"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a></li>
+				<li class="list-inline-item"><a href="https://www.linkedin.com/in/omarmohamedabdo/" class="text-decoration-none d-block px-1"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a></li>
+					<li class="list-inline-item"><a href="https://github.com/omarMohamedAbdo" class="text-decoration-none d-block px-1"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a></li>
 				</ul>
 				</div>
 			</div>
@@ -185,10 +189,10 @@
 				<div class="pt-2">
 				<h5 class="mt-4 font-weight-medium mb-0">Dalia Mohamed</h5>
 				<h6 class="subtitle mb-3">Software Engineer</h6>
-				<p>You can relay on our amazing features list and also our customer services will be great experience.</p>
+				<p>Expeirienced Fullstack ITI Graduate</p>
 				<ul class="list-inline">
-				<li class="list-inline-item"><a href="#" class="text-decoration-none d-block px-1"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a></li>
-					<li class="list-inline-item"><a href="#" class="text-decoration-none d-block px-1"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a></li>
+				<li class="list-inline-item"><a href="https://www.linkedin.com/in/dalia-matter/" class="text-decoration-none d-block px-1"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a></li>
+				<li class="list-inline-item"><a href="https://github.com/DaliaMatter" class="text-decoration-none d-block px-1"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a></li>
 				</ul>
 				</div>
 			</div>
@@ -208,10 +212,10 @@
 				<div class="pt-2">
 				<h5 class="mt-4 font-weight-medium mb-0">Mahmoud Assem</h5>
 				<h6 class="subtitle mb-3">Software Engineer</h6>
-				<p>You can relay on our amazing features list and also our customer services will be great experience.</p>
+				<p>Expeirienced Fullstack ITI Graduate</p>
 				<ul class="list-inline">
 					<li class="list-inline-item"><a href="https://www.linkedin.com/in/mahmoud-assem-30b7a9153/" class="text-decoration-none d-block px-1"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a></li>
-					<li class="list-inline-item"><a href="#" class="text-decoration-none d-block px-1"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a></li>
+					<li class="list-inline-item"><a href="https://github.com/mahmoud2121996" class="text-decoration-none d-block px-1"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a></li>
 				</ul>
 				</div>
 			</div>
@@ -222,6 +226,30 @@
 	</div>
 	</div>
 </section>	
+
+<!--================ Start Clients Logo Area =================-->
+<section class="clients_logo_area section_gap">
+		<div class="container">
+			<div class="clients_slider owl-carousel">
+				<div class="item">
+					<img src="{{asset('css/img/clients-logo/c-logo-1.png')}}" alt="">
+				</div>
+				<div class="item">
+					<img src="{{asset('css/img/clients-logo/c-logo-2.png')}}" alt="">
+				</div>
+				<div class="item">
+					<img src="{{asset('css/img/clients-logo/c-logo-3.png')}}" alt="">
+				</div>
+				<div class="item">
+					<img src="{{asset('css/img/clients-logo/c-logo-4.png')}}" alt="">
+				</div>
+				<div class="item">
+					<img src="{{asset('css/img/clients-logo/c-logo-5.png')}}" alt="">
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ End Clients Logo Area =================-->
 <!--================ Start Experience Area =================-->
 <section class="experience_donation section_gap">
 		<div class="container">
@@ -237,70 +265,7 @@
 		</div>
 	</section>
 	<!--================ End Experience Area =================-->
-	<!--================ Start Footer Area  =================-->
-	<footer class="footer-area section_gap">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-5  col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6 class="footer_title">About Me</h6>
-						<p>
-							Do you want to be even more successful? Learn to love learning and growth. The more effort you put into improving your skills,
-						</p>
-					</div>
-				</div>
-				<div class="col-lg-5 col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6 class="footer_title">Newsletter</h6>
-						<p>Stay updated with our latest trends</p>
-						<div id="mc_embed_signup">
-							<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-							 method="get" class="subscribe_form relative">
-								<div class="input-group d-flex flex-row">
-									<input name="EMAIL" placeholder="Enter Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '"
-									 required="" type="email">
-									<button class="btn sub-btn">
-										<span class="lnr lnr-arrow-right"></span>
-									</button>
-								</div>
-								<div class="mt-10 info"></div>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-6 col-sm-6">
-					<div class="single-footer-widget f_social_wd">
-						<h6 class="footer_title">Follow Us</h6>
-						<p>Let us be social</p>
-						<div class="f_social">
-							<a href="#">
-								<i class="fa fa-facebook"></i>
-							</a>
-							<a href="#">
-								<i class="fa fa-twitter"></i>
-							</a>
-							<a href="#">
-								<i class="fa fa-dribbble"></i>
-							</a>
-							<a href="#">
-								<i class="fa fa-behance"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
 
-			<div class="row">
-				<div class="col-lg-12">
-					<p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</p>
-				</div>
-			</div>
-		</div>
-	</footer>
-    <!--================ End Footer Area  =================-->
     
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
