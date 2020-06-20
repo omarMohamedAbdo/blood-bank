@@ -1,84 +1,141 @@
 @extends('layouts.donor')
+@section('css')
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+    body {
+        color: #999;
+		background: #f5f5f5;
+		font-family: 'Varela Round', sans-serif;
+	}
+	.form-control {
+		box-shadow: none;
+		border-color: #ddd;
+	}
+	.form-control:focus {
+		border-color: #4aba70; 
+	}
+	.login-form {
+        width: 350px;
+		margin: 0 auto;
+		padding: 30px 0;
+	}
+    .login-form form {
+        color: #434343;
+		border-radius: 1px;
+    	margin-bottom: 15px;
+        background: #fff;
+		border: 1px solid #f3f3f3;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+	}
+	.login-form h4 {
+		text-align: center;
+		font-size: 22px;
+        margin-bottom: 20px;
+	}
+    .login-form .avatar {
+        color: #fff;
+		margin: 0 auto 30px;
+        text-align: center;
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		z-index: 9;
+		background: #4aba70;
+		padding: 15px;
+		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+	}
+    .login-form .avatar i {
+        font-size: 62px;
+    }
+    .login-form .form-group {
+        margin-bottom: 20px;
+    }
+	.login-form .form-control, .login-form .btn {
+		min-height: 40px;
+		border-radius: 2px; 
+        transition: all 0.5s;
+	}
+	.login-form .close {
+        position: absolute;
+		top: 15px;
+		right: 15px;
+	}
+	.login-form .btn {
+		background: #4aba70;
+		border: none;
+		line-height: normal;
+	}
+	.login-form .btn:hover, .login-form .btn:focus {
+		background: #42ae68;
+	}
+    .login-form .checkbox-inline {
+        float: left;
+    }
+    .login-form input[type="checkbox"] {
+        margin-top: 2px;
+    }
+    .login-form .forgot-link {
+        float: right;
+    }
+    .login-form .small {
+        font-size: 13px;
+    }
+    .login-form a {
+        color: #4aba70;
+    }
+</style>
+@endsection
 
 @section('content')
 <!--================Contact Area =================-->
 <section class="contact_area p_120">
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-            <div class="card-header"> {{ isset($url) ? ucwords($url) : ""}} {{ __('Login') }}</div>
 
-                <div class="card-body">
-                        @isset($url)
-                        <form method="POST" action='{{ url("login/$url") }}' aria-label="{{ __('Login') }}">
-                        @else
-                        <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
-                        @endisset
-                        @csrf
+<div class="login-form">    
+        @isset($url)
+        <form method="POST" action='{{ url("login/$url") }}' aria-label="{{ __('Login') }}">
+        @else
+        <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+        @endisset
+        @csrf
+		<div class="avatar"><i class="material-icons">&#xE7FF;</i></div>
+    	<h4 class="modal-title">Login to {{ isset($url) ? ucwords($url) : "Your"}}  Account</h4>
+        <div class="form-group">
+            <!-- <input type="text" class="form-control" placeholder="Username" required="required"> -->
+            <input id="email" placeholder="Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" >
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                                @if (Session::has('message'))
-                                 <div class="alert alert-danger">{{ Session::get('message') }}</div>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <!-- <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div> -->
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                <!-- @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif -->
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+            @if (Session::has('message'))
+                <div class="alert alert-danger">{{ Session::get('message') }}</div>
+            @endif
         </div>
-    </div>
+        <div class="form-group">
+            <!-- <input type="password" class="form-control" placeholder="Password" required="required"> -->
+            <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+            @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <!-- <div class="form-group small clearfix">
+            <label class="checkbox-inline"><input type="checkbox"> Remember me</label>
+            <a href="#" class="forgot-link">Forgot Password?</a>
+        </div>  -->
+        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">              
+    </form>			
+    <div class="text-center small">Don't have an account? <a href="{{ isset($url) ? route('hospitalRegister') : route('register') }}">Sign up</a></div>
 </div>
+  
 </section>
     <!--================Contact Area =================-->
 
