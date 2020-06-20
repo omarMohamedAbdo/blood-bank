@@ -204,8 +204,8 @@
 	<div class="container">
 		<div class="row justify-content-center mb-4">
 		<div class="col-md-7 text-center">
-			<h3 class="mb-3">Our Amazing Team</h3>
-			<h6 class="subtitle">You can relay on our amazing features list and also our customer services will be great experience for you without doubt and in no-time</h6>
+			<h2 class="mb-3">Our Amazing Team</h2>
+			<h4 class="subtitle">You can relay on our amazing features list and also our customer services will be great experience for you without doubt and in no-time</h4>
 		</div>
 		</div>
 		<div class="row">
@@ -309,10 +309,12 @@
 			<div class="row align-items-center justify-content-center">
 				<div class="col-lg-12">
 					<h1>Experience How your Donation Can Reach</h1>
-					<p>he French Revolution constituted for the conscience of the dominant aristocratic class a fall from innocence, and upturning
-						of the natural chain of events that resounded.</p>
+					<p>Copyright &copy; ITI 2020</p>
 					<a href="#" class="main_btn2 mr-10">make donation now</a>
-					<a href="#" class="main_btn2">Create Fundraising today</a>
+					<!-- <a href="#" class="main_btn2">Create Fundraising today</a> -->
+					<!-- <div class="container text-center">
+					<small>Copyright &copy; Your Website</small>
+					</div> -->
 				</div>
 			</div>
 		</div>

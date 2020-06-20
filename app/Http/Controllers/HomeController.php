@@ -28,6 +28,7 @@ class HomeController extends Controller
         // return view('home');
         $donations =  Donation::where('user_id', Auth::id() )->with('user', 'donorHospital')->get();
         $i=0;
+        $Data = [];
         foreach($donations as $row) {
             $Data[$i] = array
             (
