@@ -35,14 +35,16 @@
                                         </div>
                                         <div class="visit">{{ $donation->blood_type}}</div>
                                         <div class="visit">{{ $donation->donations_amount}}</div>
-                                        <div class="visit">
-                                            <form action="{{route('donations.update',$donation)}}" method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            @method('PUT')
-                                                {!! Form::button ('<a class="genric-btn success circle small">Accept</a>' ,['type' => 'submit' , 'class' => 'genric-btn ']) !!}
-                                            </form>
-                                            
-                                        </div> 
+                                        @if(isset($donation->user->last_test) || isset($donation->hospital_id))
+                                            <div class="visit">
+                                                <form action="{{route('donations.update',$donation)}}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('PUT')
+                                                    {!! Form::button ('<a class="genric-btn success circle small">Accept</a>' ,['type' => 'submit' , 'class' => 'genric-btn ']) !!}
+                                                </form>
+                                                
+                                            </div>
+                                        @endif    
                                         <div class="visit">
                                             <form action="{{route('donations.destroy',$donation)}}" method="POST" >
                                                 {!! Form::button ('<a class="genric-btn danger circle small">Reject</a>' ,['type' => 'submit' , 'class' => 'genric-btn ']) !!}

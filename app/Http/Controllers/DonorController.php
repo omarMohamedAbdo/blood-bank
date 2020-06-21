@@ -94,30 +94,46 @@ class DonorController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // return $request;
         $donor = User::find($id);
 
-        if (isset($request->HBV))
-            $donor->HBV = 1;
+        if (isset($request->HBV)) {
+                $donor->HBV = 1;
+            $donor->last_test = date("Y-m-d");
+        }
         else
             $donor->HBV = 0;
 
-        if (isset($request->HCV))
+        if (isset($request->HCV)){
+
             $donor->HCV = 1;
+            $donor->last_test = date("Y-m-d");
+        }
         else
             $donor->HCV = 0;
 
-        if (isset($request->HIV))
+        if (isset($request->HIV)) {
+
             $donor->HIV = 1;
+            $donor->last_test = date("Y-m-d");
+        }
         else
             $donor->HIV = 0;
 
         if (isset($request->HTLV))
+        {
+
             $donor->HTLV = 1;
+            $donor->last_test = date("Y-m-d");
+        }
         else
             $donor->HTLV = 0;
 
-        if (isset($request->syphilis))
+        if (isset($request->syphilis)){
+
             $donor->syphilis = 1;
+            $donor->last_test = date("Y-m-d");
+        }
         else
             $donor->syphilis = 0;
         

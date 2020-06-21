@@ -110,7 +110,7 @@
                                     <div class="switch-wrap d-flex justify-content-between">
                                         <h5>Re-Test</h5>
                                         <div class="primary-checkbox">
-                                            <input type="checkbox" name="test" id="test" @if ($testFlag == 0) checked disabled @endif>
+                                            <input type="checkbox" name="test" id="test" @if ($testFlag == 0) checked @endif>
                                             <label for="test"></label>
                                         </div>
                                     </div>
