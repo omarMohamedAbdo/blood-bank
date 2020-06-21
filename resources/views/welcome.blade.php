@@ -304,21 +304,17 @@
 	</section>
 	<!--================ End Clients Logo Area =================-->
 <!--================ Start Experience Area =================-->
-<section class="experience_donation section_gap">
+<section class="experience_donation section_gap"  style=" bottom: 0;width: 100%;">
 		<div class="container">
 			<div class="row align-items-center justify-content-center">
 				<div class="col-lg-12">
 					<h1>Experience How your Donation Can Reach</h1>
 					<p>Copyright &copy; ITI 2020</p>
-					<a href="#" class="main_btn2 mr-10">make donation now</a>
-					<!-- <a href="#" class="main_btn2">Create Fundraising today</a> -->
-					<!-- <div class="container text-center">
-					<small>Copyright &copy; Your Website</small>
-					</div> -->
+					<a href="https://github.com/omarMohamedAbdo/blood-bank" class="main_btn2 mr-10"><i class="fa fa-github fa-lg" aria-hidden="true"></i>  Github</a>
 				</div>
 			</div>
 		</div>
-	</section>
+</section>
 	<!--================ End Experience Area =================-->
 
     
