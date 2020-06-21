@@ -117,6 +117,12 @@
 
                                     {!! Form::button ('<a class="genric-btn success circle">Update Medical Data</a>' ,['type' => 'submit' , 'class' => 'genric-btn ']) !!}
                                 </form>
+                                <hr>
+                                <form action="{{route('donors.destroy',$donor)}}" method="POST" >
+                                    {!! Form::button ('<a class="genric-btn danger circle">Deactivate this Donor</a>' ,['type' => 'submit' , 'class' => 'genric-btn ']) !!}
+                                @csrf
+                                @method('DELETE')
+                                </form>
                             </div>
                         </div>
                     </div>

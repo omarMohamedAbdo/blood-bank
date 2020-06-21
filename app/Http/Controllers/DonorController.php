@@ -149,10 +149,18 @@ class DonorController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $donor = User::find($id);
+
+        $donor->is_active = 0;
+        $donor->save();
+
+        return redirect()->back()->with('update', 'Deactivated Donor Account Successfuly');
+
+
     }
 }
