@@ -20,17 +20,17 @@ class RequestController extends Controller
         // return my requests...
         if (isset($request["type"]) && $request["type"] === "my requests") {
             $myRequests = hospitalRequest::all()->where('hospital_id', Auth::guard('hospital')->user()->id);
-            return view("requestsList", ["requests" => $myRequests]);
+            return view("requestsList", ["requests" => $myRequests, "private" => true]);
         }
 
         // return recived requests...
         if (isset($request["type"]) && $request["type"] === "recived requests") {
             $myRequests = hospitalRequest::all()->where('target_hospital_id', Auth::guard('hospital')->user()->id);
-            return view("requestsList", ["requests" => $myRequests]);
+            return view("requestsList", ["requests" => $myRequests, "private" => true]);
         }
 
         //return all requests...
-        return view("requestsList", ["requests" => hospitalRequest::all()]);
+        return view("requestsList", ["requests" => hospitalRequest::all(), "private" => false]);
     }
 
     /**
