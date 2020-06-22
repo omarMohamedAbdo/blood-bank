@@ -30,13 +30,13 @@
 						<div class="card-body">
 							<figure>
 								@if($campaign->blood_type == 'A')
-								<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('A.webp')}}" alt="Card image cap">
+								<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('type A.jpg')}}" alt="Card image cap">
 								@elseif($campaign->blood_type == 'B')
-								<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('B.webp')}}" alt="Card image cap">
+								<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('type B.jpg')}}" alt="Card image cap">
 								@elseif($campaign->blood_type == 'AB')
-								<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('AB.webp')}}" alt="Card image cap">
+								<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('type AB.jpg')}}" alt="Card image cap">
 								@else
-								<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('O.webp')}}" alt="Card image cap">
+								<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('type O.jpg')}}" alt="Card image cap">
 								@endif
 							</figure>
 							<div class="progress">
