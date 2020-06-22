@@ -13,6 +13,13 @@
                         </ul>
                     </div>
                 @endif
+                @if ($donor->blood_type == "unknown" || !isset($donor->last_test))
+                    <div class="alert alert-danger" role="alert">
+                        <ul>
+                            <li>You Need To Check The Donor Blood Type </li>
+                        </ul>
+                    </div>
+                @endif
                 <div class="section-top-border">
                     <div class="row">
                         <div class="col-lg-6 col-md-8">
@@ -104,13 +111,26 @@
                                             <label for="syphilis"></label>
                                         </div>
                                     </div>
-
+                                    @if($donor->blood_type == "unknown" || !isset($donor->last_test))
                                     <hr>
-
+                                    <div class="switch-wrap d-flex justify-content-between">
+                                        <h5>Blood Type</h5>
+                                            <div class="default-select" id="default-select">
+                                                <select required name="blood_type">
+                                                    <option value="None" selected="true" disabled>Blood Type</option>
+                                                    <option value="A">A</option>
+                                                    <option value="B">B</option>
+                                                    <option value="AB">AB</option>
+                                                    <option value="O">O</option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    <hr>
                                     <div class="switch-wrap d-flex justify-content-between">
                                         <h5>Re-Test</h5>
                                         <div class="primary-checkbox">
-                                            <input type="checkbox" name="test" id="test" @if ($testFlag == 0) checked @endif>
+                                            <input type="checkbox" name="test" id="test" @if ($testFlag == 2) checked @elseif($testFlag == 0) checked disabled @endif>
                                             <label for="test"></label>
                                         </div>
                                     </div>

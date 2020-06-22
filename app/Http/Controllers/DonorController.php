@@ -50,10 +50,17 @@ class DonorController extends Controller
         $donor = User::find($id);
 
         $expirey_test_date = (new Carbon($donor->last_test))->addMonths(3);
-        if($expirey_test_date >= date("Y-m-d"))
-            $testFlag = 0;
-        else 
-            $testFlag = 1; 
+        if(!isset($donor->last_test))
+        {
+            $testFlag = 2;
+        }
+        else {
+            if($expirey_test_date >= date("Y-m-d"))
+                $testFlag = 0;
+            else 
+                $testFlag = 1;
+        } 
+
 
         // $testFlag = 1;
         $expirey_date = (new Carbon($donor->last_donation))->addDays(7);
@@ -66,8 +73,10 @@ class DonorController extends Controller
             }
 
         }
-        if($testFlag)
+        if($testFlag == 1)
             return view('donor', ['donor' => $donor,'testFlag' => $testFlag, 'status' => ['The Donor need to re-test']]);
+        elseif($testFlag == 2)
+            return view('donor', ['donor' => $donor,'testFlag' => $testFlag, 'status' => ['The Donor need to Take a test']]);
         else
             return view('donor', ['donor' => $donor,'testFlag' => $testFlag]);  
         
@@ -139,7 +148,11 @@ class DonorController extends Controller
         
         if (isset($request->test))
             $donor->last_test = date("Y-m-d");
-            
+        
+        if (isset($request->blood_type))
+            $donor->blood_type = $request->blood_type;
+        
+
         $donor->save();
         // return $donor;
         return redirect()->back()->with('update', 'Updated Donor Medical Info Successfuly');

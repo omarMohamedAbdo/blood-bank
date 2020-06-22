@@ -130,16 +130,16 @@ class DonationController extends Controller
 
         // Change hospital blood inventory 
         $hospital = $hospitalRequest->hospital()->first();
-        if($donation->blood_type == 'A') {
+        if($donor->blood_type == 'A') {
             $hospital->type_A_inventory+=$donation->donations_amount;
         }
-        elseif($donation->blood_type == 'B') {
+        elseif($donor->blood_type == 'B') {
             $hospital->type_B_inventory+=$donation->donations_amount;
         }
-        elseif($donation->blood_type == 'AB') {
-            $hospital->type_aB_inventory+=$donation->donations_amount;
+        elseif($donor->blood_type == 'AB') {
+            $hospital->type_AB_inventory+=$donation->donations_amount;
         }
-        elseif($donation->blood_type == 'O') {
+        elseif($donor->blood_type == 'O') {
             $hospital->type_O_inventory+=$donation->donations_amount;
         }
 

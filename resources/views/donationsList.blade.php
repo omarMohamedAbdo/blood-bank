@@ -3,6 +3,15 @@
     @section('content')
     <section class="contact_area p_120">
     <div class="container">
+        <div class="row justify-content-center section-title-wrap">
+            <div class="col-lg-12">
+                <h1>Remember</h1>
+                <p>
+                    Remember to check your donor medical data before making any decision about a donation.
+                </p>
+            </div>
+        </div>
+        
         @if (session('update'))
             <div class="alert alert-success" role="alert">
                 {{ session('update') }}
@@ -35,16 +44,16 @@
                                         </div>
                                         <div class="visit">{{ $donation->blood_type}}</div>
                                         <div class="visit">{{ $donation->donations_amount}}</div>
-                                        @if(isset($donation->user->last_test) || isset($donation->hospital_id))
-                                            <div class="visit">
+                                        <div class="visit">
+                                            @if(isset($donation->user->last_test) || isset($donation->hospital_id))
                                                 <form action="{{route('donations.update',$donation)}}" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('PUT')
                                                     {!! Form::button ('<a class="genric-btn success circle small">Accept</a>' ,['type' => 'submit' , 'class' => 'genric-btn ']) !!}
                                                 </form>
                                                 
+                                                @endif    
                                             </div>
-                                        @endif    
                                         <div class="visit">
                                             <form action="{{route('donations.destroy',$donation)}}" method="POST" >
                                                 {!! Form::button ('<a class="genric-btn danger circle small">Reject</a>' ,['type' => 'submit' , 'class' => 'genric-btn ']) !!}
