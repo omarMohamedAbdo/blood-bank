@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Hospital;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Request as hospitalRequest;
+use App\Donation;
+
 
 class HospitalCOntroller extends Controller
 {
@@ -15,7 +18,53 @@ class HospitalCOntroller extends Controller
      */
     public function index()
     {
-        //
+        $id = Auth::guard('hospital')->user()->id;
+        $hospitalRequestsIdList = hospitalRequest::where('hospital_id',$id)->select('id')->get() ;
+        $UsersDonations = Donation::whereIn('request_id',$hospitalRequestsIdList)
+        ->whereNull('hospital_id')
+        ->get();
+       
+       
+        // $donations =  Donation::where('user_id', Auth::id() )->with('user', 'donorHospital')->get();
+        $i=0;
+        $Data = [];
+        foreach($UsersDonations as $row) {
+            $Data[$i] = array
+            (
+              "value" => $row->donations_amount,
+              "name" => $row->user->name,
+            );
+            $i++;
+            // $Data['data'][] = (int) $row->count;
+          }
+        // $Data = array
+        //           (
+
+                    
+        //             "0" => array
+        //                             (
+        //                               "value" => 335,
+        //                               "name" => "Apple",
+        //                             ),
+        //             "1" => array
+        //                             (
+        //                               "value" => 310,
+        //                               "name" => "Orange",
+        //                             )
+        //                             ,
+        //             "2" => array
+        //                             (
+        //                               "value" => 234,
+        //                               "name" => "Grapes",
+        //                             )
+        //                             ,
+        //             "3" => array
+        //                             (
+        //                               "value" => 135,
+        //                               "name" => "Banana",
+        //                             )
+        //           );
+        return view('hospital',['Data' => $Data]);
     }
 
     /**

@@ -36,7 +36,8 @@ Route::group(
         'middleware' => 'auth:hospital'
     ],
     function () {
-        Route::view('', 'hospital');
+        // Route::view('', 'hospital');
+        Route::get('', 'HospitalController@index')->name('hospitalHome');
         Route::resource('donations', 'DonationController');
         Route::resource('requests', 'RequestController');
         Route::resource('donors', 'DonorController');
