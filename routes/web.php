@@ -69,9 +69,22 @@ Route::group(
     }
 ); //end of Donor middleware
 
-Route::get('/admin', 'AdminController@index')->name('adminHome');
-Route::get('/admin/inactiveHospitals', 'AdminController@inactiveHospitals')->name('inactiveHospitalList');
-Route::put('/admin/activeHospital', 'AdminController@activeHospital');
-Route::put('/admin/deActiveHospital', 'AdminController@deActiveHospital');
-Route::get('/admin/HospitalList', 'AdminController@hospitalList')->name('hospitalList');
-Route::delete('/admin/deleteHospital', 'AdminController@deleteHospital');
+
+
+
+// Admin routes -> only viewed by hospital
+Route::group(
+    [
+        'prefix' => "admin", //all admin routes will start with /admin
+        'middleware' => 'admin'
+    ],
+    function () {
+      
+        Route::get('', 'AdminController@index')->name('adminHome');
+        Route::get('inactiveHospitals', 'AdminController@inactiveHospitals')->name('inactiveHospitalList');
+        Route::put('activeHospital', 'AdminController@activeHospital');
+        Route::put('deActiveHospital', 'AdminController@deActiveHospital');
+        Route::get('HospitalList', 'AdminController@hospitalList')->name('hospitalList');
+        Route::delete('deleteHospital', 'AdminController@deleteHospital');
+    }
+); //end of admin middleware
