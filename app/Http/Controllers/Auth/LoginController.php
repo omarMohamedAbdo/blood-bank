@@ -42,6 +42,14 @@ class LoginController extends Controller
         $this->middleware('guest:hospital')->except('logout');
     }
 
+    protected function credentials(Request $request)
+    {
+        $credentials = $request->only($this->username(), 'password');
+        $credentials['is_active'] = 1;
+
+        return $credentials;
+    }
+
     public function showHospitalLoginForm()
     {
         return view('auth.login', ['url' => 'hospital']);
