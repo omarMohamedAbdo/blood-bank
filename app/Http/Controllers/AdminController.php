@@ -6,6 +6,7 @@ use App\Hospital;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -105,5 +106,31 @@ class AdminController extends Controller
     {
         $user = User::find($id);
         return view('userProfile', ['user' => $user]);
+    }
+
+    public function newAdmin()
+    {
+        return view('newAdmin');
+    }
+
+    public function createNewAdmin(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'is_admin' => true,
+            'is_active' => true,
+            'city' => "None",
+            'blood_type' => "None"
+        ]);
+
+        return view('adminCreated', ['email' => $request['email']]);
     }
 }
