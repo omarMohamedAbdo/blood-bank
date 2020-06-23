@@ -7,20 +7,20 @@
             <thead class="table-danger">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">City</th>
-                    <th scope="col">Actions</th>
+                    <th style="text-align: center; vertical-align: middle;" scope="col">Email</th>
+                    <th style="text-align: center; vertical-align: middle;" scope="col">Name</th>
+                    <th style="text-align: center; vertical-align: middle;" scope="col">City</th>
+                    <th style="text-align: center; vertical-align: middle;" scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($users as $user)
                 <tr>
                     <th scope="row">{{$user->id}}</th>
-                    <th scope="row">{{$user->email}}</th>
-                    <th scope="row">{{$user->name}}</th>
-                    <th scope="row">{{$user->city}}</th>
-                    <th scope="row">
+                    <th style="text-align: center; vertical-align: middle;" scope="row">{{$user->email}}</th>
+                    <th style="text-align: center; vertical-align: middle;" scope="row">{{$user->name}}</th>
+                    <th style="text-align: center; vertical-align: middle;" scope="row">{{$user->city}}</th>
+                    <th style="text-align: center; vertical-align: middle;" scope="row">
                         @if($user->is_active == 1)
                             <form action="/admin/deActiveUser" method="post" style="display: inline-block;">
                                 @csrf
