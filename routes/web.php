@@ -30,9 +30,10 @@ Route::post('/register/hospital', 'Auth\RegisterController@createHospital');
 
 
 //Hospital routes   ->only viewed by hospital
-Route::group([
-    'prefix' => "hospital", //all hospital routes will start with /hospital
-    'middleware' => 'auth:hospital'
+Route::group(
+    [
+        'prefix' => "hospital", //all hospital routes will start with /hospital
+        'middleware' => 'auth:hospital'
     ],
     function () {
         Route::view('', 'hospital');
@@ -40,20 +41,25 @@ Route::group([
         Route::resource('requests', 'RequestController');
         Route::resource('donors', 'DonorController');
         Route::get("donationsList", "DonationController@index");
-        Route::get('/donate/{request}','DonationController@showDonationForm')->name('createHospitalDonation');
-        Route::get('/inventoryedit','HospitalController@edit')->name('inventoryedit');
-        Route::put('/inventoryupdate','HospitalController@update')->name('inventoryupdate');
-        Route::get('/inventory','HospitalController@show')->name('inventoryshow');
-    });//end of hospital middleware
+        Route::get('/donate/{request}', 'DonationController@showDonationForm')->name('createHospitalDonation');
+        Route::get('/inventoryedit', 'HospitalController@edit')->name('inventoryedit');
+        Route::put('/inventoryupdate', 'HospitalController@update')->name('inventoryupdate');
+        Route::get('/inventory', 'HospitalController@show')->name('inventoryshow');
+    }
+); //end of hospital middleware
 
 // Route::view('/hospital', 'hospital')->middleware('auth:hospital');
-Route::group([
-    'middleware' => 'auth'
+Route::group(
+    [
+        'middleware' => 'auth'
     ],
     function () {
         Route::get('/campaigns', 'donor\CampaignController@index')->name('campaigns');
-        Route::get('/donate/{campaign}','donor\DonationController@showDonationForm')->name('createDonation');
-        Route::post('/saveDonation/{campaign}','donor\DonationController@save')->name('saveDonation');
+        Route::get('/donate/{campaign}', 'donor\DonationController@showDonationForm')->name('createDonation');
+        Route::post('/saveDonation/{campaign}', 'donor\DonationController@save')->name('saveDonation');
         Route::get('/profile', 'donor\ProfileController@index')->name('profile');
         Route::put('/updateProfile', 'donor\ProfileController@update')->name('updateProfile');
-    });//end of Donor middleware
+    }
+); //end of Donor middleware
+
+Route::get('admin', 'AdminController@index')->name('adminHome');
