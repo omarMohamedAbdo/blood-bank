@@ -30,45 +30,45 @@
                         User
                         @endif
                     </th>
-                    <th  scope="row">
+                    <th style="text-align: center; vertical-align: middle;" scope="row">
                        
                         <form action="/admin/deleteUser" method="post" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
                             <input type="hidden" name="id" value="{{$user->id}}">
-                            <button type="submit" class="genric-btn danger-border circle">Delete</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                         @if($user->is_active == 1)
                         <form action="/admin/deActiveUser" method="post" style="display: inline-block;">
                             @csrf
                             @method('PUT')
                             <input type="hidden" name="id" value="{{$user->id}}">
-                            <button type="submit" class="genric-btn danger-border circle">Dectivate</button>
+                            <button type="submit" class="btn btn-danger">Dectivate</button>
                         </form>
                         @else
                         <form action="/admin/activeUser" method="post" style="display: inline-block;">
                             @csrf
                             @method('PUT')
                             <input type="hidden" name="id" value="{{$user->id}}">
-                            <button type="submit" class="genric-btn success-border circle">Activate</button>
+                            <button type="submit" class="btn btn-success">Activate</button>
                         </form>
                         @endif
 
-                        @if($user->is_admin == 1)
+                        <!-- @if($user->is_admin == 1)
                         <form action="/admin/downgradeUser" method="post" style="display: inline-block;">
                             @csrf
                             @method('PUT')
                             <input type="hidden" name="id" value="{{$user->id}}">
-                            <button type="submit" class="genric-btn danger-border circle">Downgrade to User</button>
+                            <button type="submit" class="btn btn-danger">Downgrade to User</button>
                         </form>
                         @else
                         <form action="/admin/upgradeUser" method="post" style="display: inline-block;">
                             @csrf
                             @method('PUT')
                             <input type="hidden" name="id" value="{{$user->id}}">
-                            <button type="submit" class="genric-btn success-border circle">Upgrade To Admin</button>
+                            <button type="submit" class="btn btn-success">Upgrade To Admin</button>
                         </form>
-                        @endif
+                        @endif -->
 
                     </th>
                 </tr>
