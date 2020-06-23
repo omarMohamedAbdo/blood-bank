@@ -62,4 +62,6 @@ Route::group(
     }
 ); //end of Donor middleware
 
-Route::get('admin', 'AdminController@index')->name('adminHome');
+Route::get('/admin', 'AdminController@index')->name('adminHome');
+Route::get('/admin/inactiveHospitals', 'AdminController@inactiveHospitals')->name('inactiveHospitalList');
+Route::post('/admin/activeHospital', 'AdminController@activeHospital');

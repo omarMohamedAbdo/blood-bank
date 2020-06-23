@@ -68,10 +68,10 @@
                                     @else
                                     <!-- <li class="nav-item active">
                                         <a class="nav-link" href="#">Donors</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('campaigns') }}">Hospitals</a>
                                     </li> -->
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('adminHome') }}">Home</a>
+                                    </li>
 
                                     <li class="nav-item submenu dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Doners</a>
@@ -102,7 +102,7 @@
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">
+                                                <a class="nav-link" href="{{ route('inactiveHospitalList') }}">
                                                     Inactive Hospitals
                                                 </a>
                                             </li>

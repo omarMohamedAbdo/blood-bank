@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Hospital;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -10,5 +11,20 @@ class AdminController extends Controller
     public function index()
     {
         return view('adminHome');
+    }
+
+    public function inactiveHospitals()
+    {
+        $hospitals = Hospital::where('is_active', 0)->get();
+        return view('inactiveHospitalsList', ['hospitals' => $hospitals]);
+    }
+
+    public function activeHospital(Request $request)
+    {
+        $hospital = Hospital::find($request['id']);
+
+        $hospital['is_active'] = true;
+        $hospital->save();
+        return redirect()->route('inactiveHospitalList');
     }
 }
