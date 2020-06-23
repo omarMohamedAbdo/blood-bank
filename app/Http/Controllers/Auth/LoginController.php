@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
+use App\Hospital;
 
 class LoginController extends Controller
 {
@@ -62,8 +63,10 @@ class LoginController extends Controller
             'email'   => 'required|email',
             'password' => 'required|min:6'
         ]);
+        
+        $hospital = Hospital::where('email',$request->email)->first();
 
-        if (Auth::guard('hospital')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+        if ( $hospital->is_active && Auth::guard('hospital')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
             return redirect()->intended('/hospital');
         }

@@ -62,10 +62,10 @@ class RegisterController extends Controller
             'password' => Hash::make($request['password']),
             'credentials' => $imageName,
         ]);
-        if (Auth::guard('hospital')->attempt(['email' => $request['email'], 'password' => $request['password']], $request->get('remember'))) {
-            return redirect()->intended('/hospital');
-        }
-        // return redirect()->intended('login/hospital');
+        // if (Auth::guard('hospital')->attempt(['email' => $request['email'], 'password' => $request['password']], $request->get('remember'))) {
+        //     return redirect()->intended('/hospital');
+        // }
+        return redirect()->intended('login/hospital');
     }
 
     /**
