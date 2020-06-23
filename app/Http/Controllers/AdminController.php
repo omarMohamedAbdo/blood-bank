@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Hospital;
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -52,7 +53,45 @@ class AdminController extends Controller
     //Donor Functions
     public function userslList()
     {
-        $users = User::all();
+        $users = User::where('id', '!=', Auth::id())->get();
         return view('usersList', ['users' => $users]);
+    }
+
+    public function activeUser(Request $request)
+    {
+        $user = User::find($request['id']);
+        $user['is_active'] = true;
+        $user->save();
+        return redirect()->route('userslList');
+    }
+
+    public function deActiveUser(Request $request)
+    {
+        $user = User::find($request['id']);
+        $user['is_active'] = false;
+        $user->save();
+        return redirect()->route('userslList');
+    }
+
+    public function upgradeUser(Request $request)
+    {
+        $user = User::find($request['id']);
+        $user['is_admin'] = true;
+        $user->save();
+        return redirect()->route('userslList');
+    }
+
+    public function downgradeUser(Request $request)
+    {
+        $user = User::find($request['id']);
+        $user['is_admin'] = false;
+        $user->save();
+        return redirect()->route('userslList');
+    }
+
+    public function deleteUser(Request $request)
+    {
+        User::where('id', $request['id'])->delete();
+        return redirect()->route('userslList');
     }
 }

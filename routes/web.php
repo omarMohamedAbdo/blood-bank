@@ -90,5 +90,11 @@ Route::group(
 
         // Users Routes
         Route::get('usersList', 'AdminController@userslList')->name('userslList');
+        Route::get('inactiveUsers', 'AdminController@inactiveUsers')->name('inactiveUserList');
+        Route::put('activeUser', 'AdminController@activeUser');
+        Route::put('deActiveUser', 'AdminController@deActiveUser');
+        Route::put('upgradeUser', 'AdminController@upgradeUser');
+        Route::put('downgradeUser', 'AdminController@downgradeUser');
+        Route::delete('deleteUser', 'AdminController@deleteUser');
     }
 ); //end of admin middleware

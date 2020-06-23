@@ -77,7 +77,7 @@
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Doners</a>
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">
+                                                <a class="nav-link" href="{{ route('userslList') }}">
                                                     View Doners
                                                 </a>
                                             </li>
