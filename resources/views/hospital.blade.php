@@ -123,7 +123,7 @@ $(function(){
                 @if($Data)
                     <div id="chartPie" style="height: 550px;"></div>
                 @else
-                <p class="text-center h4 mb-4">No donations by users</p>
+                <p class="text-center h4 mb-4">There is No donations by Users Yet</p>
                 @endif
         </div>
         <div class="col-sm-6">
@@ -131,7 +131,7 @@ $(function(){
                 @if($HosData)
                     <div id="HoschartPie" style="height: 550px;"></div>
                 @else
-                <p class="text-center h4 mb-4">No donations by Hospitals</p>
+                <p class="text-center h4 mb-4">There is No donations by Hospitals Yet</p>
                 @endif
         </div>
     </div>
