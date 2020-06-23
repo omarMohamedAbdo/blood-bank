@@ -50,20 +50,23 @@
                             <input type="hidden" name="id" value="{{$hospital->id}}">
                             <button type="submit" class="btn btn-dark">update</button>
                         </form>
-                        <form action="/admin/activeHospital" method="post" style="display: inline-block;">
+                        <form action="/admin/deleteHospital" method="post" style="display: inline-block;">
                             @csrf
-                            <input type="hidden" name="id" value="{{$hospital->id}}" >
+                            @method('DELETE')
+                            <input type="hidden" name="id" value="{{$hospital->id}}">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                         @if($hospital->is_active == 1)
-                        <form action="/admin/activeHospital" method="post" style="display: inline-block;">
+                        <form action="/admin/deActiveHospital" method="post" style="display: inline-block;">
                             @csrf
+                            @method('PUT')
                             <input type="hidden" name="id" value="{{$hospital->id}}">
                             <button type="submit" class="btn btn-danger">Dectivate</button>
                         </form>
                         @else
                         <form action="/admin/activeHospital" method="post" style="display: inline-block;">
                             @csrf
+                            @method('PUT')
                             <input type="hidden" name="id" value="{{$hospital->id}}">
                             <button type="submit" class="btn btn-success">Activate</button>
                         </form>

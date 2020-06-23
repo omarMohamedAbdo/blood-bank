@@ -32,4 +32,19 @@ class AdminController extends Controller
         $hospitals = Hospital::all();
         return view('hospitalList', ['hospitals' => $hospitals]);
     }
+
+    public function deActiveHospital(Request $request)
+    {
+        $hospital = Hospital::find($request['id']);
+        $hospital['is_active'] = false;
+        $hospital->save();
+        return redirect()->route('hospitalList');
+    }
+
+
+    public function deleteHospital(Request $request)
+    {
+        Hospital::where('id', $request['id'])->delete();
+        return redirect()->route('hospitalList');
+    }
 }
