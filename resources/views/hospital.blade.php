@@ -50,6 +50,52 @@ $(function(){
   pieChart.setOption(pieOption);
    /** making all charts responsive when resize **/
 });
+$(function(){
+  'use strict'
+ 
+  /**************** PIE CHART ************/
+  var pieData = [{
+    name: 'Hospitals Donations',
+    type: 'pie',
+    radius: '80%',
+    center: ['50%', '57.5%'],
+    data: <?php echo json_encode($HosData); ?>,
+    label: {
+      normal: {
+        fontFamily: 'Roboto, sans-serif',
+        fontSize: 11
+      }
+    },
+    labelLine: {
+      normal: {
+        show: false
+      }
+    },
+    markLine: {
+      lineStyle: {
+        normal: {
+          width: 1
+        }
+      }
+    }
+  }];
+  var pieOption = {
+    tooltip: {
+      trigger: 'item',
+      formatter: '{a} <br/>{b}: {c} ({d}%)',
+      textStyle: {
+        fontSize: 11,
+        fontFamily: 'Roboto, sans-serif'
+      }
+    },
+    legend: {},
+    series: pieData
+  };
+  var pie = document.getElementById('HoschartPie');
+  var pieChart = echarts.init(pie);
+  pieChart.setOption(pieOption);
+   /** making all charts responsive when resize **/
+});
 </script>
 
 @endsection
@@ -76,6 +122,14 @@ $(function(){
             <div id="chartPie" style="height: 550px;"></div>
         @else
         <p class="text-center h4 mb-4">No donations by users</p>
+        @endif
+    </section>
+    <section class="contact_area p_120">
+        <p class="text-center h4 mb-4">Donations by Hospitals</p>
+        @if($HosData)
+            <div id="HoschartPie" style="height: 550px;"></div>
+        @else
+        <p class="text-center h4 mb-4">No donations by Hospitals</p>
         @endif
     </section>
     @endsection

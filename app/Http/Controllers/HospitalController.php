@@ -23,11 +23,16 @@ class HospitalCOntroller extends Controller
         $UsersDonations = Donation::whereIn('request_id',$hospitalRequestsIdList)
         ->whereNull('hospital_id')
         ->get();
+
+        $HospitalsDonations = Donation::whereIn('request_id',$hospitalRequestsIdList)
+        ->whereNull('user_id')
+        ->get();
        
        
-        // $donations =  Donation::where('user_id', Auth::id() )->with('user', 'donorHospital')->get();
         $i=0;
+        $x=0;
         $Data = [];
+        $HospitalData = [];
         foreach($UsersDonations as $row) {
             $Data[$i] = array
             (
@@ -35,36 +40,17 @@ class HospitalCOntroller extends Controller
               "name" => $row->user->name,
             );
             $i++;
-            // $Data['data'][] = (int) $row->count;
           }
-        // $Data = array
-        //           (
-
-                    
-        //             "0" => array
-        //                             (
-        //                               "value" => 335,
-        //                               "name" => "Apple",
-        //                             ),
-        //             "1" => array
-        //                             (
-        //                               "value" => 310,
-        //                               "name" => "Orange",
-        //                             )
-        //                             ,
-        //             "2" => array
-        //                             (
-        //                               "value" => 234,
-        //                               "name" => "Grapes",
-        //                             )
-        //                             ,
-        //             "3" => array
-        //                             (
-        //                               "value" => 135,
-        //                               "name" => "Banana",
-        //                             )
-        //           );
-        return view('hospital',['Data' => $Data]);
+        foreach($HospitalsDonations as $row) {
+        $HospitalData[$x] = array
+        (
+            "value" => $row->donations_amount,
+            "name" => $row->donorHospital->name,
+        );
+        $x++;
+        }  
+      
+        return view('hospital',['Data' => $Data , 'HosData' => $HospitalData]);
     }
 
     /**
