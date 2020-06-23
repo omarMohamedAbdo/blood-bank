@@ -67,3 +67,4 @@ Route::group(
 Route::get('/admin', 'AdminController@index')->name('adminHome');
 Route::get('/admin/inactiveHospitals', 'AdminController@inactiveHospitals')->name('inactiveHospitalList');
 Route::post('/admin/activeHospital', 'AdminController@activeHospital');
+Route::get('/admin/HospitalList', 'AdminController@hospitalList')->name('hospitalList');

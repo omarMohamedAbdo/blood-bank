@@ -22,9 +22,14 @@ class AdminController extends Controller
     public function activeHospital(Request $request)
     {
         $hospital = Hospital::find($request['id']);
-
         $hospital['is_active'] = true;
         $hospital->save();
-        return redirect()->route('inactiveHospitalList');
+        return redirect()->route('hospitalList');
+    }
+
+    public function hospitalList()
+    {
+        $hospitals = Hospital::all();
+        return view('hospitalList', ['hospitals' => $hospitals]);
     }
 }
