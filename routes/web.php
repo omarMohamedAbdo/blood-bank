@@ -63,6 +63,7 @@ Route::group(
         Route::get('/hospitals', 'donor\HospitalController@index')->name('hospitals');
         Route::get('/donate/{campaign}', 'donor\DonationController@showDonationForm')->name('createDonation');
         Route::post('/saveDonation/{campaign}', 'donor\DonationController@save')->name('saveDonation');
+        Route::post('/saveGeneralDonation', 'donor\DonationController@saveGeneral')->name('saveGeneralDonation');
         Route::get('/profile', 'donor\ProfileController@index')->name('profile');
         Route::put('/updateProfile', 'donor\ProfileController@update')->name('updateProfile');
     }

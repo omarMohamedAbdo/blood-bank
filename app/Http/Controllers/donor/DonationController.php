@@ -78,6 +78,24 @@ class DonationController extends Controller
         // return redirect("home");
     }
 
+    public function saveGeneral(Request $request )
+    {
+        $request->validate([
+            "donations_amount" => "required|numeric|min:1",
+        ]);
+
+        Donation::create([
+            "target_hospital_id" => $request['hospital_id'],
+            "user_id" => Auth::user()->id,
+            "blood_type" => Auth::user()->blood_type,
+            "donations_amount" => $request["donations_amount"],
+        ]);
+
+        Session::flash('succes', "Your Donation is Submitted Successfully");
+        return back()->withInput($request->only('donations_amount'));
+        // return redirect("home");
+    }
+
     /**
      * Display the specified resource.
      *
