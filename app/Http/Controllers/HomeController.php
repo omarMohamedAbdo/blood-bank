@@ -30,13 +30,23 @@ class HomeController extends Controller
         $i=0;
         $Data = [];
         foreach($donations as $row) {
+
+          if($row->request_id){
             $Data[$i] = array
             (
               "value" => $row->donations_amount,
               "name" => $row->request->name,
             );
+          }
+          else{
+            $Data[$i] = array
+            (
+              "value" => $row->donations_amount,
+              "name" => $row->recievingHospital->name,
+            );
+            
+          }
             $i++;
-            // $Data['data'][] = (int) $row->count;
           }
         // $Data = array
         //           (

@@ -17,6 +17,11 @@ class Donation extends Model
          return $this->belongsTo('App\Hospital', 'hospital_id');
     }
 
+    public function recievingHospital()
+    {
+         return $this->belongsTo('App\Hospital', 'target_hospital_id');
+    }
+
     public function request()
     {
          return $this->belongsTo('App\Request', 'request_id');

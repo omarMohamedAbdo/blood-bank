@@ -43,6 +43,15 @@ class LoginController extends Controller
         $this->middleware('guest:hospital')->except('logout');
     }
 
+    protected function authenticated(Request $request, $user)
+    {
+        if ( $user->is_admin ) {
+            return redirect('/admin');
+        }
+
+        return redirect('/home');
+    }
+
     protected function credentials(Request $request)
     {
         $credentials = $request->only($this->username(), 'password');

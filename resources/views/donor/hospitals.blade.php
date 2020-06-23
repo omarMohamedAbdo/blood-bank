@@ -99,10 +99,10 @@
             <input type="number" class="form-control" name="donations_amount" id="donations_amount">
             <input type="text" class="form-control" style="display:none;"  name="hospital_id" id="hospital_id">
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="message-text" class="col-form-label">Message:</label>
             <textarea class="form-control" id="message-text"></textarea>
-          </div>
+          </div> -->
         
       </div>
       <div class="modal-footer">
