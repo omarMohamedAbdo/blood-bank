@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use Auth;   
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -53,11 +53,14 @@ class RegisterController extends Controller
     protected function createHospital(Request $request)
     {
         $this->validator($request->all())->validate();
+        $imageName = time() . '.' . request()->credentials->getClientOriginalExtension();
+        request()->credentials->move(public_path('images'), $imageName);
         $admin = Hospital::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'city' => $request['city'],
             'password' => Hash::make($request['password']),
+            'credentials' => $imageName,
         ]);
         if (Auth::guard('hospital')->attempt(['email' => $request['email'], 'password' => $request['password']], $request->get('remember'))) {
             return redirect()->intended('/hospital');
@@ -77,6 +80,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'credentials' => ['required', 'image', 'mimes:jpeg,png,jpg']
         ]);
     }
 
