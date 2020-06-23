@@ -44,6 +44,8 @@ Route::group([
         Route::get('/inventoryedit','HospitalController@edit')->name('inventoryedit');
         Route::put('/inventoryupdate','HospitalController@update')->name('inventoryupdate');
         Route::get('/inventory','HospitalController@show')->name('inventoryshow');
+        Route::resource('chart', "DonationChartController");
+        Route::get('/reports', 'DonationChartController@index');
     });//end of hospital middleware
 
 // Route::view('/hospital', 'hospital')->middleware('auth:hospital');
