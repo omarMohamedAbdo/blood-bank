@@ -134,71 +134,55 @@
                         
                 
                     <hr>
-                    <p class="h4 mb-4">Medical Info</p>
+                    <p class="h4 mb-4">Inventory</p>
                     <hr>
 
                     <div class="form-group row">
                    
-                        <label  class="col-sm-2 col-form-label">Hepatitis B virus (HBV)</label>
-                        <div style=" margin-top: 6px;" class="icon">
-                        @if(Auth::user()->HBV == 1)
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                        @else
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                        @endif
+                        <label  class="col-sm-2 col-form-label">Blood A Stock :</label>
+                        <div style=" margin-top: 9px;" >
+                        <label  >{{ Auth::guard('hospital')->user()->type_A_inventory }}</label>
                         </div>
 
                         <div class="col-sm-2">
                         </div>
 
-                        <label  class="col-sm-2 col-form-label">Hepatitis C virus (HCV)</label>
-                        <div style=" margin-top: 6px;" class="icon">
-                        @if(Auth::user()->HCV == 1)
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                        @else
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                        @endif
+                        <label  class="col-sm-2 col-form-label">Blood B Stock :</label>
+                        <div style=" margin-top: 9px;" >
+                        <label  >{{ Auth::guard('hospital')->user()->type_B_inventory }}</label>
                         </div>
 
                         <div class="col-sm-2">
                         </div>
 
-                        <label  class="col-sm-3 col-form-label">Human Immunodeficiency virus (HIV)</label>
-                        <div style=" margin-top: 6px;" class="icon">
-                        @if(Auth::user()->HIV == 1)
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                        @else
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                        @endif
+                        <label  class="col-sm-3 col-form-label">Blood AB Stock :</label>
+                        <div style=" margin-top: 9px;" >
+                        <label  >{{ Auth::guard('hospital')->user()->type_AB_inventory }}</label>
                         </div>
 
                 </div>
 
                 <div class="form-group row">
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
                     </div>
                     
-                    <label  class="col-sm-3 col-form-label">Human T-Lymphotropic Virus (HTLV)</label>
-                    <div style=" margin-top: 6px;" class="icon">
-                    @if(Auth::user()->HTLV == 1)
-                                <i class="fa fa-check" aria-hidden="true"></i>
-                    @else
-                                <i class="fa fa-times" aria-hidden="true"></i>
-                    @endif
+                    <label  class="col-sm-3 col-form-label">Blood O Stock :</label>
+                    <div style=" margin-top: 9px;" >
+                        <label   >{{ Auth::guard('hospital')->user()->type_O_inventory }}</label>
                     </div>
                     
-                    <div class="col-sm-1">
-                    </div>
+                    <!-- <div class="col-sm-1">
+                    </div> -->
 
-                    <label  class="col-sm-2 col-form-label">Treponema pallidum (syphilis)</label>
+                    <!-- <label  class="col-sm-2 col-form-label">Treponema pallidum (syphilis)</label>
                     <div style=" margin-top: 6px;" class="icon">
                     @if(Auth::user()->syphilis == 1)
                                 <i class="fa fa-check" aria-hidden="true"></i>
                     @else
                                 <i class="fa fa-times" aria-hidden="true"></i>
                     @endif
-                    </div>
+                    </div> -->
                 </div>
                
                 </form>
