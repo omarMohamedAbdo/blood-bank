@@ -52,7 +52,12 @@ class RegisterController extends Controller
 
     protected function createHospital(Request $request)
     {
-        $this->validator($request->all())->validate();
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'credentials' => ['required', 'image', 'mimes:jpeg,png,jpg']
+        ]);
         $imageName = time() . '.' . request()->credentials->getClientOriginalExtension();
         request()->credentials->move(public_path('images'), $imageName);
         $admin = Hospital::create([
@@ -62,9 +67,10 @@ class RegisterController extends Controller
             'password' => Hash::make($request['password']),
             'credentials' => $imageName,
         ]);
-        // if (Auth::guard('hospital')->attempt(['email' => $request['email'], 'password' => $request['password']], $request->get('remember'))) {
-        //     return redirect()->intended('/hospital');
-        // }
+
+        if (Auth::guard('hospital')->attempt(['email' => $request['email'], 'password' => $request['password']], $request->get('remember'))) {
+            return redirect()->intended('/hospital');
+        }
         return redirect()->intended('login/hospital');
     }
 
@@ -80,7 +86,6 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'credentials' => ['required', 'image', 'mimes:jpeg,png,jpg']
         ]);
     }
 
