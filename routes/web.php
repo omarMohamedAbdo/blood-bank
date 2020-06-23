@@ -79,13 +79,15 @@ Route::group(
         'middleware' => 'admin'
     ],
     function () {
-      
+
         Route::get('', 'AdminController@index')->name('adminHome');
         Route::get('inactiveHospitals', 'AdminController@inactiveHospitals')->name('inactiveHospitalList');
         Route::put('activeHospital', 'AdminController@activeHospital');
         Route::put('deActiveHospital', 'AdminController@deActiveHospital');
         Route::get('HospitalList', 'AdminController@hospitalList')->name('hospitalList');
         Route::delete('deleteHospital', 'AdminController@deleteHospital');
+        Route::get('newAdmin', 'AdminController@newAdmin')->name('newAdmin');
+        Route::post('createNewAdmin', 'AdminController@createNewAdmin');
 
 
         // Users Routes

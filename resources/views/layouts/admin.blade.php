@@ -66,11 +66,12 @@
                                         </ul>
                                     </li>
                                     @else
-                                    <!-- <li class="nav-item active">
-                                        <a class="nav-link" href="#">Donors</a>
-                                    </li> -->
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('adminHome') }}">Home</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{route('newAdmin')}}">new admin</a>
                                     </li>
 
                                     <li class="nav-item submenu dropdown">
