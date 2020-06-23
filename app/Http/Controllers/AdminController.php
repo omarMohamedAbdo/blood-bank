@@ -94,4 +94,16 @@ class AdminController extends Controller
         User::where('id', $request['id'])->delete();
         return redirect()->route('userslList');
     }
+
+    public function inactiveUsers()
+    {
+        $users = User::where('is_active', 0)->get();
+        return view('inactiveUsersList', ['users' => $users]);
+    }
+
+    public function viewUser($id)
+    {
+        $user = User::find($id);
+        return view('userProfile', ['user' => $user]);
+    }
 }

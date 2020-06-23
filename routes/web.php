@@ -96,5 +96,6 @@ Route::group(
         Route::put('upgradeUser', 'AdminController@upgradeUser');
         Route::put('downgradeUser', 'AdminController@downgradeUser');
         Route::delete('deleteUser', 'AdminController@deleteUser');
+        Route::get('/viewUser/{id}', 'AdminController@viewUser')->name('viewUser');
     }
 ); //end of admin middleware

@@ -19,7 +19,9 @@
                 <tr>
                     <th scope="row">{{$user->id}}</th>
                     <th scope="row">{{$user->email}}</th>
-                    <th scope="row">{{$user->name}}</th>
+                    <th scope="row">
+                       <a href="{{ route('viewUser' , $user->id) }}"> {{$user->name}} </a>
+                    </th>
                     <th scope="row">{{$user->city}}</th>
                     <th scope="row">
                         @if($user->is_admin)
