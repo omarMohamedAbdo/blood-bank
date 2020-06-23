@@ -47,6 +47,7 @@
                     <th scope="row">
                         <form action="/admin/activeHospital" method="post">
                             @csrf
+                            @method('PUT')
                             <input type="hidden" name="id" value="{{$hospital->id}}">
                             <button type="submit" class="btn btn-success">Activate</button>
                         </form>
