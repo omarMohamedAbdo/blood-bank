@@ -48,6 +48,8 @@ Route::group(
         Route::get('/inventoryedit', 'HospitalController@edit')->name('inventoryedit');
         Route::put('/inventoryupdate', 'HospitalController@update')->name('inventoryupdate');
         Route::get('/inventory', 'HospitalController@show')->name('inventoryshow');
+        Route::get('/profile', 'hospital\ProfileController@index')->name('hospitalProfile');
+        Route::put('/updateProfile', 'hospital\ProfileController@update')->name('updateHospitalProfile');
     }
 ); //end of hospital middleware
 
