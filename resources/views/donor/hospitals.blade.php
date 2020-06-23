@@ -60,7 +60,7 @@
                                 <div class="form-group row">
                                   
                                     <div class="col-sm-7">  
-                                        <button onclick="myFunction('{{ $hospital->name }}');" type="button" class="main_btn2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                                        <button onclick="myFunction('{{ $hospital->name }}','{{ $hospital->id }}');" type="button" class="main_btn2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                                         Donate 
                                         </button>
                                     </div>
@@ -97,7 +97,7 @@
           <div class="form-group">
             <label for="donations_amount" class="col-form-label">Donation Amount:</label>
             <input type="number" class="form-control" name="donations_amount" id="donations_amount">
-            <input type="number" class="form-control" style="display:none;" name="hospital_id" id="hospital_id">
+            <input type="text" class="form-control" style="display:none;"  name="hospital_id" id="hospital_id">
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Message:</label>
@@ -133,9 +133,11 @@
 //   alert("I want this to appear after the modal has opened!");
 // })
 
-function myFunction(name) {
+function myFunction(name,id) {
   event.preventDefault();
-//   document.getElementById("exampleModalLabel").value = name;
+//   document.getElementById("hospital_id").value = id;
+//   $('#hospital_id').text("Donate To " + name);
+  $('#hospital_id').val(id);
   $('#exampleModalLabel').text("Donate To " + name);
 //   document.getElementById("omar").innerHTML = "Your blood is not compatible with This Campaign";
 //   setTimeout(function(){ document.getElementById("omar").style.display = "none"; }, 2000);

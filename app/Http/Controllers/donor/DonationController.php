@@ -85,7 +85,7 @@ class DonationController extends Controller
         ]);
 
         Donation::create([
-            "target_hospital_id" => $request['hospital_id'],
+            "target_hospital_id" => $request["hospital_id"],
             "user_id" => Auth::user()->id,
             "blood_type" => Auth::user()->blood_type,
             "donations_amount" => $request["donations_amount"],
