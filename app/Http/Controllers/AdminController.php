@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Hospital;
 use Illuminate\Http\Request;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -46,5 +47,12 @@ class AdminController extends Controller
     {
         Hospital::where('id', $request['id'])->delete();
         return redirect()->route('hospitalList');
+    }
+
+    //Donor Functions
+    public function userslList()
+    {
+        $users = User::all();
+        return view('usersList', ['users' => $users]);
     }
 }

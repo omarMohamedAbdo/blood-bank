@@ -86,5 +86,9 @@ Route::group(
         Route::put('deActiveHospital', 'AdminController@deActiveHospital');
         Route::get('HospitalList', 'AdminController@hospitalList')->name('hospitalList');
         Route::delete('deleteHospital', 'AdminController@deleteHospital');
+
+
+        // Users Routes
+        Route::get('usersList', 'AdminController@userslList')->name('userslList');
     }
 ); //end of admin middleware
