@@ -41,6 +41,8 @@ Route::group(
         Route::resource('requests', 'RequestController');
         Route::resource('donors', 'DonorController');
         Route::get("donationsList", "DonationController@index");
+        Route::resource('chart', "DonationChartController");
+        Route::get('/reports', 'DonationChartController@index');
         Route::get('/donate/{request}', 'DonationController@showDonationForm')->name('createHospitalDonation');
         Route::get('/inventoryedit', 'HospitalController@edit')->name('inventoryedit');
         Route::put('/inventoryupdate', 'HospitalController@update')->name('inventoryupdate');

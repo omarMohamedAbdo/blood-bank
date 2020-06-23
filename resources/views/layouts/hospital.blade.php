@@ -22,6 +22,8 @@
 	<link rel="stylesheet" href="{{asset('css/css/responsive.css')}}">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 	@yield('css')
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8">
+    </script>
 </head>
 
 <body>
@@ -49,9 +51,15 @@
 									<li class="nav-item active">
 										<a class="nav-link" href="/hospital">home</a>
 									</li>
+
 									<li class="nav-item">
 										<a class="nav-link" href="{{ route('donations.index') }}">Donations</a>
 									</li>
+
+									<li class="nav-item">
+										<a class="nav-link" href="{{ route('chart.index') }}">Reports</a>
+									</li>
+
 									<li class="nav-item">
 										<a class="nav-link" href="{{ route('inventoryshow') }}">Inventory</a>
 									</li>
