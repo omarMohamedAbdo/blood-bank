@@ -103,33 +103,45 @@ $(function(){
     @section('content')
     <!--================ Banner Area =================-->
 <section class="banner_area">
-		<div class="banner_inner d-flex align-items-center">
-			<div class="overlay"></div>
-			<div class="container">
-				<div class="banner_content text-center">
-					<h2>Home</h2>
-					<div class="page_link">
-						<a href="{{ route('home') }}">Home</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+    <div class="banner_inner d-flex align-items-center">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="banner_content text-center">
+                <h2>Home</h2>
+                <div class="page_link">
+                    <a href="{{ route('hospitalHome') }}">Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     <!--================End Banner Area =================-->
-    <section class="contact_area p_120">
-        <p class="text-center h4 mb-4">Donations by Users</p>
-        @if($Data)
-            <div id="chartPie" style="height: 550px;"></div>
-        @else
-        <p class="text-center h4 mb-4">No donations by users</p>
-        @endif
-    </section>
-    <section class="contact_area p_120">
+<section class="contact_area p_120">
+    <div class="form-group row">
+        <div class="col-sm-6">
+                <p class="text-center h4 mb-4">Donations by Users</p>
+                @if($Data)
+                    <div id="chartPie" style="height: 550px;"></div>
+                @else
+                <p class="text-center h4 mb-4">No donations by users</p>
+                @endif
+        </div>
+        <div class="col-sm-6">
+                <p class="text-center h4 mb-4">Donations by Hospitals</p>
+                @if($HosData)
+                    <div id="HoschartPie" style="height: 550px;"></div>
+                @else
+                <p class="text-center h4 mb-4">No donations by Hospitals</p>
+                @endif
+        </div>
+    </div>
+</section>
+    <!-- <section class="contact_area p_120">
         <p class="text-center h4 mb-4">Donations by Hospitals</p>
         @if($HosData)
             <div id="HoschartPie" style="height: 550px;"></div>
         @else
         <p class="text-center h4 mb-4">No donations by Hospitals</p>
         @endif
-    </section>
+    </section> -->
     @endsection
