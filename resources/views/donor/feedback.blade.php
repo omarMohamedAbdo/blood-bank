@@ -113,6 +113,32 @@ body{
     border-radius: 3px;
 }
 
+.form-group .form-input:disabled {
+    font-size: 13px;
+    line-height: 50px;
+    font-weight: 400;
+    color: #b4b7c1;
+    width: 100%;
+    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid #edeff2;
+    border-radius: 3px;
+}
+
+    /* input[type="text"]:disabled {
+        font-size: 13px;
+        line-height: 50px;
+        font-weight: 400;
+        color: #b4b7c1;
+        width: 100%;
+        height: 50px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border: 1px solid #edeff2;
+        border-radius: 3px;
+    } */
+
 .form-group.fl_icon .form-input {
     padding-left: 70px;
 }
@@ -147,66 +173,86 @@ body{
     <section class="contact_area p_120">
         <div class="container">
        
-        <div class="be-comment-block">
-            <h1 style="text-align: center;" > {{ $hospital->name }}</h1>
-        <div class="row">
-			<label class="col-xs-12 col-sm-6">
-			laksdl	
-        </label>
-			<label class="col-xs-12 col-sm-6 fl_icon">
-				;alsd;laks
-			</label>
-        </div>
-    <h1 class="comments-title">Comments ({{ $hospital->feedbacks->count() }})</h1>
-    @foreach($hospital->feedbacks as $feedback)
-	<div class="be-comment">
-		<div class="be-img-comment">	
-			<a href="blog-detail-2.html">
-				<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
-			</a>
-		</div>
-		<div class="be-comment-content">
-			
-				<span class="be-comment-name">
-					<a href="blog-detail-2.html">{{$feedback->user->name}}</a>
-					</span>
-				<span class="be-comment-time">
-					<i class="fa fa-clock-o"></i>
-					{{$feedback->created_at}}
-				</span>
+                <div class="be-comment-block">
+               <hr>
+                <h1 style="text-align: center;" > {{ $hospital->name }}</h1>
+                <hr>
+                <h4 style="text-align: center; color:grey;" > {{ $hospital->city }}</h4>
 
-			<p class="be-comment-text">
-				{{$feedback->comment}} 
-			</p>
-		</div>
-    </div>
-    @endforeach
-    
-	
-	<form class="form-block">
-		<div class="row">
-			<div class="col-xs-12 col-sm-6">
-				<div class="form-group fl_icon">
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<input class="form-input" type="text" placeholder="{{ Auth::user()->name }}">
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-6 fl_icon">
-				<div class="form-group fl_icon">
-					<div class="icon"><i class="fa fa-envelope-o"></i></div>
-					<input class="form-input" type="text" placeholder="{{ Auth::user()->email }}">
-				</div>
-			</div>
-        </div>
-			<div class="col-xs-12 col-sm-12">									
-				<div class="form-group">
-					<textarea class="form-input" required="" placeholder="Your text"></textarea>
-				</div>
-			</div>
-			<a class="genric-btn info-border circle">submit</a>
-		</div>
-	</form>
-</div>
+              
+                <div class="row">
+                    <!-- <div class="col-xs-12 col-sm-1 ">
+                    </div>
+
+                    <div class="col-xs-12 col-sm-5 ">
+                     <h3>Hospital : <small>{{ $hospital->name }}</small></h3>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 ">
+                     <h3>City : <small>{{ $hospital->name }}</small></h3>
+                    </div> -->
+                    <!-- <label class="col-xs-12 col-sm-4 ">
+                        
+                    </label> -->
+                </div>
+                <br>
+                @if (Session::has('succes'))
+                                 <div class="alert alert-success">{{ Session::get('succes') }}</div>
+                @endif
+                <h1 class="comments-title">Feedbacks ({{ $hospital->feedbacks->count() }})</h1>
+                @foreach($hospital->feedbacks as $feedback)
+                <div class="be-comment">
+                    <div class="be-img-comment">	
+                        <a href="blog-detail-2.html">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
+                        </a>
+                    </div>
+                    <div class="be-comment-content">
+                        
+                            <span class="be-comment-name">
+                                <a href="blog-detail-2.html">{{$feedback->user->name}}</a>
+                                </span>
+                            <span class="be-comment-time">
+                                <i class="fa fa-clock-o"></i>
+                                {{$feedback->created_at}}
+                            </span>
+
+                        <p class="be-comment-text">
+                            {{$feedback->comment}} 
+                        </p>
+                    </div>
+                </div>
+                @endforeach
+                
+                
+                <form class="form-block" action="{{route('saveUserFeedback',$hospital->id)}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-group fl_icon">
+                                <div class="icon"><i class="fa fa-user"></i></div>
+                                <input  class="form-input" type="text" placeholder="{{ Auth::user()->name }}">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 fl_icon">
+                            <div class="form-group fl_icon">
+                                <div class="icon"><i class="fa fa-envelope-o"></i></div>
+                                <input class="form-input" type="text" placeholder="{{ Auth::user()->email }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12">									
+                        <div class="form-group">
+                            <textarea style="font-size:16px;" class="form-input" style="size:90px;" name="comment" id="comment" required="" placeholder="Your Comment"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-9 col-sm-9">
+                        </div>	
+                        <button type="submit" class="genric-btn info-border circle">Comment</button>
+                    </div>
+                    
+                </form>
+            </div>
         </div>
     </section>
 

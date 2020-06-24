@@ -67,6 +67,7 @@ Route::group(
         Route::get('/profile', 'donor\ProfileController@index')->name('profile');
         Route::put('/updateProfile', 'donor\ProfileController@update')->name('updateProfile');
         Route::get('/userFeedback/{hospital}', 'donor\FeedbackController@show')->name('userFeedback');
+        Route::post('/saveUserFeedback/{id}', 'donor\FeedbackController@store')->name('saveUserFeedback');
 
     }
 ); //end of Donor middleware

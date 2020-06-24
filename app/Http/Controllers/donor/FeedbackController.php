@@ -6,6 +6,8 @@ use App\Feedback;
 use App\Hospital;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
+use Session;
 
 class FeedbackController extends Controller
 {
@@ -35,9 +37,20 @@ class FeedbackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request ,$id)
     {
-        //
+        $request->validate([
+            "comment" => "required",
+        ]);
+
+        Feedback::create([
+            "hospital_id" => $id,
+            "user_id" => Auth::user()->id,
+            "comment" => $request["comment"],
+        ]);
+
+        Session::flash('succes', "Your Feedback is Submitted Successfully");
+        return back()->withInput($request->only('comment'));
     }
 
     /**
