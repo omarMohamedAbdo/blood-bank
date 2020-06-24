@@ -198,6 +198,9 @@ body{
                 @if (Session::has('succes'))
                                  <div class="alert alert-success">{{ Session::get('succes') }}</div>
                 @endif
+                @if (Session::has('noDonations'))
+                                 <div class="alert alert-danger">{{ Session::get('noDonations') }}</div>
+                @endif
                 <h1 class="comments-title">Feedbacks ({{ $hospital->feedbacks->count() }})</h1>
                 @foreach($hospital->feedbacks as $feedback)
                 <div class="be-comment">

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\donor;
 
 use App\Feedback;
 use App\Hospital;
+use App\Donation;
+use App\Request as hospitalRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
@@ -39,6 +41,15 @@ class FeedbackController extends Controller
      */
     public function store(Request $request ,$id)
     {
+        $hospitalRequestsIdList = hospitalRequest::where('hospital_id',$id)->select('id')->get() ;
+        $requestDonations = Donation::whereIn('request_id',$hospitalRequestsIdList)->Where('user_id', Auth::user()->id )->get();
+        $generalDonations = Donation::Where('target_hospital_id', $id )->Where('user_id', Auth::user()->id )->get();
+        if( ( sizeof($requestDonations) == 0 ) && ( sizeof($generalDonations) == 0 ) ){
+            Session::flash('noDonations', "You Must Donate First to be able to Give Feedback");
+            return back()->withInput($request->only('comment'));
+        }
+        
+        
         $request->validate([
             "comment" => "required",
         ]);
