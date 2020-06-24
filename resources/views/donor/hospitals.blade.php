@@ -66,9 +66,9 @@
                                     </div>
 
                                     <div style="margin-top: 35px;" class="col-sm-3"> 
-                                        <form id="donation-form" action="{{route('createDonation',$hospital)}}" method="GET" enctype="multipart/form-data">
+                                        <form id="donation-form" action="{{route('userFeedback',$hospital)}}" method="GET" enctype="multipart/form-data">
                                                 @csrf
-                                                <button  type="submit" style="min-width: 100px;display:none;" class="genric-btn primary-border radius">Feedback</button>
+                                                <button  type="submit" style="min-width: 100px;" class="genric-btn primary-border radius">Feedback</button>
                                         </form>
                                     </div>
                                  </div>

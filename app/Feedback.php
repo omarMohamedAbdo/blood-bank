@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Feedback extends Model
 {
+    protected $table = "feedbacks";
     public function hospital()
     {
          return $this->belongsTo('App\Hospital', 'hospital_id');
