@@ -33,7 +33,7 @@ class AdminController extends Controller
     public function hospitalList()
     {
         $hospitals = Hospital::all();
-        return view('hospitalList', ['hospitals' => $hospitals]);
+        return view('hospitalList', ['hospitals' => $hospitals, 'cities' => ['Cairo', 'Alexandria', 'Suez']]);
     }
 
     public function deActiveHospital(Request $request)
@@ -132,5 +132,21 @@ class AdminController extends Controller
         ]);
 
         return view('adminCreated', ['email' => $request['email']]);
+    }
+
+    public function updateHospital(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'city' => ['required'],
+        ]);
+
+        $hospital = Hospital::find($request['id']);
+        $hospital['name'] = $request['name'];
+        $hospital['email'] = $request['email'];
+        $hospital['city'] = $request['city'];
+        $hospital->save();
+        return redirect()->route('hospitalList');
     }
 }
