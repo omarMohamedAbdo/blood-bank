@@ -27,7 +27,11 @@ class DonationController extends Controller
             $donations =  Donation::where('request_id', $request->id)->with('user', 'donorHospital')->get();
             $allDonations[] = $donations;
         }
+<<<<<<< HEAD
         // $allDonations[] = Donation::where('target_hospital_id',  $id)->with('user', 'donorHospital')->get();
+=======
+        $allDonations[] = Donation::where('target_hospital_id', $id)->with('user', 'donorHospital')->get();
+>>>>>>> 73f030b4dd0731b83766cb909fa87fdc8af5ec47
         // return $allDonations;
         return view('donationsList', ['allDonations' => $allDonations ]);
     }
@@ -126,11 +130,24 @@ class DonationController extends Controller
         }
 
         // Change recived amount of hospital request 
-        $hospitalRequest = Donation::find($donation->id)->request()->first();
-        $hospitalRequest->received_amount += $donation->donations_amount;
+        if(isset($donation->request_id)) {
+            $hospitalRequest = Donation::find($donation->id)->request()->first();
+            $hospitalRequest->received_amount += $donation->donations_amount;
+            $hospital = $hospitalRequest->hospital()->first();
+
+            if($hospitalRequest->received_amount >= $hospitalRequest->needed_amount)
+            {
+                $hospitalRequest->is_completed = 1;
+            }
+
+            $hospitalRequest->save();
+        }
+        else {
+            $hospital = $donation->recievingHospital()->first();
+        }
 
         // Change hospital blood inventory 
-        $hospital = $hospitalRequest->hospital()->first();
+        
         if($donation->blood_type == 'A') {
             $hospital->type_A_inventory+=$donation->donations_amount;
         }
@@ -144,12 +161,9 @@ class DonationController extends Controller
             $hospital->type_O_inventory+=$donation->donations_amount;
         }
 
-        if($hospitalRequest->received_amount >= $hospitalRequest->needed_amount)
-        {
-            $hospitalRequest->is_completed = 1;
-        }
+        
 
-        $hospitalRequest->save();
+        
         $hospital->save();
         $donation->save();
         
