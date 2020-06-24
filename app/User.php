@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Request', 'donations', 'user_id', 'request_id')->withPivot('blood_type', 'donations_amount', 'status')->withTimestamps();
     }
+
+    public function givenFeedbacks()
+    {
+        return $this->hasMany('App\Feedback', 'user_id');
+    }
 }

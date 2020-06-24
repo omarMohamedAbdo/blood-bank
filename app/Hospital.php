@@ -58,4 +58,9 @@ class Hospital extends Authenticatable
     {
         return $this->hasMany('App\Request', 'target_hospital_id');
     }
+
+    public function feedbacks()
+    {
+        return $this->hasMany('App\Feedback', 'hospital_id');
+    }
 }
