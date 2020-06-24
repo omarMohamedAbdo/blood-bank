@@ -154,7 +154,7 @@ class AdminController extends Controller
     public function requestList()
     {
 
-        $requests = hospitalRequests::all();
+        $requests = hospitalRequests::all()->where('target_hospital_id', null);
         return view('adminRequestList', ['requests' => $requests]);
     }
 
