@@ -90,6 +90,7 @@ Route::group(
         Route::post('createNewAdmin', 'AdminController@createNewAdmin');
         Route::put('updateHospital', 'AdminController@updateHospital');
         Route::get('requestList', 'AdminController@requestList')->name('requestList');
+        Route::delete('deleteRequest', 'AdminController@deleteRequest');
 
 
         // Users Routes

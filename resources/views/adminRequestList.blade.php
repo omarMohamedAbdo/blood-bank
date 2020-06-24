@@ -15,6 +15,7 @@
                     <th scope="col">Needed Amount</th>
                     <th scope="col">Received Amount</th>
                     <th scope="col">Completed</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,6 +61,14 @@
                     @else
                     <th scope="row">No</th>
                     @endif
+                    <th scope="row">
+                        <form action="/admin/deleteRequest" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input type="hidden" name="id" value="{{$request->id}}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </th>
                 </tr>
                 @endforeach
 

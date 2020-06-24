@@ -157,4 +157,11 @@ class AdminController extends Controller
         $requests = hospitalRequests::all();
         return view('adminRequestList', ['requests' => $requests]);
     }
+
+    public function deleteRequest(Request $request)
+    {
+        hospitalRequests::find($request['id'])->delete();
+
+        return redirect()->route('requestList');
+    }
 }
