@@ -17,6 +17,11 @@ class Feedback extends Model
          return $this->belongsTo('App\User', 'user_id');
     }
 
+    public function reviewingHospital()
+    {
+         return $this->belongsTo('App\Hospital', 'hospital_id');
+    }
+
 
     protected $fillable = ['user_id','hospital_id','comment'];
 }

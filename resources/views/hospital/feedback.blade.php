@@ -1,4 +1,4 @@
-@extends('layouts.donor')
+@extends('layouts.hospital')
 
 @section('css')
 
@@ -205,7 +205,7 @@ body{
                 @foreach($hospital->feedbacks as $feedback)
                 <div class="be-comment">
                     <div class="be-img-comment">	
-                        <a href="blog-detail-2.html">
+                        <a href="#">
                             @if($feedback->user_id)
                             <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
                             @else
@@ -221,7 +221,7 @@ body{
                                 @else
                                 <a href="blog-detail-2.html">{{$feedback->reviewingHospital->name}} (Hospital)</a>
                                 @endif
-                            </span>
+                                </span>
                             <span class="be-comment-time">
                                 <i class="fa fa-clock-o"></i>
                                 {{$feedback->created_at}}
@@ -235,7 +235,7 @@ body{
                 @endforeach
                 
                 
-                <form class="form-block" action="{{route('saveUserFeedback',$hospital->id)}}" method="POST" enctype="multipart/form-data">
+                <form class="form-block" action="{{route('saveHospitalFeedback',$hospital->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                     <div class="row">
                         <div class="col-xs-12 col-sm-6">

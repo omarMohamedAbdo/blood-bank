@@ -50,6 +50,10 @@ Route::group(
         Route::get('/inventory', 'HospitalController@show')->name('inventoryshow');
         Route::get('/profile', 'hospital\ProfileController@index')->name('hospitalProfile');
         Route::put('/updateProfile', 'hospital\ProfileController@update')->name('updateHospitalProfile');
+        Route::get('/otherHospitals', 'hospital\FeedbackController@index')->name('otherHospitals');
+        Route::get('/hospitalFeedback/{hospital}', 'hospital\FeedbackController@show')->name('hospitalFeedback');
+        Route::post('/saveHospitalFeedback/{id}', 'hospital\FeedbackController@store')->name('saveHospitalFeedback');
+        
     }
 ); //end of hospital middleware
 

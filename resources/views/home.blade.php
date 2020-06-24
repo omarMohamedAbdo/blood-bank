@@ -63,7 +63,7 @@ $(function(){
 				<div class="banner_content row">
 					<div class="offset-lg-2 col-lg-8">
 						<img class="img-fluid" src="{{asset('css/img/banner/text-img.png')}}" alt="">
-						<p>Please Help Us, Donate Now to our causes</p>
+						<p>All Blood Types Needed , Receive A COVID-19 Antibody Test When You Donate </p>
 						<a class="main_btn mr-10" href="{{ route('campaigns') }}">donate now</a>
 						<a class="white_bg_btn" href="#pieChart">view activity</a>
 					</div>
