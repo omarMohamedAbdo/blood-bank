@@ -89,6 +89,7 @@ Route::group(
         Route::get('newAdmin', 'AdminController@newAdmin')->name('newAdmin');
         Route::post('createNewAdmin', 'AdminController@createNewAdmin');
         Route::put('updateHospital', 'AdminController@updateHospital');
+        Route::get('requestList', 'AdminController@requestList')->name('requestList');
 
 
         // Users Routes

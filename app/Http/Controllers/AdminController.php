@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Hospital;
+use App\Request as hospitalRequests;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
@@ -148,5 +149,12 @@ class AdminController extends Controller
         $hospital['city'] = $request['city'];
         $hospital->save();
         return redirect()->route('hospitalList');
+    }
+
+    public function requestList()
+    {
+
+        $requests = hospitalRequests::all();
+        return view('adminRequestList', ['requests' => $requests]);
     }
 }
