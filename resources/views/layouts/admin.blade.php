@@ -115,12 +115,12 @@
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Requests</a>
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">
+                                                <a class="nav-link" href="{{route('requestList')}}">
                                                     View Requests
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">
+                                                <a class="nav-link" href="{{route('privateRequestList')}}">
                                                     Private Requests
                                                 </a>
                                             </li>
