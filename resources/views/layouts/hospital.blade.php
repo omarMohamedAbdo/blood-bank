@@ -112,6 +112,9 @@
 										</ul>
 									</li>
 									<!-- requests end  -->
+									<li class="nav-item">
+										<a class="nav-link" href="{{ route('otherHospitals') }}">Reviews</a>
+									</li>
 
 									<li class="nav-item">
 										<a class="nav-link" href="{{ route('hospitalProfile') }}">Profile</a>
