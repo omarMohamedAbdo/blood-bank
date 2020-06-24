@@ -27,11 +27,7 @@ class DonationController extends Controller
             $donations =  Donation::where('request_id', $request->id)->with('user', 'donorHospital')->get();
             $allDonations[] = $donations;
         }
-<<<<<<< HEAD
-        // $allDonations[] = Donation::where('target_hospital_id',  $id)->with('user', 'donorHospital')->get();
-=======
         $allDonations[] = Donation::where('target_hospital_id', $id)->with('user', 'donorHospital')->get();
->>>>>>> 73f030b4dd0731b83766cb909fa87fdc8af5ec47
         // return $allDonations;
         return view('donationsList', ['allDonations' => $allDonations ]);
     }
@@ -115,12 +111,13 @@ class DonationController extends Controller
         // Change donor Last donation date and weekly donation counter
         if(isset($donation->user_id))
         {
-            $donor = User::find($donation->user_id)->first();
-
+            $donor = User::where('id',$donation->user_id)->first();
+            // return $donor;
+            $donation->blood_type = $donor->blood_type;
             $expirey_date = (new Carbon($donor->last_donation))->addDays(7);
 
-            if($expirey_date >= date("Y-m-d"))
-                $donor->weekly_donation_count+=1;
+            if($expirey_date >= date("Y-m-d") || !isset($donor->last_donation))
+                $donor->weekly_donation_count += 1;
             else
                 $donor->weekly_donation_count = 1;
             

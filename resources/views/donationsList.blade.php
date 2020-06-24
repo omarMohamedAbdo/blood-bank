@@ -42,7 +42,12 @@
                                                 <a>{{ $donation->donorHospital->name }}</a>
                                             @endif
                                         </div>
+                                        @if(@isset($donation->user_id))
+                                            <div class="visit">{{ $donation->user->blood_type}}</div>
+                                        @else
                                         <div class="visit">{{ $donation->blood_type}}</div>
+                                        @endif
+                                        
                                         <div class="visit">{{ $donation->donations_amount}}</div>
                                         <div class="visit">
                                             @if(isset($donation->user->last_test) || isset($donation->hospital_id))
