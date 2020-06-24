@@ -52,13 +52,23 @@
 										<a class="nav-link" href="/hospital">home</a>
 									</li>
 
-									<li class="nav-item">
-										<a class="nav-link" href="{{ route('donations.index') }}">Donations</a>
+									<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Donations</a>
+										<ul class="dropdown-menu">
+											<li class="nav-item">
+												<a class="nav-link" href="{{ route('donations.index') }}">
+													All Donations
+												</a>
+
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="{{ route('chart.index') }}">Reports</a>
+											</li>
+
+										</ul>
 									</li>
 
-									<li class="nav-item">
-										<a class="nav-link" href="{{ route('chart.index') }}">Reports</a>
-									</li>
+									
 
 									<li class="nav-item">
 										<a class="nav-link" href="{{ route('inventoryshow') }}">Inventory</a>
