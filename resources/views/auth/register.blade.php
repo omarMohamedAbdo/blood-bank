@@ -125,6 +125,11 @@
                                     @else
                                         <option value="O">O</option>
                                     @endif
+                                    @if (old('blood_type') == 'unkown')
+                                        <option value="unkown" selected>unkown</option>
+                                    @else
+                                        <option value="unkown">unkown</option>
+                                    @endif
                                     
                                 </select>
                             </div>

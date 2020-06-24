@@ -27,6 +27,7 @@ class DonationController extends Controller
             $donations =  Donation::where('request_id', $request->id)->with('user', 'donorHospital')->get();
             $allDonations[] = $donations;
         }
+        // $allDonations[] = Donation::where('target_hospital_id',  $id)->with('user', 'donorHospital')->get();
         // return $allDonations;
         return view('donationsList', ['allDonations' => $allDonations ]);
     }

@@ -59,7 +59,7 @@
                                 <!-- <p class="card-text">{{ $hospital->city }}</p> -->
                                 <div class="form-group row">
                                   
-                                    <div class="col-sm-7">  
+                                    <div class="col-sm-6">  
                                         <button onclick="myFunction('{{ $hospital->name }}','{{ $hospital->id }}');" type="button" class="main_btn2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                                         Donate 
                                         </button>
@@ -68,7 +68,7 @@
                                     <div style="margin-top: 35px;" class="col-sm-3"> 
                                         <form id="donation-form" action="{{route('createDonation',$hospital)}}" method="GET" enctype="multipart/form-data">
                                                 @csrf
-                                                <button type="submit" style="min-width: 100px;" class="genric-btn primary-border radius">Report</button>
+                                                <button type="submit" style="min-width: 100px;" class="genric-btn primary-border radius">Feedback</button>
                                         </form>
                                     </div>
                                  </div>
