@@ -162,6 +162,15 @@ class AdminController extends Controller
     {
         hospitalRequests::find($request['id'])->delete();
 
-        return redirect()->route('requestList');
+        if (isset($request['private']))
+            return redirect()->route('privateRequestList');
+        else
+            return redirect()->route('requestList');
+    }
+
+    public function privateRequestList()
+    {
+        $requests = hospitalRequests::all()->where('target_hospital_id', !null);
+        return view('adminPrivateRequestList', ['requests' => $requests]);
     }
 }

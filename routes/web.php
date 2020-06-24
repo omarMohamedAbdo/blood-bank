@@ -91,6 +91,7 @@ Route::group(
         Route::put('updateHospital', 'AdminController@updateHospital');
         Route::get('requestList', 'AdminController@requestList')->name('requestList');
         Route::delete('deleteRequest', 'AdminController@deleteRequest');
+        Route::get('privateRequestList', 'AdminController@privateRequestList')->name('privateRequestList');
 
 
         // Users Routes
