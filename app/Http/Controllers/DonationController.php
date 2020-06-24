@@ -136,7 +136,7 @@ class DonationController extends Controller
         elseif($donation->blood_type == 'B') {
             $hospital->type_B_inventory+=$donation->donations_amount;
         }
-        elseif($dodonationnor->blood_type == 'AB') {
+        elseif($donation->blood_type == 'AB') {
             $hospital->type_AB_inventory+=$donation->donations_amount;
         }
         elseif($donation->blood_type == 'O') {

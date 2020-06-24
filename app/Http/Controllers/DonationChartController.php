@@ -144,7 +144,7 @@ class DonationChartController extends Controller
         
         
         $O_chart = new DonationChart;
-        $O_chart->labels($O_date);
+        $O_chart->labels($O_date2);
         $O_chart->dataset('Profit by trimester', 'line', $O_amount)
                 ->color("rgb(212, 25, 25, 1.0)")
                 ->backgroundcolor("rgb(255,0,0, 0.3)");

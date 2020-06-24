@@ -59,12 +59,11 @@
 												<a class="nav-link" href="{{ route('donations.index') }}">
 													All Donations
 												</a>
-
 											</li>
+
 											<li class="nav-item">
 												<a class="nav-link" href="{{ route('chart.index') }}">Reports</a>
 											</li>
-
 										</ul>
 									</li>
 
