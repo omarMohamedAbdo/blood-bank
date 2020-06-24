@@ -70,6 +70,9 @@ class DonorController extends Controller
             {
                 if($testFlag)
                     return view('donor', ['donor' => $donor,'testFlag' => $testFlag , 'status' => ['The Donor already donated 2 times this week', 'The Donor need to re-test']]);
+                else 
+                    return view('donor', ['donor' => $donor,'testFlag' => $testFlag , 'status' => ['The Donor already donated 2 times this week']]);
+
             }
 
         }

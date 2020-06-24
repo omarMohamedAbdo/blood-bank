@@ -33,61 +33,121 @@ class DonationChartController extends Controller
             }
         }
         // 4. categorize it by blood type 
+        $A = array();
+        $B = array();
+        $AB = array();
+        $O = array();
+
         $A_amount = array();
         $B_amount = array();
         $AB_amount = array();
         $O_amount = array();
 
-        $A_date = array();
-        $B_date = array();
-        $AB_date = array();
-        $O_date = array();
+        $A_dates = array();
+        $B_dates = array();
+        $AB_dates = array();
+        $O_dates = array();
         foreach ($allDonations as $donation) {
 
             if($donation->blood_type === 'A'){
-                $A_amount [] = $donation->donations_amount;
-                
-                $A_date [] = $donation->updated_at->format('d M');
+                $A [] = $donation;
+                $A_dates [] = $donation->updated_at->format('d M');
             }
             elseif($donation->blood_type === 'B') {
-                $B_amount [] = $donation->donations_amount;
-                $B_date [] = $donation->updated_at->format('d M');
+                $B [] = $donation;
+                $B_dates [] = $donation->updated_at->format('d M');
             }
             elseif($donation->blood_type === 'AB') {
-                $AB_amount [] = $donation->donations_amount;
-                $AB_date [] = $donation->updated_at->format('d M');
+                $AB [] = $donation;
+                $AB_dates [] = $donation->updated_at->format('d M');
             }
             elseif($donation->blood_type == 'O'){
-                $O_amount = $donation->donations_amount;
-                $O_date [] = $donation->updated_at->format('d M');
+                $O [] = $donation;
+                $O_dates [] = $donation->updated_at->format('d M');
             }
+        }
+
+        $A_date2 = array();
+        $A_date = array_unique($A_dates);
+        foreach ($A_date as $date) {
+            $sum = 0;
+            foreach ($A as $a) {
+                if($a->updated_at->format('d M') == $date)
+                {
+                    $sum += $a->donations_amount;
+                }
+            }
+            $A_amount [] = $sum;
+            $A_date2 [] = $date;
+        }
+
+        $B_date2 = array();
+        $B_date = array_unique($B_dates);
+        foreach ($B_date as $date) {
+            $sum = 0;
+            foreach ($B as $b) {
+                if($b->updated_at->format('d M') == $date)
+                {
+                    $sum += $b->donations_amount;
+                }
+            }
+            $B_amount [] = $sum;
+            $B_date2 [] = $date;
+        }
+
+        $AB_date2 = array();
+        $AB_date = array_unique($AB_dates);
+        foreach ($AB_date as $date) {
+            $sum = 0;
+            foreach ($AB as $ab) {
+                if($ab->updated_at->format('d M') == $date)
+                {
+                    $sum += $ab->donations_amount;
+                }
+            }
+            $AB_amount [] = $sum;
+            $AB_date2 [] = $date;
+        }
+
+        $O_date2 = array();
+        $O_date = array_unique($O_dates);
+        foreach ($O_date as $date) {
+            $sum = 0;
+            foreach ($O as $o) {
+                if($o->updated_at->format('d M') == $date)
+                {
+                    $sum += $o->donations_amount;
+                }
+            }
+            $O_amount [] = $sum;
+            $O_date2 [] = $date;
         }
         
         $A_chart = new DonationChart;
-        $A_chart->labels($A_date);
+        $A_chart->labels($A_date2);
         $A_chart->dataset('Profit by trimester', 'line', $A_amount)
-                ->color("rgb(255, 99, 132, 1.0)")
-                ->backgroundcolor("rgb(255, 99, 132, 0.2)");
+                ->color("rgb(212, 25, 25, 1.0)")
+                ->backgroundcolor("rgb(255,0,0, 0.3)");
         
-        
+        // return $O;
         $B_chart = new DonationChart;
-        $B_chart->labels($B_date);
+        $B_chart->labels($B_date2);
         $B_chart->dataset('Profit by trimester', 'line', $B_amount)
-                ->color("rgb(255, 99, 132, 1.0)")
-                ->backgroundcolor("rgb(255, 99, 132, 0.2)");
+                ->color("rgb(212, 25, 25, 1.0)")
+                ->backgroundcolor("rgb(255,0,0, 0.3)");
               
         $AB_chart = new DonationChart;
-        $AB_chart->labels($AB_date);
+        $AB_chart->labels($AB_date2);
         $AB_chart->dataset('Profit by trimester', 'line', $AB_amount)
-                ->color("rgb(255, 99, 132, 1.0)")
-                ->backgroundcolor("rgb(255, 99, 132, 0.2)");
+                ->color("rgb(212, 25, 25, 1.0)")
+                ->backgroundcolor("rgb(255,0,0, 0.3)");
         
         
         $O_chart = new DonationChart;
         $O_chart->labels($O_date);
         $O_chart->dataset('Profit by trimester', 'line', $O_amount)
-                ->color("rgb(255, 99, 132, 1.0)")
-                ->backgroundcolor("rgb(255, 99, 132, 0.2)");
+                ->color("rgb(212, 25, 25, 1.0)")
+                ->backgroundcolor("rgb(255,0,0, 0.3)");
 
         return view('reports', 
             [ 'Achart' => $A_chart, 'Bchart' => $B_chart, 'ABchart' => $AB_chart, 'Ochart' => $O_chart] );
