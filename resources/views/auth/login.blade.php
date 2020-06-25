@@ -131,7 +131,22 @@
             <label class="checkbox-inline"><input type="checkbox"> Remember me</label>
             <a href="#" class="forgot-link">Forgot Password?</a>
         </div>  -->
-        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">              
+        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">  
+        
+        @isset($url)
+        
+        @else
+        <br>
+        <!-- <div class="form-group row mb-0">
+            <div class="col-md-8 offset-md-4">
+                <a href="{{ url('/auth/redirect/facebook') }}" class="btn btn-primary"><i class="fa fa-facebook"></i> Facebook</a>
+            </div>
+        </div> -->
+        <a href="{{ url('/auth/redirect/facebook') }}" style="color:white;width:60%;margin-left:20%;"  class="btn btn-primary btn-block btn-lg" ><i class="fa fa-facebook"></i> Facebook</a>
+        @endisset
+
+        
+
     </form>			
     <div  class="text-center small">Don't have an account? <a style="color:#ea2c58;" href="{{ isset($url) ? route('hospitalRegister') : route('register') }}">Sign up</a></div>
 </div>
