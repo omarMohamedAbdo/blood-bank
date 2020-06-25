@@ -1,4 +1,4 @@
-@extends('layouts.donor')
+@extends('layouts.hospital')
 
 @section('content')
 
@@ -8,10 +8,10 @@
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="banner_content text-center">
-					<h2>Hospitals</h2>
+					<h2>Reviews</h2>
 					<div class="page_link">
-						<a href="{{ route('home') }}">Home</a>
-						<a href="/hospitals">Hospitals</a>
+						<a href="/hospital">Home</a>
+						<a href="#">Reviews</a>
 					</div>
 				</div>
 			</div>
@@ -59,16 +59,16 @@
                                 <!-- <p class="card-text">{{ $hospital->city }}</p> -->
                                 <div class="form-group row">
                                   
-                                    <div class="col-sm-6">  
+                                    <!-- <div class="col-sm-6">  
                                         <button onclick="myFunction('{{ $hospital->name }}','{{ $hospital->id }}');" type="button" class="main_btn2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                                         Donate 
                                         </button>
-                                    </div>
+                                    </div> -->
 
                                     <div style="margin-top: 35px;" class="col-sm-3"> 
-                                        <form id="donation-form" action="{{route('userFeedback',$hospital)}}" method="GET" enctype="multipart/form-data">
+                                        <form id="donation-form" action="{{route('hospitalFeedback',$hospital)}}" method="GET" enctype="multipart/form-data">
                                                 @csrf
-                                                <button  type="submit" style="min-width: 100px;" class="genric-btn primary-border radius">Feedback</button>
+                                                <button  type="submit" style="min-width: 100px;" class="genric-btn primary-border radius">Reviews</button>
                                         </form>
                                     </div>
                                  </div>

@@ -62,7 +62,24 @@
                                 </a> -->
                                 <form id="donation-form" action="{{route('createDonation',$campaign)}}" method="GET" enctype="multipart/form-data">
                                         @csrf
-                                        <button type="submit" onclick="if({{ $campaign->blood_type != Auth::user()->blood_type }})myFunction();" class="main_btn2">donate here</button>
+										<button type="submit" onclick="
+										
+										if({{ 
+											    ( ( $campaign->blood_type == 'O' ) && ( Auth::user()->blood_type == 'A' ) ) 
+											 || ( ( $campaign->blood_type == 'B' ) && ( Auth::user()->blood_type == 'A' ) )
+
+											 || ( ( $campaign->blood_type == 'O' ) && ( Auth::user()->blood_type == 'B' ) )
+											 || ( ( $campaign->blood_type == 'A' ) && ( Auth::user()->blood_type == 'B' ) )
+
+											 || ( ( $campaign->blood_type == 'O' ) && ( Auth::user()->blood_type == 'AB' ) )
+											 || ( ( $campaign->blood_type == 'A' ) && ( Auth::user()->blood_type == 'AB' ) )
+											 || ( ( $campaign->blood_type == 'B' ) && ( Auth::user()->blood_type == 'AB' ) )
+										}})
+										{ myFunction('{{ Auth::user()->blood_type }}', '{{ $campaign->blood_type }}') }
+										
+										
+
+										" class="main_btn2">donate here</button>
                                 </form>
                                 
 								<!-- <a href="#" class="main_btn2">donate here</a> -->
@@ -77,10 +94,10 @@
 	</section>
 	<!--================ Ens Our Major Cause section =================-->
 <script>
-function myFunction() {
+function myFunction(userBlood,campaignBlood) {
   event.preventDefault();
   document.getElementById("omar").style.display = "block";
-  document.getElementById("omar").innerHTML = "Your blood is not compatible with This Campaign";
+  document.getElementById("omar").innerHTML = "Your blood type " + userBlood + " is not compatible with blood type " + campaignBlood;
   setTimeout(function(){ document.getElementById("omar").style.display = "none"; }, 2000);
 }
 </script>  
