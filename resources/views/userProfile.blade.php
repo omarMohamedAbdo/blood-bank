@@ -82,7 +82,7 @@
                                         @elseif($user->city == 'Cairo')
                                             <option value="Cairo" selected>Cairo</option>
                                         @else 
-                                            <option value="Cairo" selected>Cairo</option>   
+                                            <option value="Cairo" >Cairo</option>   
                                         @endif  
                                         @if (old('city') == 'Alexandria')
                                             <option value="Alexandria" selected>Alexandria</option>
@@ -138,6 +138,13 @@
                                         <option value="O" selected>O</option>
                                     @else
                                         <option value="O">O</option>
+                                    @endif
+                                    @if (old('blood_type') == 'unkown')
+                                        <option value="unkown" selected>unkown</option>
+                                    @elseif($user->blood_type == 'unkown')
+                                        <option value="unkown" selected>unkown</option>
+                                    @else
+                                        <option value="unkown">unkown</option>
                                     @endif
                                     </select>
                                 </div>
