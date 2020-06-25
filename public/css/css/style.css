@@ -625,8 +625,8 @@ a {
     position: relative;
     overflow: hidden;
     width: 100%;
-    min-height: 445px;
-    background: url(../img/banner-bg.jpg) no-repeat center bottom;
+    min-height: 500px;
+    background: url(../img/banner/try.gif) no-repeat center bottom;
     background-size: auto;
     z-index: 1; }
     .banner_area .banner_inner .overlay {
