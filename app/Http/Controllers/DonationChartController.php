@@ -125,27 +125,27 @@ class DonationChartController extends Controller
         
         $A_chart = new DonationChart;
         $A_chart->labels($A_date2);
-        $A_chart->dataset('Profit by trimester', 'line', $A_amount)
+        $A_chart->dataset('Donations amount each day', 'line', $A_amount)
                 ->color("rgb(212, 25, 25, 1.0)")
                 ->backgroundcolor("rgb(255,0,0, 0.3)");
         
         // return $O;
         $B_chart = new DonationChart;
         $B_chart->labels($B_date2);
-        $B_chart->dataset('Profit by trimester', 'line', $B_amount)
+        $B_chart->dataset('Donations amount each day', 'line', $B_amount)
                 ->color("rgb(212, 25, 25, 1.0)")
                 ->backgroundcolor("rgb(255,0,0, 0.3)");
               
         $AB_chart = new DonationChart;
         $AB_chart->labels($AB_date2);
-        $AB_chart->dataset('Profit by trimester', 'line', $AB_amount)
+        $AB_chart->dataset('Donations amount each day', 'line', $AB_amount)
                 ->color("rgb(212, 25, 25, 1.0)")
                 ->backgroundcolor("rgb(255,0,0, 0.3)");
         
         
         $O_chart = new DonationChart;
         $O_chart->labels($O_date2);
-        $O_chart->dataset('Profit by trimester', 'line', $O_amount)
+        $O_chart->dataset('Donations amount each day', 'line', $O_amount)
                 ->color("rgb(212, 25, 25, 1.0)")
                 ->backgroundcolor("rgb(255,0,0, 0.3)");
 
