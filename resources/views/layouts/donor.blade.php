@@ -74,6 +74,28 @@
 									<li class="nav-item">
 										<a class="nav-link" href="{{ route('hospitals') }}">Hospitals</a>
 									</li>
+									<!-- <li class="nav-item">
+										<a class="nav-link" href="{{ route('stories') }}">Donation Stories</a>
+									</li> -->
+									<li class="nav-item submenu dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stories blog</a>
+                                        <ul class="dropdown-menu">
+											<li class="nav-item">
+												<a class="nav-link" href="{{route('shareStory')}}">
+												Share your story
+												</a>
+											</li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{route('stories')}}">
+												inspiring Stories
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+									<!-- <li class="nav-item">
+										<a class="nav-link" href="{{ route('shareStory') }}">Share your story</a>
+									</li> -->
 									<li class="nav-item">
 										<a class="nav-link" href="{{ route('profile') }}">My Profile</a>
 									</li>
