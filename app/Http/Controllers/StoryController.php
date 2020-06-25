@@ -14,9 +14,8 @@ class StoryController extends Controller
      */
     public function index()
     {
-        // $hospitals = Hospital::all();
-        // return view('donor.hospitals',['hospitals' => $hospitals ]);
-        return view('donor.stories');
+        $stories = Story::all();
+        return view('donor.stories',['stories' => $stories ]);
     }
 
     /**
