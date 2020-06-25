@@ -75,7 +75,9 @@ Route::group(
         Route::put('/updateProfile', 'donor\ProfileController@update')->name('updateProfile');
         Route::get('/userFeedback/{hospital}', 'donor\FeedbackController@show')->name('userFeedback');
         Route::post('/saveUserFeedback/{id}', 'donor\FeedbackController@store')->name('saveUserFeedback');
-        Route::get('/stories', 'StoryController@index')->name('stories');
+        Route::get('/sharedStories', 'StoryController@index')->name('stories');
+        Route::view('/shareStory', 'donor.shareStory')->name('shareStory');
+        Route::post('/savesharedStory', 'StoryController@store')->name('savesharedStory');
 
     }
 ); //end of Donor middleware

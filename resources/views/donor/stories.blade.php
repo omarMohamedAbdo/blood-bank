@@ -34,7 +34,7 @@
                     
                     <div class="row">
                         <div class="col-md-3">
-                            <img src="{{asset('css/img/elements/d.jpg')}}" alt="" class="img-fluid">
+                            <img src="{{asset('/stories/'.$story->image)}}" alt="" class="img-fluid">
                         </div>
                         <div class="col-md-9">
                         
