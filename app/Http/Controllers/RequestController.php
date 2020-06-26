@@ -83,14 +83,16 @@ class RequestController extends Controller
 
 
         $hospitalId = Auth::guard("hospital")->user()["id"];
-
+        
         hospitalRequest::create([
             "hospital_id" => $hospitalId,
             "is_emergency" => $emergency,
             "blood_type" => $request["blood"],
             "needed_amount" => $request["amount"],
             "target_hospital_id" => $targetHospitalId,
-            "is_completed" => false
+            "is_completed" => false,
+            "name" => $request->name,
+            "details" => $request->details
         ]);
 
         return redirect("hospital/requests");
