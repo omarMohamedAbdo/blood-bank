@@ -24,7 +24,7 @@ class DonationController extends Controller
         $allDonations = array();
         foreach ($requests as $request) {
             $donations = new Donation;
-            $donations =  Donation::where('request_id', $request->id)->with('user', 'donorHospital')->get();
+            $donations =  Donation::where('request_id', $request->id)->with('user', 'donorHospital', 'request')->get();
             $allDonations[] = $donations;
         }
         $allDonations[] = Donation::where('target_hospital_id', $id)->with('user', 'donorHospital')->get();

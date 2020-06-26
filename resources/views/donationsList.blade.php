@@ -24,6 +24,7 @@
                         <div class="progress-table">
                             <div class="table-head">
                                 <div class="serial">ID</div>
+                                <div class="visit">Name</div>
                                 <div class="visit">Donar</div>
                                 <div class="visit">blood Type</div>
                                 <div class="visit">Amount</div>
@@ -35,6 +36,7 @@
                                     @if($donation->status == "pending")
                                     <div class="table-row">
                                         <div class="serial">{{ $donation->request_id }}</div>
+                                        <div class="visit"> {{$donation->request->name}} </div>
                                         <div class="visit">
                                             @if(@isset($donation->user_id))
                                                 <a href="{{ url('/hospital/donors/'.$donation->user_id) }}" >{{ $donation->user->name }}</a>
