@@ -5,11 +5,9 @@
 <section class="contact_area p_120">
     <div class="container">
         <div class="row">
-
             @foreach( $requests as $request)
-
             @if($private == false)
-                @if($request->target_hospital_id)
+                @if($request->target_hospital_id || $request->is_completed == 1 || $request->hospital->is_active == 0 || $request->hospital_id == Auth::id())
                 @continue
                 @endif
             @endif
