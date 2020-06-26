@@ -94,6 +94,9 @@
 									</li>
 									<li class="nav-item ">
                                         <a class="nav-link" href="#team">Our team</a>
+									</li>
+									<li class="nav-item ">
+                                        <a class="nav-link" href="#requests">Hot requests</a>
                                     </li>
 									<li class="nav-item submenu dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
@@ -117,6 +120,9 @@
 									</li>
 									<li class="nav-item ">
                                         <a class="nav-link" href="#team">Our team</a>
+									</li>
+									<li class="nav-item ">
+                                        <a class="nav-link" href="#requests">Hot requests</a>
                                     </li>
 									<li class="nav-item submenu dropdown">
 										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::guard('hospital')->user()->name }}</a>
@@ -156,6 +162,9 @@
 										
 										<li class="nav-item ">
                                        	 <a class="nav-link" href="#team">Our team</a>
+										</li>
+										<li class="nav-item ">
+											<a class="nav-link" href="#requests">Hot requests</a>
 										</li>
 										
                                         <!-- <li class="nav-item ">
@@ -278,7 +287,89 @@
 		</div>
 	</div>
 	</div>
-</section>	
+</section>
+
+<!--================ Start Our Major Cause section =================-->
+<section class="our_major_cause section_gap"id="requests">
+		<div class="container">
+			<div class="row justify-content-center section-title-wrap">
+				<div class="col-lg-12">
+					<h1>Our Major Campaigns</h1>
+					<p>
+						We Help others by providing campaigs and donations
+					</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div id="our-major-cause" class="owl-carousel">
+
+					 @foreach( $campaigns as $campaign)
+						<div class="card">
+							<div class="card-body">
+								<figure>
+									@if($campaign->blood_type == 'A')
+									<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('type A.jpg')}}" alt="Card image cap">
+									@elseif($campaign->blood_type == 'B')
+									<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('type B.jpg')}}" alt="Card image cap">
+									@elseif($campaign->blood_type == 'AB')
+									<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('type AB.jpg')}}" alt="Card image cap">
+									@else
+									<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('type O.jpg')}}" alt="Card image cap">
+									@endif
+								</figure>
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: {{ ($campaign->received_amount / $campaign->needed_amount)*100 }}%;">
+										<span>Collected {{ ($campaign->received_amount / $campaign->needed_amount)*100 }}%</span>
+									</div>
+								</div>
+								<div class="card_inner_body">
+									<div class="card-body-top">
+										<span>Raised: {{ $campaign->received_amount }}</span> / {{ $campaign->needed_amount }}
+									</div>
+									@if(isset($campaign->name))
+									<h4 class="card-title">{{ $campaign->name }}</h4>
+									@else
+									<h4 class="card-title">{{ $campaign->hospital->name }}</h4>
+									@endif
+									<p><strong> Hospital: </strong> {{ $campaign->hospital->name }}, <strong> Blood Type : </strong> {{ $campaign->blood_type }} </p>
+									<p class="card-text">{{ $campaign->details }}</p>
+								</div>
+							</div>
+						</div>
+               		 @endforeach
+
+					
+					<!-- <div class="card">
+						<div class="card-body">
+							<figure>
+								<img class="card-img-top img-fluid" src="img/donation/d1.jpg" alt="Card image cap">
+							</figure>
+							<div class="progress">
+								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
+									<span>Funded 76%</span>
+								</div>
+							</div>
+							<div class="card_inner_body">
+								<div class="card-body-top">
+									<span>Raised: $7,689</span> / $10,000
+								</div>
+								<h4 class="card-title">Did not find your Package</h4>
+								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
+									in the workplace that’s why it’s crucial.
+								</p>
+								<a href="#" class="main_btn2">donate here</a>
+							</div>
+						</div>
+					</div> -->
+
+				</div>
+			</div>
+	
+		</div>
+	</section>
+	<!--================ Ens Our Major Cause section =================-->
+
 
 <!--================ Start Clients Logo Area =================-->
 <section class="clients_logo_area section_gap">
