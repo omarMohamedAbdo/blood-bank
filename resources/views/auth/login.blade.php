@@ -142,7 +142,14 @@
                 <a href="{{ url('/auth/redirect/facebook') }}" class="btn btn-primary"><i class="fa fa-facebook"></i> Facebook</a>
             </div>
         </div> -->
-        <a href="{{ url('/auth/redirect/facebook') }}" style="color:white;width:60%;margin-left:20%;"  class="btn btn-primary btn-block btn-lg" ><i class="fa fa-facebook"></i> Facebook</a>
+        <div class="form-group row">
+             <div class="col-sm-6">
+               <a href="{{ url('/auth/redirect/facebook') }}" style="color:white;width:100%;"  class="btn btn-primary btn-block btn-lg" ><i class="fa fa-facebook"></i> Facebook</a>
+             </div>
+             <div class="col-sm-6">
+                <a href="{{ url('/auth/redirect/google') }}" style="color:white;width:100%;"  class="btn btn-primary btn-block btn-lg" ><i class="fa fa-google"></i> Google</a>
+             </div>
+        </div>
         @endisset
 
         

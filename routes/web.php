@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/callback/{provider}', 'SocialController@callback');
 
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/test', 'test');
 Route::get('/login/hospital', 'Auth\LoginController@showHospitalLoginForm')->name('hospitalLogin');
