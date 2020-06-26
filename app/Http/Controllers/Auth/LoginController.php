@@ -74,10 +74,11 @@ class LoginController extends Controller
         ]);
         
         $hospital = Hospital::where('email',$request->email)->first();
-
-        if ( $hospital->is_active && Auth::guard('hospital')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
-            return redirect()->intended('/hospital');
+        if($hospital){
+            if ( $hospital->is_active && Auth::guard('hospital')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+    
+                return redirect()->intended('/hospital');
+            }
         }
         Session::flash('message', "Credentials Dont Match our Data");
         return back()->withInput($request->only('email', 'remember'));

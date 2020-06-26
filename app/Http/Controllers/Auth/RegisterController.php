@@ -68,9 +68,9 @@ class RegisterController extends Controller
             'credentials' => $imageName,
         ]);
 
-        if (Auth::guard('hospital')->attempt(['email' => $request['email'], 'password' => $request['password']], $request->get('remember'))) {
-            return redirect()->intended('/hospital');
-        }
+        // if (Auth::guard('hospital')->attempt(['email' => $request['email'], 'password' => $request['password']], $request->get('remember'))) {
+        //     return redirect()->intended('/hospital');
+        // }
         return redirect()->intended('login/hospital');
     }
 
