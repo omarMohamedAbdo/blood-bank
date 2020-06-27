@@ -60,6 +60,9 @@ hr { margin-top: 5px;margin-bottom: 10px; }
     <!--================End Banner Area =================-->
 <section class="contact_area p_120">
 <div class="container" > 
+    @if (Session::has('succes'))
+                <div class="alert alert-success">{{ Session::get('succes') }}</div>
+    @endif
     <hr />
     <div class="row">
           <div class="col-sm-3 col-md-2">
@@ -166,27 +169,37 @@ hr { margin-top: 5px;margin-bottom: 10px; }
             <button  type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           </div>
           <div class="modal-body">
-            <form role="form" class="form-horizontal">
+              <form action="{{route('sendUserMessage')}}" role="form" class="form-horizontal" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="form-group">
                   <label class="col-sm-3" for="inputTo"><span class="glyphicon glyphicon-user"></span> To</label>
-                  <div class="col-sm-9"><input type="email" class="form-control" id="inputTo" placeholder="comma separated list of recipients"></div>
+                  <div class="col-sm-9">
+                    <!-- <input type="email" class="form-control" id="inputTo" placeholder="comma separated list of recipients"> -->
+                    <select class="form-control @error('hospital') is-invalid @enderror" id="hospital" name="hospital" required>
+                      <option value="" disabled selected>Please select Hospital</option>
+                      @foreach($hospitals as $hospital)
+                        <option value="{{ $hospital->id }}">{{ $hospital->name }}</option>
+                      @endforeach
+                    </select>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3" for="inputSubject"><span class="glyphicon glyphicon-list-alt"></span> Subject</label>
-                  <div class="col-sm-9"><input type="text" class="form-control" id="inputSubject" placeholder="subject"></div>
+                  <div class="col-sm-9"><input type="text" class="form-control" name="inputSubject" id="inputSubject" required placeholder="subject"></div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-12" for="inputBody"><span class="glyphicon glyphicon-list"></span> Message</label>
-                  <div class="col-sm-12"><textarea class="form-control" id="inputBody" rows="8"></textarea></div>
+                  <div class="col-sm-12"><textarea class="form-control" id="inputBody" name="inputBody" rows="8"></textarea></div>
                 </div>
-            </form>
           </div>
           <div class="modal-footer">
             <!-- <button type="button" style="margin-right:40%;" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>  -->
             <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Discard</button>
-            <button type="button" class="btn btn-primary ">Send <i class="fa fa-arrow-circle-right fa-lg"></i></button>
+            <button type="submit" class="btn btn-primary ">Send <i class="fa fa-arrow-circle-right fa-lg"></i></button>
             
           </div>
+          </form>
+
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal compose message -->
@@ -201,7 +214,9 @@ hr { margin-top: 5px;margin-bottom: 10px; }
             <button  type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           </div>
           <div class="modal-body">
-            <form role="form" class="form-horizontal">
+            <!-- <form role="form" class="form-horizontal"> -->
+            <form action="{{route('saveGeneralDonation')}}" role="form" class="form-horizontal" method="POST" enctype="multipart/form-data">
+            @csrf
                 <div class="form-group">
                   <label class="col-sm-3" for="inputTo"><span class="glyphicon glyphicon-user"></span> From</label>
                   <div class="col-sm-9"><input type="email" class="form-control" id="inputFromShow" disabled value="{{ Auth::user()->name }}" placeholder="comma separated list of recipients"></div>

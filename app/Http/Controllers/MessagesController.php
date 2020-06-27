@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Message;
+use App\Hospital;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
@@ -19,7 +20,13 @@ class MessagesController extends Controller
     {
         $receivedMessages = Auth::user()->receivedMessages;
         $sentMessages = Auth::user()->sentMessages;
-        return view('donor.messages',['receivedMessages' => $receivedMessages , 'sentMessages' => $sentMessages]);
+        $hospitals = Hospital::all();
+        return view('donor.messages',
+        [
+         'receivedMessages' => $receivedMessages ,
+         'sentMessages' => $sentMessages ,
+         'hospitals' => $hospitals ,
+        ]);
     }
 
     public function hospitalInbox()
@@ -36,6 +43,24 @@ class MessagesController extends Controller
             , 'receivedHospitalMessages' => $receivedHospitalMessages
             , 'sentMessages' => $sentMessages
             ]);
+    }
+
+    public function sendUserMessage(Request $request )
+    {
+        $request->validate([
+            "inputSubject" => "required",
+            "hospital" => "required",
+        ]);
+
+        Message::create([
+            "sender_user_id" => Auth::user()->id,
+            "receiver_hospital_id" =>  $request["hospital"],
+            "subject" => $request["inputSubject"],
+            "message" => $request["inputBody"],
+        ]);
+
+        Session::flash('succes', "Your Message is Sent Successfully");
+        return back()->withInput($request->only('subject'));
     }
 
     public function index()
