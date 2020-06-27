@@ -1,4 +1,4 @@
-@extends('layouts.donor')
+@extends('layouts.hospital')
 
 @section('css')
 
@@ -72,18 +72,18 @@ hr { margin-top: 5px;margin-bottom: 10px; }
             </button>
             <hr />
             <ul class="nav nav-pills nav-stacked">
-                <li style="width:100%;" class="active"><a href="#home" data-toggle="tab"><span class="badge pull-right">{{ $receivedMessages->count() }}</span> Inbox </a>
+                <li style="width:100%;" class="active"><a href="#home" data-toggle="tab"><span class="badge pull-right">{{ $receivedUserMessages->count() + $receivedHospitalMessages->count() }}</span> Inbox </a>
                 </li>
-                <li style="width:100%;"><a  href="#profile" data-toggle="tab"><span class="badge pull-right">{{ $sentMessages->count() }}</span>Sent</a></li>
+                <li style="width:100%;"><a  href="#sent" data-toggle="tab"><span class="badge pull-right">{{ $sentMessages->count() }}</span>Sent</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-md-10">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#home" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
-                </span>Primary</a></li>
-                <li><a href="#profile" data-toggle="tab"><span class="glyphicon glyphicon-send"></span>
-                    Sent Messages</a></li>
+                </span>Donors</a></li>
+                <li><a href="#profile" data-toggle="tab"><span class="glyphicon glyphicon-tint"></span>
+                    Hospitals</a></li>
                 <!-- <li><a href="#messages" data-toggle="tab"><span class="glyphicon glyphicon-tags"></span>
                     Promotions</a></li> -->
                 <!-- <li><a href="#settings" data-toggle="tab"><span class="glyphicon glyphicon-plus no-margin">
@@ -94,14 +94,14 @@ hr { margin-top: 5px;margin-bottom: 10px; }
                 <div class="tab-pane fade in active" id="home">
                     <div class="list-group">
 
-                        @foreach( $receivedMessages as $receivedMessage )
+                        @foreach( $receivedUserMessages as $receivedUserMessage )
 
-                        <a href="#" data-toggle="modal" data-target="#modalShow" onclick="myFunction('{{ $receivedMessage->subject }}','{{ $receivedMessage->message }}','{{ $receivedMessage->senderHospital->name }}');" class="list-group-item">
+                        <a href="#" data-toggle="modal" data-target="#modalShow" onclick="myFunction('{{ $receivedUserMessage->subject }}','{{ $receivedUserMessage->message }}','{{ $receivedUserMessage->senderUser->name }}');" class="list-group-item">
                            
                            <span class="glyphicon glyphicon-envelope"></span><span class="name" style="min-width: 120px;
-                                display: inline-block;">  {{ $receivedMessage->senderHospital->name }}</span> <span class="">{{ $receivedMessage->subject }}</span>
-                            <span class="text-muted" style="font-size: 11px;">- {{ $receivedMessage->message }}</span> <span
-                                class="badge">{{ $receivedMessage->created_at }}</span> <span class="pull-right"><span class="glyphicon glyphicon-time">
+                                display: inline-block;">  {{ $receivedUserMessage->senderUser->name }}</span> <span class="">{{ $receivedUserMessage->subject }}</span>
+                            <span class="text-muted" style="font-size: 11px;">- {{ $receivedUserMessage->message }}</span> <span
+                                class="badge">{{ $receivedUserMessage->created_at }}</span> <span class="pull-right"><span class="glyphicon glyphicon-time">
                                 </span></span>
                         </a>
 
@@ -110,13 +110,13 @@ hr { margin-top: 5px;margin-bottom: 10px; }
                 </div>
                 <div class="tab-pane fade in" id="profile">
                     <div class="list-group">
-                        @foreach( $sentMessages as $sentMessage )
+                        @foreach( $receivedHospitalMessages as $receivedHospitalMessage )
 
-                        <a href="#" data-toggle="modal" data-target="#modalShow" onclick="myFunction('{{ $sentMessage->subject }}','{{ $sentMessage->message }}','{{ Auth::user()->name }}');" class="list-group-item">
+                        <a href="#" data-toggle="modal" data-target="#modalShow" onclick="myFunction('{{ $receivedHospitalMessage->subject }}','{{ $receivedHospitalMessage->message }}','{{ $receivedHospitalMessage->senderHospital->name }}');" class="list-group-item">
                         <span class="glyphicon glyphicon-envelope"></span><span class="name" style="min-width: 120px;
-                                display: inline-block;">  {{ $sentMessage->receiverHospital->name }}</span> <span class="">{{ $sentMessage->subject }}</span>
-                            <span class="text-muted" style="font-size: 11px;">- {{ $sentMessage->message }}</span> <span
-                                class="badge">{{ $sentMessage->created_at }}</span> <span class="pull-right"><span class="glyphicon glyphicon-time">
+                                display: inline-block;">  {{ $receivedHospitalMessage->senderHospital->name }}</span> <span class="">{{ $receivedHospitalMessage->subject }}</span>
+                            <span class="text-muted" style="font-size: 11px;">- {{ $receivedHospitalMessage->message }}</span> <span
+                                class="badge">{{ $receivedHospitalMessage->created_at }}</span> <span class="pull-right"><span class="glyphicon glyphicon-time">
                                 </span></span>
                         </a>
 
@@ -127,8 +127,29 @@ hr { margin-top: 5px;margin-bottom: 10px; }
                       <br>
                       No Messages Here
                 </div>
-                <div class="tab-pane fade in" id="settings">
-                    This tab is empty.</div>
+                <div class="tab-pane fade in" id="sent">
+                     <div class="list-group">
+                        @foreach( $sentMessages as $sentMessage )
+
+                        <a href="#" data-toggle="modal" data-target="#modalShow" onclick="myFunction('{{ $sentMessage->subject }}','{{ $sentMessage->message }}','{{ Auth::user()->name }}');" class="list-group-item">
+                        <span class="glyphicon glyphicon-envelope"></span><span class="name" style="min-width: 120px;
+                                display: inline-block;">  
+                              
+                                @if($sentMessage->receiver_user_id)
+                                {{ $sentMessage->receiverUser->name }}
+                                @else
+                                {{ $sentMessage->receiverHospital->name }}
+                                @endif
+                                
+                                </span> <span class="">{{ $sentMessage->subject }}</span>
+                                <span class="text-muted" style="font-size: 11px;">- {{ $sentMessage->message }}</span> <span
+                                class="badge">{{ $sentMessage->created_at }}</span> <span class="pull-right"><span class="glyphicon glyphicon-time">
+                                </span></span>
+                        </a>
+
+                        @endforeach
+                    </div>
+                </div>
             </div>
             
         </div>

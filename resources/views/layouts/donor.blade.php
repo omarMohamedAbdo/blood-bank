@@ -93,9 +93,9 @@
 
                                         </ul>
                                     </li>
-									<!-- <li class="nav-item">
-										<a class="nav-link" href="{{ route('shareStory') }}">Share your story</a>
-									</li> -->
+									<li class="nav-item">
+										<a class="nav-link" href="{{ route('userInbox') }}">Messages</a>
+									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="{{ route('profile') }}">My Profile</a>
 									</li>
@@ -115,9 +115,9 @@
                                                 </li>
                                         </ul>
                                     </li>
-                                    <li class="nav-item">
+                                    <!-- <li class="nav-item">
 										<a class="main_btn" href="{{ route('campaigns') }}">donate now</a>
-									</li>
+									</li> -->
                                     @endguest
 									
 								</ul>

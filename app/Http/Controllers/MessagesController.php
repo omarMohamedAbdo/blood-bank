@@ -22,6 +22,22 @@ class MessagesController extends Controller
         return view('donor.messages',['receivedMessages' => $receivedMessages , 'sentMessages' => $sentMessages]);
     }
 
+    public function hospitalInbox()
+    {
+        $receivedUserMessages = Message::where('receiver_hospital_id',Auth::user()->id)
+        ->whereNotNull('sender_user_id')
+        ->get();
+        $receivedHospitalMessages = Message::where('receiver_hospital_id',Auth::user()->id)
+        ->whereNotNull('sender_hospital_id')
+        ->get();
+        $sentMessages = Auth::user()->sentMessages;
+        return view('hospital.messages',
+            ['receivedUserMessages' => $receivedUserMessages 
+            , 'receivedHospitalMessages' => $receivedHospitalMessages
+            , 'sentMessages' => $sentMessages
+            ]);
+    }
+
     public function index()
     {
         //
