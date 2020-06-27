@@ -117,6 +117,10 @@
 									</li>
 
 									<li class="nav-item">
+										<a class="nav-link" href="{{ route('hospitalInbox') }}">Messages</a>
+									</li>
+
+									<li class="nav-item">
 										<a class="nav-link" href="{{ route('hospitalProfile') }}">Profile</a>
 									</li>
 

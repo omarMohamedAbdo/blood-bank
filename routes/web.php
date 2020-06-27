@@ -59,6 +59,8 @@ Route::group(
         Route::get('/hospitalFeedback/{hospital}', 'hospital\FeedbackController@show')->name('hospitalFeedback');
         Route::post('/saveHospitalFeedback/{id}', 'hospital\FeedbackController@store')->name('saveHospitalFeedback');
         Route::get('/messages', 'MessagesController@hospitalInbox')->name('hospitalInbox');
+        Route::post('/sendToUserMessage', 'MessagesController@sendToUserMessage')->name('sendToUserMessage');
+        Route::post('/sendToHospitalMessage', 'MessagesController@sendToHospitalMessage')->name('sendToHospitalMessage');
         
     }
 ); //end of hospital middleware

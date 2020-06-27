@@ -60,6 +60,9 @@ hr { margin-top: 5px;margin-bottom: 10px; }
     <!--================End Banner Area =================-->
 <section class="contact_area p_120">
 <div class="container" > 
+    @if (Session::has('succes'))
+                <div class="alert alert-success">{{ Session::get('succes') }}</div>
+    @endif
     <hr />
     <div class="row">
           <div class="col-sm-3 col-md-2">
@@ -67,8 +70,11 @@ hr { margin-top: 5px;margin-bottom: 10px; }
             <!-- <button onclick="myFunction()" type="button" class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
                                         COMPOSE 
             </button> -->
-            <button  type="button" class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalCompose" data-whatever="@mdo">
-                                        COMPOSE 
+            <button  type="button" class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalComposeDonor" data-whatever="@mdo">
+                                        COMPOSE To Donor 
+            </button>
+            <button  type="button" class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalComposeHospital" data-whatever="@mdo">
+                                        COMPOSE To Hospital
             </button>
             <hr />
             <ul class="nav nav-pills nav-stacked">
@@ -179,7 +185,7 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 
 
 <!-- /.modal compose message -->
-<div class="modal fade" id="modalCompose">
+<div class="modal fade" id="modalComposeDonor">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header modal-header-info">
@@ -187,30 +193,86 @@ hr { margin-top: 5px;margin-bottom: 10px; }
             <button  type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           </div>
           <div class="modal-body">
-            <form role="form" class="form-horizontal">
+              <form action="{{route('sendToUserMessage')}}" role="form" class="form-horizontal" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="form-group">
                   <label class="col-sm-3" for="inputTo"><span class="glyphicon glyphicon-user"></span> To</label>
-                  <div class="col-sm-9"><input type="email" class="form-control" id="inputTo" placeholder="comma separated list of recipients"></div>
+                  <div class="col-sm-9">
+                    <!-- <input type="email" class="form-control" id="inputTo" placeholder="comma separated list of recipients"> -->
+                    <select class="form-control @error('user') is-invalid @enderror" id="user" name="user" required>
+                      <option value="" disabled selected>Please select User</option>
+                      @foreach($users as $user)
+                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                      @endforeach
+                    </select>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3" for="inputSubject"><span class="glyphicon glyphicon-list-alt"></span> Subject</label>
-                  <div class="col-sm-9"><input type="text" class="form-control" id="inputSubject" placeholder="subject"></div>
+                  <div class="col-sm-9"><input type="text" class="form-control" name="inputSubject" id="inputSubject" required placeholder="subject"></div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-12" for="inputBody"><span class="glyphicon glyphicon-list"></span> Message</label>
-                  <div class="col-sm-12"><textarea class="form-control" id="inputBody" rows="8"></textarea></div>
+                  <div class="col-sm-12"><textarea class="form-control" id="inputBody" name="inputBody" rows="8"></textarea></div>
                 </div>
-            </form>
           </div>
           <div class="modal-footer">
             <!-- <button type="button" style="margin-right:40%;" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>  -->
             <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Discard</button>
-            <button type="button" class="btn btn-primary ">Send <i class="fa fa-arrow-circle-right fa-lg"></i></button>
+            <button type="submit" class="btn btn-primary ">Send <i class="fa fa-arrow-circle-right fa-lg"></i></button>
             
           </div>
+          </form>
+
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal compose message -->
+
+    <!-- /.modal compose message -->
+<div class="modal fade" id="modalComposeHospital">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header modal-header-info">
+            <h4 class="modal-title"><span class="glyphicon glyphicon-envelope"></span> Compose Message</h4>
+            <button  type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          </div>
+          <div class="modal-body">
+              <form action="{{route('sendToHospitalMessage')}}" role="form" class="form-horizontal" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                  <label class="col-sm-3" for="inputTo"><span class="glyphicon glyphicon-user"></span> To</label>
+                  <div class="col-sm-9">
+                    <!-- <input type="email" class="form-control" id="inputTo" placeholder="comma separated list of recipients"> -->
+                    <select class="form-control @error('hospital') is-invalid @enderror" id="hospital" name="hospital" required>
+                      <option value="" disabled selected>Please select Hospital</option>
+                      @foreach($hospitals as $hospital)
+                        <option value="{{ $hospital->id }}">{{ $hospital->name }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3" for="inputSubject"><span class="glyphicon glyphicon-list-alt"></span> Subject</label>
+                  <div class="col-sm-9"><input type="text" class="form-control" name="inputSubject" id="inputSubject" required placeholder="subject"></div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-12" for="inputBody"><span class="glyphicon glyphicon-list"></span> Message</label>
+                  <div class="col-sm-12"><textarea class="form-control" id="inputBody" name="inputBody" rows="8"></textarea></div>
+                </div>
+          </div>
+          <div class="modal-footer">
+            <!-- <button type="button" style="margin-right:40%;" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>  -->
+            <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Discard</button>
+            <button type="submit" class="btn btn-primary ">Send <i class="fa fa-arrow-circle-right fa-lg"></i></button>
+            
+          </div>
+          </form>
+
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal compose message -->
+
+
 
 
     <!-- /.modal show message -->
