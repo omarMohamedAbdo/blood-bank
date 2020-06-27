@@ -118,6 +118,7 @@
 
 									<li class="nav-item">
 										<a class="nav-link" href="{{ route('hospitalInbox') }}">Messages</a>
+										<span style="background: grey;color: white;" class="badge">{{ Auth::user()->receivedMessages->count() }}</span>
 									</li>
 
 									<li class="nav-item">

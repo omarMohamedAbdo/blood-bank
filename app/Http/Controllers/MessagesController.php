@@ -19,8 +19,8 @@ class MessagesController extends Controller
 
     public function userInbox()
     {
-        $receivedMessages = Auth::user()->receivedMessages;
-        $sentMessages = Auth::user()->sentMessages;
+        $receivedMessages = Message::where('receiver_user_id',Auth::user()->id)->orderBy('created_at', 'DESC')->get();
+        $sentMessages = Message::where('sender_user_id',Auth::user()->id)->orderBy('created_at', 'DESC')->get();
         $hospitals = Hospital::all();
         return view('donor.messages',
         [
@@ -40,7 +40,7 @@ class MessagesController extends Controller
         ->whereNotNull('sender_hospital_id')
         ->orderBy('created_at', 'DESC')
         ->get();
-        $sentMessages = Auth::user()->sentMessages;
+        $sentMessages = Message::where('sender_hospital_id',Auth::user()->id)->orderBy('created_at', 'DESC')->get();
         $users = User::all();
         $hospitals = Hospital::all()->except(Auth::user()->id);
         return view('hospital.messages',
@@ -106,66 +106,7 @@ class MessagesController extends Controller
         return back()->withInput($request->only('subject'));
     }
 
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Message $message)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Message $message)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Message $message)
-    {
-        //
-    }
-
+  
     /**
      * Remove the specified resource from storage.
      *
