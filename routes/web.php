@@ -80,6 +80,7 @@ Route::group(
         Route::get('/sharedStories', 'StoryController@index')->name('stories');
         Route::view('/shareStory', 'donor.shareStory')->name('shareStory');
         Route::post('/savesharedStory', 'StoryController@store')->name('savesharedStory');
+        Route::get('/messages', 'MessagesController@userInbox')->name('userInbox');
 
     }
 ); //end of Donor middleware

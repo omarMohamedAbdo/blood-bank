@@ -63,4 +63,14 @@ class Hospital extends Authenticatable
     {
         return $this->hasMany('App\Feedback', 'hospital_id');
     }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany('App\Message', 'receiver_hospital_id');
+    }
+
+    public function sentMessages()
+    {
+        return $this->hasMany('App\Message', 'sender_hospital_id');
+    }
 }

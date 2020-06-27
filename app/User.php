@@ -51,4 +51,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Feedback', 'user_id');
     }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany('App\Message', 'receiver_user_id');
+    }
+
+    public function sentMessages()
+    {
+        return $this->hasMany('App\Message', 'sender_user_id');
+    }
 }
