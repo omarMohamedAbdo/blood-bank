@@ -94,8 +94,8 @@
                                         </ul>
                                     </li>
 									<li class="nav-item">
-										<a class="nav-link" href="{{ route('userInbox') }}">Messages</a>
 										<span style="background: grey;color: white;" class="badge">{{ Auth::user()->receivedMessages->count() }}</span>
+										<a class="nav-link" href="{{ route('userInbox') }}">Messages</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="{{ route('profile') }}">My Profile</a>
