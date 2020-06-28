@@ -73,7 +73,7 @@
                                             </td>
                                             <td>
                                                 <form action="{{route('donations.destroy',$donation)}}" method="POST" >
-                                                    {!! Form::button ('<a class="btn genric-btn danger circle small">Reject</a>' ,['type' => 'submit' , 'class' => 'genric-btn ']) !!}
+                                                    {!! Form::button ('<a class="genric-btn danger circle small">Reject</a>' ,['type' => 'submit' , 'class' => 'genric-btn ']) !!}
                                                 @csrf
                                                 @method('DELETE')
                                                 </form>

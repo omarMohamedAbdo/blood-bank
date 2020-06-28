@@ -95,7 +95,8 @@ class RequestController extends Controller
             "details" => $request->details
         ]);
 
-        return redirect("hospital/requests");
+        // return redirect("hospital/requests");
+        return redirect()->route('requests.index',['type'=>'my requests']);
     }
 
     /**
