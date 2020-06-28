@@ -48,6 +48,7 @@ class AdminController extends Controller
 
     public function deleteHospital(Request $request)
     {
+        Hospital::where('id', $request['id'])->requests()->delete();
         Hospital::where('id', $request['id'])->delete();
         return redirect()->route('hospitalList');
     }
@@ -93,6 +94,7 @@ class AdminController extends Controller
 
     public function deleteUser(Request $request)
     {
+        User::where('id', $request['id'])->donations()->delete();
         User::where('id', $request['id'])->delete();
         return redirect()->route('userslList');
     }
@@ -153,13 +155,13 @@ class AdminController extends Controller
 
     public function requestList()
     {
-
         $requests = hospitalRequests::all()->where('target_hospital_id', null);
         return view('adminRequestList', ['requests' => $requests]);
     }
 
     public function deleteRequest(Request $request)
-    {
+    {   
+        hospitalRequests::find($request['id'])->donations()->delete();
         hospitalRequests::find($request['id'])->delete();
 
         if (isset($request['private']))
