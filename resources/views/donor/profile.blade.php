@@ -115,6 +115,46 @@
                                         @else
                                             <option value="Suez">Suez</option>
                                         @endif 
+                                        
+                                        @if (old('city') == '6th of October City')
+                                            <option value="6th of October City" selected>6th of October City</option>
+                                        @elseif(Auth::user()->city == '6th of October City')
+                                            <option value="6th of October City" selected>6th of October City</option>
+                                        @else
+                                            <option value="6th of October City">6th of October City</option>
+                                        @endif
+
+                                        @if (old('city') == 'Gizeh')
+                                            <option value="Gizeh" selected>Gizeh</option>
+                                        @elseif(Auth::user()->city == 'Gizeh')
+                                            <option value="Gizeh" selected>Gizeh</option>
+                                        @else
+                                            <option value="Gizeh">Gizeh</option>
+                                        @endif
+
+                                        @if (old('city') == 'Port Said')
+                                            <option value="Port Said" selected>Port Said</option>
+                                        @elseif(Auth::user()->city == 'Port Said')
+                                            <option value="Port Said" selected>Port Said</option>
+                                        @else
+                                            <option value="Port Said">Port Said</option>
+                                        @endif
+
+                                        @if (old('city') == 'al-Mansura')
+                                            <option value="al-Mansura" selected>al-Mansura</option>
+                                        @elseif(Auth::user()->city == 'al-Mansura')
+                                            <option value="al-Mansura" selected>al-Mansura</option>
+                                        @else
+                                            <option value="al-Mansura">al-Mansura</option>
+                                        @endif
+
+                                        @if (old('city') == 'Damietta')
+                                            <option value="Damietta" selected>Damietta</option>
+                                        @elseif(Auth::user()->city == 'Damietta')
+                                            <option value="Damietta" selected>Damietta</option>
+                                        @else
+                                            <option value="Damietta">Damietta</option>
+                                        @endif
                                     </select>
                                 </div>
                             </div>

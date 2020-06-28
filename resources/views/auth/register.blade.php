@@ -231,8 +231,16 @@
 		<div class="form-group">
             <button style=""  type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
         </div>
+        <div class="form-group row">
+             <div class="col-sm-6">
+               <a href="{{ url('/auth/redirect/facebook') }}" style="color:white;width:100%;"  class="btn btn-primary btn-block btn-lg" ><i class="fa fa-facebook"></i> Facebook</a>
+             </div>
+             <div class="col-sm-6">
+                <a href="{{ url('/auth/redirect/google') }}" style="color:white;width:100%;"  class="btn btn-primary btn-block btn-lg" ><i class="fa fa-google"></i> Google</a>
+             </div>
+        </div>
     </form>
-	<div class="text-center">Already have an account? <a style="color:#ea2c58;" href="#">Sign in</a></div>
+	<div class="text-center">Already have an account? <a style="color:#ea2c58;" href="/login">Sign in</a></div>
 </div>
 
 </div>
