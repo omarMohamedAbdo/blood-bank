@@ -36,6 +36,12 @@ class DonationController extends Controller
         return view('donor.createDonation',['campaign' => $campaign ]);
     }
 
+    public function showMyDonations()
+    {
+        $donations = Auth::user()->donations;
+        return view('donor.myDonations',['donations' => $donations ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

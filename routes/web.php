@@ -85,6 +85,7 @@ Route::group(
         Route::post('/savesharedStory', 'StoryController@store')->name('savesharedStory');
         Route::get('/messages', 'MessagesController@userInbox')->name('userInbox');
         Route::post('/sendUserMessage', 'MessagesController@sendUserMessage')->name('sendUserMessage');
+        Route::get('/myDonations', 'donor\DonationController@showMyDonations')->name('myDonations');
 
     }
 ); //end of Donor middleware

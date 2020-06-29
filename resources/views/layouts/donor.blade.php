@@ -92,7 +92,10 @@
                                             </li>
 
                                         </ul>
-                                    </li>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="{{ route('myDonations') }}">My Donations</a>
+									</li>
 									<li class="nav-item">
 										<span style="background: grey;color: white;" class="badge">{{ Auth::user()->receivedMessages->count() }}</span>
 										<a class="nav-link" href="{{ route('userInbox') }}">Messages</a>
