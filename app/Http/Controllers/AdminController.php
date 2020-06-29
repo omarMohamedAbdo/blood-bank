@@ -152,16 +152,15 @@ class AdminController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        User::create([
+        $admin = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
-            'is_admin' => true,
-            'is_active' => true,
             'city' => "None",
             'blood_type' => "None"
-        ]);
-
+        ]); 
+        $admin->is_admin = 1;
+        $admin->save(); 
         return view('adminCreated', ['email' => $request['email']]);
     }
 
