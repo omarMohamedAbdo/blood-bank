@@ -31,7 +31,7 @@ class GuestController extends Controller
         }
         
         $topDonor = '';
-        if($$topDonorDonation)
+        if($topDonorDonation)
         {
             $topDonor = $topDonorDonation->user->name;
         }

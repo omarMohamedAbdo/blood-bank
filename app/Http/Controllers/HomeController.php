@@ -48,48 +48,33 @@ class HomeController extends Controller
           }
             $i++;
           }
-        // $Data = array
-        //           (
-
-                    
-        //             "0" => array
-        //                             (
-        //                               "value" => 335,
-        //                               "name" => "Apple",
-        //                             ),
-        //             "1" => array
-        //                             (
-        //                               "value" => 310,
-        //                               "name" => "Orange",
-        //                             )
-        //                             ,
-        //             "2" => array
-        //                             (
-        //                               "value" => 234,
-        //                               "name" => "Grapes",
-        //                             )
-        //                             ,
-        //             "3" => array
-        //                             (
-        //                               "value" => 135,
-        //                               "name" => "Banana",
-        //                             )
-        //           );
+      
 
         $totalDonations = Donation::where('status', 'accept')->sum('donations_amount');
         $maxDonation = Donation::where('status', 'accept')->max('donations_amount');
         $topHospitalDonation = Donation::where('status', 'accept')->whereNull('user_id')
-        ->orderBy('donations_amount', 'desc')->first(); 
+                              ->orderBy('donations_amount', 'desc')->first(); 
         $topDonorDonation = Donation::where('status', 'accept')->whereNull('hospital_id')
-        ->orderBy('donations_amount', 'desc')->first();
+                            ->orderBy('donations_amount', 'desc')->first();
 
+        $topHospital = '';
+        if($topHospitalDonation)
+        {
+            $topHospital = $topHospitalDonation->donorHospital->name;
+        }
+        
+        $topDonor = '';
+        if($topDonorDonation)
+        {
+            $topDonor = $topDonorDonation->user->name;
+        }
         return view('home',
         [
           'Data' => $Data,
           'totalDonations' => $totalDonations ,
           'maxDonation' => $maxDonation ,
-          'topHospital' => $topHospitalDonation->donorHospital->name ,
-          'topDonor' => $topDonorDonation->user->name ,
+          'topHospital' => $topHospital ,
+          'topDonor' => $topDonor,
         ]);
     }
 }
