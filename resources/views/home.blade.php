@@ -79,9 +79,111 @@ $(function(){
 @endif -->
 <br>
 <br>
+<section class="contact_area p_120" id="pieChart"> 
+	<p class="text-center h4 mb-4">My Donations</p>
+	@if($Data)
+		<div id="chartPie" style="height: 550px;"></div>
+	@else
+	<p class="text-center h4 mb-4">You have no Donations yet</p>
+	@endif
+</section>
+<hr>
+
+<!--================ Start important-points section =================-->
+<section class="donation_details pad_top" id="statistics">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 single_donation_box">
+					<img src="{{asset('css/img/icons/home1.png')}}" alt="">
+					<h4>Total Donations</h4>
+					<p>
+						{{ $totalDonations }} blood bag 
+					</p>
+				</div>
+				
+				<div class="col-lg-3 col-md-6 single_donation_box">
+					<img src="{{asset('css/img/icons/home3.png')}}" alt="">
+					<h4>Highest Donation</h4>
+					<p>
+					{{ $maxDonation }} blood bag 
+					</p>
+				</div>
+				<div class="col-lg-3 col-md-6 single_donation_box">
+					<img src="{{asset('css/img/icons/home2.png')}}" alt="">
+					<h4>Most Donating Hospital</h4>
+					<p>
+					{{ $topHospital }} Hospital  
+					</p>
+				</div>
+				<div class="col-lg-3 col-md-6 single_donation_box">
+					<img src="{{asset('css/img/icons/home4.png')}}" alt="">
+					<h4>Most Donating Donor</h4>
+					<p>
+					{{ $topDonor }}
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ End important-points section =================-->
+  <br>
+  <hr>
+  <br>
+  <br>
 <section class="blog_area single-post-area ">
-  <div class="container">
-      <div class="row justify-content-center section-title-wrap">
+  <!-- <div class="container"> -->
+     
+      <div class="row">
+          <div class="col-xs-12 col-sm-6">
+              <div class="row justify-content-center section-title-wrap">
+                <div class="col-lg-8 posts-list">
+                    <div class="single-post row">
+                      <div class="col-lg-12">
+                        <h1>Just 1 donation can save up to 3 lives</h1>
+                        <div class="quotes">
+                            Blood from one donation can be divided into two components: red blood cells and plasma.
+                            The average adult has about 10 pints of blood, but a typical whole-blood donation is only 1 pint.
+                            Red blood cells have a short shelf life. They only last for 6 weeks (42 days).
+                            Donating whole blood takes only about 10-15 minutes.
+                            You can donate whole blood every 56 days—and we encourage you to donate as often as possible.
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-12">
+                              <img class="img-fluid" src="{{asset('Heart-Article-Hero-1200x500.gif')}}" alt="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+              
+          </div>
+          <div class="col-xs-12 col-sm-6 fl_icon">
+            <div class="row justify-content-center">
+                  <div class="col-lg-8 posts-list">
+                      <div class="single-post row">
+                        <div class="col-lg-12">
+                          <div class="quotes">
+                            Someone needs blood every two seconds.
+                            About 1 in 7 people entering a hospital need blood.
+                            Children being treated for cancer, premature infants and children having 
+                            heart surgery need blood and platelets from donors of all types, especially type O.
+                            Cancer, transplant and trauma patients, and patients undergoing open-heart surgery 
+                            may require platelet transfusions to survive.
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <img class="img-fluid" src="{{asset('EBA_1_patient_care.gif')}}" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+
+      <!-- <div class="row justify-content-center section-title-wrap">
           <div class="col-lg-8 posts-list">
               <div class="single-post row">
                 <div class="col-lg-12">
@@ -122,16 +224,9 @@ $(function(){
                 </div>
               </div>
           </div>
-      </div>
-  </div>
+      </div> -->
+  <!-- </div> -->
 </section>
 <hr>
-<section class="contact_area p_120" id="pieChart"> 
-	<p class="text-center h4 mb-4">My Donations</p>
-	@if($Data)
-		<div id="chartPie" style="height: 550px;"></div>
-	@else
-	<p class="text-center h4 mb-4">You have no Donations yet</p>
-	@endif
-</section>
+
 @endsection

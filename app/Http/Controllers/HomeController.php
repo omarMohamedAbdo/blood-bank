@@ -75,6 +75,21 @@ class HomeController extends Controller
         //                               "name" => "Banana",
         //                             )
         //           );
-        return view('home',['Data' => $Data]);
+
+        $totalDonations = Donation::where('status', 'accept')->sum('donations_amount');
+        $maxDonation = Donation::where('status', 'accept')->max('donations_amount');
+        $topHospitalDonation = Donation::where('status', 'accept')->whereNull('user_id')
+        ->orderBy('donations_amount', 'desc')->first(); 
+        $topDonorDonation = Donation::where('status', 'accept')->whereNull('hospital_id')
+        ->orderBy('donations_amount', 'desc')->first();
+
+        return view('home',
+        [
+          'Data' => $Data,
+          'totalDonations' => $totalDonations ,
+          'maxDonation' => $maxDonation ,
+          'topHospital' => $topHospitalDonation->donorHospital->name ,
+          'topDonor' => $topDonorDonation->user->name ,
+        ]);
     }
 }

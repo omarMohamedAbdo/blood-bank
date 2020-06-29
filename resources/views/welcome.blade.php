@@ -96,7 +96,13 @@
                                         <a class="nav-link" href="#team">Our team</a>
 									</li>
 									<li class="nav-item ">
-                                        <a class="nav-link" href="#requests">Hot requests</a>
+                                        <a class="nav-link" href="#requests">Campaigns</a>
+									</li>
+									<li class="nav-item ">
+                                        <a class="nav-link" href="#statistics">Statistics</a>
+                                    </li>
+									<li class="nav-item ">
+                                        <a class="nav-link" href="#stories">Donation stories</a>
                                     </li>
 									<li class="nav-item submenu dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
@@ -122,7 +128,13 @@
                                         <a class="nav-link" href="#team">Our team</a>
 									</li>
 									<li class="nav-item ">
-                                        <a class="nav-link" href="#requests">Hot requests</a>
+                                        <a class="nav-link" href="#requests">Campaigns</a>
+									</li>
+									<li class="nav-item ">
+                                        <a class="nav-link" href="#statistics">Statistics</a>
+									</li>
+									<li class="nav-item ">
+                                        <a class="nav-link" href="#stories">Donation stories</a>
                                     </li>
 									<li class="nav-item submenu dropdown">
 										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::guard('hospital')->user()->name }}</a>
@@ -164,7 +176,13 @@
                                        	 <a class="nav-link" href="#team">Our team</a>
 										</li>
 										<li class="nav-item ">
-											<a class="nav-link" href="#requests">Hot requests</a>
+											<a class="nav-link" href="#requests">Campaigns</a>
+										</li>
+										<li class="nav-item ">
+											<a class="nav-link" href="#statistics">Statistics</a>
+										</li>
+										<li class="nav-item ">
+											<a class="nav-link" href="#stories">Donation stories</a>
 										</li>
 										
                                         <!-- <li class="nav-item ">
@@ -289,6 +307,44 @@
 	</div>
 </section>
 
+<!--================ Start important-points section =================-->
+<section class="donation_details pad_top" id="statistics">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 single_donation_box">
+					<img src="{{asset('css/img/icons/home1.png')}}" alt="">
+					<h4>Total Donations</h4>
+					<p>
+						{{ $totalDonations }} blood bag 
+					</p>
+				</div>
+				
+				<div class="col-lg-3 col-md-6 single_donation_box">
+					<img src="{{asset('css/img/icons/home3.png')}}" alt="">
+					<h4>Highest Donation</h4>
+					<p>
+					{{ $maxDonation }} blood bag 
+					</p>
+				</div>
+				<div class="col-lg-3 col-md-6 single_donation_box">
+					<img src="{{asset('css/img/icons/home2.png')}}" alt="">
+					<h4>Most Donating Hospital</h4>
+					<p>
+					{{ $topHospital }} Hospital  
+					</p>
+				</div>
+				<div class="col-lg-3 col-md-6 single_donation_box">
+					<img src="{{asset('css/img/icons/home4.png')}}" alt="">
+					<h4>Most Donating Donor</h4>
+					<p>
+					{{ $topDonor }}
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ End important-points section =================-->
+
 <!--================ Start Our Major Cause section =================-->
 <section class="our_major_cause section_gap"id="requests">
 		<div class="container">
@@ -296,7 +352,7 @@
 				<div class="col-lg-12">
 					<h1>Our Major Campaigns</h1>
 					<p>
-						We Help others by providing campaigs and donations
+						We Help others by providing campaigns and donations
 					</p>
 				</div>
 			</div>
@@ -370,9 +426,49 @@
 	</section>
 	<!--================ Ens Our Major Cause section =================-->
 
+<!--================ Start Our Major Cause section =================-->
+<section class="our_major_cause section_gap"id="stories">
+	<div class="container">
+			<div class="row justify-content-center section-title-wrap">
+				<div class="col-lg-12">
+					<h1>Inspiring Donation Stories</h1>
+					<p>
+						See our donor stories and how it impacts our life and life of every patient
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<!-- <div id="our-major-cause" class="owl-carousel"> -->
+				@foreach( $stories as $story)
+				<div class="col-lg-4">
+						<div class="card">
+							<div class="card-body">
+								<figure>
+									@if($story->image)
+									<img style="height:285px;" src="{{asset('/stories/'.$story->image)}}" alt="" class="img-fluid">
+									@else
+									<img style="height:285px;" src="{{asset('css/img/elements/d.jpg')}}" alt="" class="img-fluid">
+									@endif
+								</figure>
+								<div class="card_inner_body">
+									<h4 class="card-title">{{ $story->title }} </h4>
+									<p><strong> Author: </strong> {{ $story->user->name }}</p>
+									<p class="card-text">“{{ $story->story }}”</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				@endforeach
+				<!-- </div> -->
+			</div>
+	
+		</div>
+	</section>
+	<!--================ Ens Our Major Cause section =================-->
+
 
 <!--================ Start Clients Logo Area =================-->
-<section class="clients_logo_area section_gap">
+<!-- <section class="clients_logo_area section_gap">
 		<div class="container">
 			<div class="clients_slider owl-carousel">
 				<div class="item">
@@ -392,7 +488,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> -->
 	<!--================ End Clients Logo Area =================-->
 <!--================ Start Experience Area =================-->
 <section class="experience_donation section_gap"  style=" bottom: 0;width: 100%;">
