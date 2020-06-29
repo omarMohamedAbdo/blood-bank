@@ -21,7 +21,7 @@ class MessagesController extends Controller
     {
         $receivedMessages = Message::where('receiver_user_id',Auth::user()->id)->orderBy('created_at', 'DESC')->get();
         $sentMessages = Message::where('sender_user_id',Auth::user()->id)->orderBy('created_at', 'DESC')->get();
-        $hospitals = Hospital::all();
+        $hospitals = Hospital::where('is_active', 1)->get();
         return view('donor.messages',
         [
          'receivedMessages' => $receivedMessages ,
@@ -41,8 +41,8 @@ class MessagesController extends Controller
         ->orderBy('created_at', 'DESC')
         ->get();
         $sentMessages = Message::where('sender_hospital_id',Auth::user()->id)->orderBy('created_at', 'DESC')->get();
-        $users = User::all();
-        $hospitals = Hospital::all()->except(Auth::user()->id);
+        $users = User::where('is_active', 1)->get();
+        $hospitals = Hospital::where('is_active', 1)->get()->except(Auth::user()->id);
         return view('hospital.messages',
             ['receivedUserMessages' => $receivedUserMessages 
             , 'receivedHospitalMessages' => $receivedHospitalMessages
