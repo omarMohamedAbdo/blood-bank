@@ -147,8 +147,8 @@ class RequestController extends Controller
     public function destroy(Request $request, $id)
     {
         //
-        Donation::where('request_id', $id)->delete();
-        hospitalRequest::find($id)->delete();
+        hospitalRequests::where('id',$id)->donations()->delete();
+        hospitalRequests::where('id',$id)->delete();
 
         return redirect()->route('requests.index');
     }

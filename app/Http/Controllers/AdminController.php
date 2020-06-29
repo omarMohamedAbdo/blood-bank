@@ -49,6 +49,9 @@ class AdminController extends Controller
 
     public function deleteHospital(Request $request)
     {
+        Hospital::where('id', $request['id'])->sentMessages()->delete();
+        Hospital::where('id', $request['id'])->feedback()->delete();
+        Hospital::where('id', $request['id'])->givenDonations()->delete();
         Hospital::where('id', $request['id'])->requests()->delete();
         Hospital::where('id', $request['id'])->delete();
         return redirect()->route('hospitalList');
@@ -101,6 +104,8 @@ class AdminController extends Controller
 
     public function deleteUser(Request $request)
     {
+        User::where('id', $request['id'])->givenFeedbacks()->delete();
+        User::where('id', $request['id'])->sentMessages()->delete();
         User::where('id', $request['id'])->donations()->delete();
         User::where('id', $request['id'])->delete();
         return redirect()->route('userslList');
@@ -188,8 +193,8 @@ class AdminController extends Controller
 
     public function deleteRequest(Request $request)
     {   
-        hospitalRequests::find($request['id'])->donations()->delete();
-        hospitalRequests::find($request['id'])->delete();
+        hospitalRequests::where('id',$request['id'])->donations()->delete();
+        hospitalRequests::where('id',$request['id'])->delete();
 
         if (isset($request['private']))
             return redirect()->route('privateRequestList');
