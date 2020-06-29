@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
@@ -57,7 +58,13 @@ class AdminController extends Controller
     public function userslList()
     {
         $users = User::where('id', '!=', Auth::id())->get();
-        return view('usersList', ['users' => $users]);
+        return view('usersList', 
+        [
+         'users' => $users ,
+         'cities' => ['Cairo', 'Alexandria', 'Suez' ,'6th of October City', 'Gizeh' , 'Port Said' , 'al-Mansura', 'Damietta']
+         ,'bloodTypes' => ['A', 'AB', 'B' ,'O', 'unkown' ]
+         
+         ]);
     }
 
     public function activeUser(Request $request)
@@ -103,6 +110,27 @@ class AdminController extends Controller
     {
         $users = User::where('is_active', 0)->get();
         return view('inactiveUsersList', ['users' => $users]);
+    }
+
+    public function updateUser(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => array('required',
+            'max:191','string','email',
+            Rule::unique('users')->ignore($request['id']),
+            ),
+            'city' => ['required'],
+            'blood_type' => ['required'],
+        ]);
+
+        $user = User::find($request['id']);
+        $user['name'] = $request['name'];
+        $user['email'] = $request['email'];
+        $user['city'] = $request['city'];
+        $user['blood_type'] = $request['blood_type'];
+        $user->save();
+        return redirect()->route('userslList');
     }
 
     public function viewUser($id)

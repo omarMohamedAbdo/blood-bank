@@ -114,7 +114,7 @@ Route::group(
         Route::get('privateRequestList', 'AdminController@privateRequestList')->name('privateRequestList');
 
 
-        // Users Routes
+        // Users Routes 
         Route::get('usersList', 'AdminController@userslList')->name('userslList');
         Route::get('inactiveUsers', 'AdminController@inactiveUsers')->name('inactiveUserList');
         Route::put('activeUser', 'AdminController@activeUser');
@@ -123,5 +123,6 @@ Route::group(
         Route::put('downgradeUser', 'AdminController@downgradeUser');
         Route::delete('deleteUser', 'AdminController@deleteUser');
         Route::get('/viewUser/{id}', 'AdminController@viewUser')->name('viewUser');
+        Route::put('updateUser', 'AdminController@updateUser');
     }
 ); //end of admin middleware

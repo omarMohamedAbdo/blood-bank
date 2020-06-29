@@ -15,7 +15,7 @@ class HospitalController extends Controller
      */
     public function index()
     {
-        $hospitals = Hospital::all();
+        $hospitals = Hospital::where('is_active', 1)->get();
         return view('donor.hospitals',['hospitals' => $hospitals ]);
     }
 

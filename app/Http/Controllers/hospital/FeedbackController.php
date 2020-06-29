@@ -20,7 +20,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        $hospitals = Hospital::all()->except(Auth::id());
+        $hospitals =  Hospital::where('is_active', 1)->where('id','!=', Auth::id() )->get();
         return view('hospital.hospitals',['hospitals' => $hospitals ]);
     }
 
