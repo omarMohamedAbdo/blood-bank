@@ -49,11 +49,11 @@ class AdminController extends Controller
 
     public function deleteHospital(Request $request)
     {
-        Hospital::where('id', $request['id'])->sentMessages()->delete();
-        Hospital::where('id', $request['id'])->feedback()->delete();
-        Hospital::where('id', $request['id'])->givenDonations()->delete();
-        Hospital::where('id', $request['id'])->requests()->delete();
-        Hospital::where('id', $request['id'])->delete();
+        Hospital::where('id', $request['id'])->first()->sentMessages()->delete();
+        Hospital::where('id', $request['id'])->first()->feedbacks()->delete();
+        Hospital::where('id', $request['id'])->first()->givenDonations()->delete();
+        Hospital::where('id', $request['id'])->first()->requests()->delete();
+        Hospital::where('id', $request['id'])->first()->delete();
         return redirect()->route('hospitalList');
     }
 
@@ -104,10 +104,10 @@ class AdminController extends Controller
 
     public function deleteUser(Request $request)
     {
-        User::where('id', $request['id'])->givenFeedbacks()->delete();
-        User::where('id', $request['id'])->sentMessages()->delete();
-        User::where('id', $request['id'])->donations()->delete();
-        User::where('id', $request['id'])->delete();
+        User::where('id', $request['id'])->first()->givenFeedbacks()->delete();
+        User::where('id', $request['id'])->first()->sentMessages()->delete();
+        User::where('id', $request['id'])->first()->donations()->delete();
+        User::where('id', $request['id'])->first()->delete();
         return redirect()->route('userslList');
     }
 
@@ -193,8 +193,8 @@ class AdminController extends Controller
 
     public function deleteRequest(Request $request)
     {   
-        hospitalRequests::where('id',$request['id'])->donations()->delete();
-        hospitalRequests::where('id',$request['id'])->delete();
+        hospitalRequests::where('id',$request['id'])->first()->donations()->delete();
+        hospitalRequests::where('id',$request['id'])->first()->delete();
 
         if (isset($request['private']))
             return redirect()->route('privateRequestList');
