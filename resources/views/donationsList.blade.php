@@ -47,7 +47,13 @@
                                         @if($donation->status == "pending")
                                         <tr>
                                             <th scope="row">{{ $donation->request_id }}</th>
-                                            <td> {{$donation->request->name}} </td>
+                                            <td>
+                                             @if($donation->request_id)
+                                             {{$donation->request->name}}
+                                             @elseif($donation->target_hospital_id)
+                                             {{$donation->recievingHospital->name}}
+                                             @endif
+                                            </td>
                                             <td>
                                                 @if(@isset($donation->user_id))
                                                     <a href="{{ url('/hospital/donors/'.$donation->user_id) }}" >{{ $donation->user->name }}</a>

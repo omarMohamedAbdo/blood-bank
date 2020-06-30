@@ -19,7 +19,7 @@ class Feedback extends Model
 
     public function reviewingHospital()
     {
-         return $this->belongsTo('App\Hospital', 'hospital_id');
+         return $this->belongsTo('App\Hospital', 'reviewing_hospital_id');
     }
 
 
