@@ -13,9 +13,9 @@ class ChangeDefualtValueCounterInUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('weekly_donation_count')->default(0)->change();
-        });
+        // Schema::table('users', function (Blueprint $table) {
+        //     $table->boolean('weekly_donation_count')->default(0)->change();
+        // });
     }
 
     /**
