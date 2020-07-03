@@ -10,18 +10,18 @@
 	<link rel="icon" href="img/favicon.png" type="image/png">
 	<title>Blood Bank</title>
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="{{asset('css/css/bootstrap.css')}}">
-	<link rel="stylesheet" href="{{asset('css/vendors/linericon/style.css')}}">
-	<link rel="stylesheet" href="{{asset('css/css/font-awesome.min.css')}}">
-	<link rel="stylesheet" href="{{asset('css/vendors/owl-carousel/owl.carousel.min.css')}}">
-	<link rel="stylesheet" href="{{asset('css/vendors/lightbox/simpleLightbox.css')}}">
-	<link rel="stylesheet" href="{{asset('css/vendors/nice-select/css/nice-select.css')}}">
-	<link rel="stylesheet" href="{{asset('css/vendors/animate-css/animate.css')}}">
-    <link rel="stylesheet" href="{{asset('css/vendors/jquery-ui/jquery-ui.css')}}">
-    <link rel="stylesheet" href="{{asset('css/css/magnific-popup.css')}}">
+	<link rel="stylesheet" href="{{secure_asset('css/css/bootstrap.css')}}">
+	<link rel="stylesheet" href="{{secure_asset('css/vendors/linericon/style.css')}}">
+	<link rel="stylesheet" href="{{assecure_assetset('css/css/font-awesome.min.css')}}">
+	<link rel="stylesheet" href="{{secure_asset('css/vendors/owl-carousel/owl.carousel.min.css')}}">
+	<link rel="stylesheet" href="{{secure_asset('css/vendors/lightbox/simpleLightbox.css')}}">
+	<link rel="stylesheet" href="{{secure_asset('css/vendors/nice-select/css/nice-select.css')}}">
+	<link rel="stylesheet" href="{{secure_asset('css/vendors/animate-css/animate.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('css/vendors/jquery-ui/jquery-ui.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('css/css/magnific-popup.css')}}">
 	<!-- main css -->
-	<link rel="stylesheet" href="{{asset('css/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('css/css/responsive.css')}}">
+	<link rel="stylesheet" href="{{secure_asset('css/css/style.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('css/css/responsive.css')}}">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 
 	<style>
@@ -74,7 +74,7 @@
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<a class="navbar-brand logo_h" href="/">
-						<img src="{{asset('css/img/logo.png')}}" alt="">
+						<img src="{{secure_asset('css/img/logo.png')}}" alt="">
 					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 					 aria-expanded="false" aria-label="Toggle navigation">
@@ -213,7 +213,7 @@
 			<div class="container">
 				<div class="banner_content row">
 					<div class="offset-lg-2 col-lg-8">
-						<img class="img-fluid" src="{{asset('css/img/banner/text-img.png')}}" alt="">
+						<img class="img-fluid" src="{{secure_asset('css/img/banner/text-img.png')}}" alt="">
 						<p>Please Help Us, Donate Now to our causes
 
 							</p>
@@ -241,7 +241,7 @@
 			<!-- Row -->
 			<div class="row">
 			<div class="col-md-12">
-				<img src="{{asset('OmarFormal.jpg')}}" alt="wrapkit" class="img-fluid rounded-circle" />
+				<img src="{{secure_asset('OmarFormal.jpg')}}" alt="wrapkit" class="img-fluid rounded-circle" />
 			</div>
 			<div class="col-md-12 text-center">
 				<div class="pt-2">
@@ -263,7 +263,7 @@
 			<!-- Row -->
 			<div class="row">
 			<div class="col-md-12">
-				<img src="{{asset('Dalia.jpeg')}}" style="width: 450px;" alt="wrapkit" class="img-fluid rounded-circle" />
+				<img src="{{secure_asset('Dalia.jpeg')}}" style="width: 450px;" alt="wrapkit" class="img-fluid rounded-circle" />
 			</div>
 			<div class="col-md-12 text-center">
 				<div class="pt-2">
@@ -286,7 +286,7 @@
 			<!-- Row -->
 			<div class="row">
 			<div class="col-md-12">
-				<img src="{{asset('Mahmoud.jpeg')}}" style="width: 450px;" alt="wrapkit" class="img-fluid rounded-circle" />
+				<img src="{{secure_asset('Mahmoud.jpeg')}}" style="width: 450px;" alt="wrapkit" class="img-fluid rounded-circle" />
 			</div>
 			<div class="col-md-12 text-center">
 				<div class="pt-2">
@@ -312,7 +312,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-6 single_donation_box">
-					<img src="{{asset('css/img/icons/home1.png')}}" alt="">
+					<img src="{{secure_asset('css/img/icons/home1.png')}}" alt="">
 					<h4>Total Donations</h4>
 					<p>
 						{{ $totalDonations }} blood bag 
@@ -320,7 +320,7 @@
 				</div>
 				
 				<div class="col-lg-3 col-md-6 single_donation_box">
-					<img src="{{asset('css/img/icons/home3.png')}}" alt="">
+					<img src="{{secure_asset('css/img/icons/home3.png')}}" alt="">
 					<h4>Highest Donation</h4>
 					<p>
 					{{ $maxDonation }} blood bag 
@@ -334,7 +334,7 @@
 					</p>
 				</div>
 				<div class="col-lg-3 col-md-6 single_donation_box">
-					<img src="{{asset('css/img/icons/home4.png')}}" alt="">
+					<img src="{{secure_asset('css/img/icons/home4.png')}}" alt="">
 					<h4>Most Donating Donor</h4>
 					<p>
 					{{ $topDonor }}
@@ -365,13 +365,13 @@
 							<div class="card-body">
 								<figure>
 									@if($campaign->blood_type == 'A')
-									<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('type A.jpg')}}" alt="Card image cap">
+									<img style="height:285px;" class="card-img-top img-fluid" src="{{secure_asset('type A.jpg')}}" alt="Card image cap">
 									@elseif($campaign->blood_type == 'B')
-									<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('type B.jpg')}}" alt="Card image cap">
+									<img style="height:285px;" class="card-img-top img-fluid" src="{{secure_asset('type B.jpg')}}" alt="Card image cap">
 									@elseif($campaign->blood_type == 'AB')
-									<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('type AB.jpg')}}" alt="Card image cap">
+									<img style="height:285px;" class="card-img-top img-fluid" src="{{secure_asset('type AB.jpg')}}" alt="Card image cap">
 									@else
-									<img style="height:285px;" class="card-img-top img-fluid" src="{{asset('type O.jpg')}}" alt="Card image cap">
+									<img style="height:285px;" class="card-img-top img-fluid" src="{{secure_asset('type O.jpg')}}" alt="Card image cap">
 									@endif
 								</figure>
 								<div class="progress">
@@ -445,9 +445,9 @@
 							<div class="card-body">
 								<figure>
 									@if($story->image)
-									<img style="height:285px;" src="{{asset('/stories/'.$story->image)}}" alt="" class="img-fluid">
+									<img style="height:285px;" src="{{secure_asset('/stories/'.$story->image)}}" alt="" class="img-fluid">
 									@else
-									<img style="height:285px;" src="{{asset('css/img/elements/d.jpg')}}" alt="" class="img-fluid">
+									<img style="height:285px;" src="{{secure_asset('css/img/elements/d.jpg')}}" alt="" class="img-fluid">
 									@endif
 								</figure>
 								<div class="card_inner_body">
@@ -472,19 +472,19 @@
 		<div class="container">
 			<div class="clients_slider owl-carousel">
 				<div class="item">
-					<img src="{{asset('css/img/clients-logo/c-logo-1.png')}}" alt="">
+					<img src="{{secure_asset('css/img/clients-logo/c-logo-1.png')}}" alt="">
 				</div>
 				<div class="item">
-					<img src="{{asset('css/img/clients-logo/c-logo-2.png')}}" alt="">
+					<img src="{{secure_asset('css/img/clients-logo/c-logo-2.png')}}" alt="">
 				</div>
 				<div class="item">
-					<img src="{{asset('css/img/clients-logo/c-logo-3.png')}}" alt="">
+					<img src="{{secure_asset('css/img/clients-logo/c-logo-3.png')}}" alt="">
 				</div>
 				<div class="item">
-					<img src="{{asset('css/img/clients-logo/c-logo-4.png')}}" alt="">
+					<img src="{{secure_asset('css/img/clients-logo/c-logo-4.png')}}" alt="">
 				</div>
 				<div class="item">
-					<img src="{{asset('css/img/clients-logo/c-logo-5.png')}}" alt="">
+					<img src="{{secure_asset('css/img/clients-logo/c-logo-5.png')}}" alt="">
 				</div>
 			</div>
 		</div>
@@ -507,20 +507,20 @@
     
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="{{asset('js/js/jquery-3.2.1.min.js')}}"></script>
-<script src="{{asset('js/js/popper.js')}}"></script>
-<script src="{{asset('js/js/bootstrap.min.js')}}"></script>
+<script src="{{assecure_assetset('js/js/jquery-3.2.1.min.js')}}"></script>
+<script src="{{secure_asset('js/js/popper.js')}}"></script>
+<script src="{{secure_asset('js/js/bootstrap.min.js')}}"></script>
 <!-- <script src="vendors/lightbox/simpleLightbox.min.js"></script> -->
-<script src="{{asset('css/vendors/nice-select/js/jquery.nice-select.min.js')}}"></script>
+<script src="{{assecure_assetset('css/vendors/nice-select/js/jquery.nice-select.min.js')}}"></script>
 <!-- <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script> -->
-<script src="{{asset('css/vendors/isotope/isotope-min.js')}}"></script>
-<script src="{{asset('css/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
-<script src="{{asset('js/js/jquery.ajaxchimp.min.js')}}"></script>
+<script src="{{secure_asset('css/vendors/isotope/isotope-min.js')}}"></script>
+<script src="{{secure_asset('css/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
+<script src="{{assecure_assetset('js/js/jquery.ajaxchimp.min.js')}}"></script>
 <!-- <script src="vendors/counter-up/jquery.waypoints.min.js"></script> -->
 <!-- <script src="vendors/flipclock/timer.js"></script> -->
 <!-- <script src="vendors/counter-up/jquery.counterup.js"></script> -->
-<script src="{{asset('js/js/mail-script.js')}}"></script>
-<script src="{{asset('js/js/custom.js')}}"></script>
+<script src="{{secure_asset('js/js/mail-script.js')}}"></script>
+<script src="{{secure_asset('js/js/custom.js')}}"></script>
     
 </body>
 </html>
